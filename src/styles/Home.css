@@ -1,0 +1,390 @@
+/* Variáveis de Cores - Paleta "O Defunto Autor" */
+:root {
+    --cor-fundo: #f4efe6; /* Papel Pergaminho */
+    --cor-texto: #1a1a1a; /* Preto Luto */
+    --cor-destaque: #4a0e17; /* Vinho Bordô */
+    --cor-borda: #d8cfc0; /* Detalhes e separadores */
+    --cor-cinza: #6b6b6b; /* Cinza para textos secundários */
+}
+
+/* Reset Básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Tipografia Base */
+body {
+    font-family: 'Lora', serif;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+.logo {
+    font-family: 'Playfair Display', serif;
+    color: var(--cor-texto);
+}
+
+h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: -1px;
+}
+
+h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--cor-cinza);
+}
+
+/* Cabeçalho */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2%;
+    border-bottom: 1px solid var(--cor-borda);
+    background-color: var(--cor-fundo);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    gap: 1rem;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--cor-destaque);
+    letter-spacing: 2px;
+    flex-shrink: 0;
+}
+
+.nav {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.nav ul {
+    list-style: none;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: nowrap;
+}
+
+.nav a {
+    text-decoration: none;
+    color: var(--cor-texto);
+    font-weight: 600;
+    font-size: 0.75rem;
+    transition: color 0.3s;
+    white-space: nowrap;
+}
+
+.nav a:hover {
+    color: var(--cor-destaque);
+}
+
+/* Botão de Idioma */
+.btn-idioma {
+    background: transparent;
+    border: 1px solid var(--cor-texto);
+    padding: 0.5rem 0.8rem;
+    cursor: pointer;
+    font-family: 'Lora', serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+    transition: all 0.3s;
+    flex-shrink: 0;
+}
+
+.btn-idioma:hover {
+    background-color: var(--cor-destaque);
+    color: var(--cor-fundo);
+    border-color: var(--cor-destaque);
+}
+
+/* Botão Primário */
+.btn-primario {
+    background-color: var(--cor-destaque);
+    color: var(--cor-fundo);
+    padding: 1rem 2rem;
+    border: none;
+    cursor: pointer;
+    font-family: 'Lora', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-top: 1.5rem;
+    transition: background 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-primario:hover {
+    background-color: #330a10;
+}
+
+/* Seção Hero */
+.hero-section {
+    padding: 6rem 5%;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: var(--cor-fundo);
+}
+
+.hero-section h1 {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    color: var(--cor-texto);
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: var(--cor-cinza);
+    font-style: italic;
+    line-height: 1.8;
+}
+
+/* Seção Tecnologia */
+.secao-tecnologia {
+    padding: 5rem 5%;
+    background-color: var(--cor-fundo);
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.secao-tecnologia h2 {
+    font-size: 2rem;
+    margin-bottom: 2.5rem;
+}
+
+.secao-tecnologia p {
+    margin-bottom: 1.5rem;
+    text-align: justify;
+    font-size: 1.05rem;
+}
+
+/* Seção Defunto Autor */
+.secao-defunto-autor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    padding: 5rem 5%;
+    background-color: var(--cor-fundo);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.defunto-texto h2 {
+    text-align: left;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.defunto-texto p {
+    text-align: justify;
+    font-size: 1.05rem;
+    line-height: 1.9;
+}
+
+.defunto-imagem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.livro-placeholder {
+    width: 200px;
+    height: 300px;
+    background: linear-gradient(135deg, #8b4513 0%, #654321 100%);
+    border: 3px solid #3e2723;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f4efe6;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    line-height: 1.4;
+}
+
+/* Seção Navegação */
+.secao-navegacao {
+    padding: 5rem 5%;
+    background-color: var(--cor-fundo);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.secao-navegacao h2 {
+    margin-bottom: 3rem;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    padding: 2rem;
+    border: 1px solid var(--cor-borda);
+    background-color: #fdfbf7;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(74, 14, 23, 0.1);
+    border-color: var(--cor-destaque);
+}
+
+.card h3 {
+    color: var(--cor-destaque);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.card p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+/* Seção Projeto */
+.secao-projeto {
+    padding: 5rem 5%;
+    background-color: var(--cor-fundo);
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.secao-projeto h2 {
+    margin-bottom: 2rem;
+}
+
+.secao-projeto p {
+    font-size: 1.05rem;
+    text-align: justify;
+    line-height: 1.9;
+}
+
+/* Rodapé */
+.footer {
+    text-align: center;
+    padding: 2.5rem;
+    background-color: var(--cor-texto);
+    color: var(--cor-fundo);
+    margin-top: 4rem;
+}
+
+.footer p {
+    font-size: 0.9rem;
+    color: var(--cor-fundo);
+    margin-bottom: 0.5rem;
+}
+
+/* Responsivo */
+@media (max-width: 1024px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    .secao-defunto-autor {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 3rem 5%;
+    }
+
+    .defunto-texto h2 {
+        text-align: center;
+    }
+
+    .nav ul {
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 1rem;
+    }
+
+    .logo {
+        font-size: 1.3rem;
+    }
+
+    .nav {
+        width: 100%;
+        order: 3;
+    }
+
+    .nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
+    }
+
+    .hero-section {
+        padding: 3rem 2rem;
+    }
+
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .secao-tecnologia {
+        padding: 3rem 2rem;
+    }
+
+    .secao-defunto-imagem {
+        padding: 3rem 2rem;
+    }
+
+    .cards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer {
+        padding: 1.5rem;
+    }
+}
+
+/* Importar Fontes do Google */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
