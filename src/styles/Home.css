@@ -61,21 +61,27 @@ p {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 2%;
-    border-bottom: 1px solid var(--cor-borda);
+    padding: 1.2rem 5%;
+    border-bottom: 2px solid var(--cor-borda);
     background-color: var(--cor-fundo);
     position: sticky;
     top: 0;
     z-index: 100;
-    gap: 1rem;
+    gap: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .logo {
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: 700;
     color: var(--cor-destaque);
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
 }
 
 .nav {
@@ -87,7 +93,7 @@ p {
 .nav ul {
     list-style: none;
     display: flex;
-    gap: 0.5rem;
+    gap: 1.5rem;
     flex-wrap: nowrap;
 }
 
@@ -95,32 +101,40 @@ p {
     text-decoration: none;
     color: var(--cor-texto);
     font-weight: 600;
-    font-size: 0.75rem;
-    transition: color 0.3s;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
     white-space: nowrap;
+    padding-bottom: 0.25rem;
+    border-bottom: 2px solid transparent;
+    position: relative;
 }
 
 .nav a:hover {
     color: var(--cor-destaque);
+    border-bottom-color: var(--cor-destaque);
 }
 
 /* Botão de Idioma */
 .btn-idioma {
     background: transparent;
-    border: 1px solid var(--cor-texto);
-    padding: 0.5rem 0.8rem;
+    border: 2px solid var(--cor-texto);
+    padding: 0.6rem 1.2rem;
     cursor: pointer;
     font-family: 'Lora', serif;
-    font-weight: 600;
-    font-size: 0.8rem;
-    transition: all 0.3s;
+    font-weight: 700;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
     flex-shrink: 0;
+    letter-spacing: 0.5px;
+    border-radius: 3px;
 }
 
 .btn-idioma:hover {
     background-color: var(--cor-destaque);
     color: var(--cor-fundo);
     border-color: var(--cor-destaque);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(74, 14, 23, 0.15);
 }
 
 /* Botão Primário */
@@ -313,6 +327,16 @@ p {
 }
 
 /* Responsivo */
+@media (max-width: 1200px) {
+    .nav ul {
+        gap: 1.2rem;
+    }
+
+    .nav a {
+        font-size: 0.85rem;
+    }
+}
+
 @media (max-width: 1024px) {
     h1 {
         font-size: 2.5rem;
@@ -320,6 +344,18 @@ p {
 
     h2 {
         font-size: 1.8rem;
+    }
+
+    .header {
+        padding: 1.2rem 3%;
+    }
+
+    .logo {
+        font-size: 1.7rem;
+    }
+
+    .nav ul {
+        gap: 1rem;
     }
 
     .secao-defunto-autor {
@@ -332,57 +368,200 @@ p {
         text-align: center;
     }
 
-    .nav ul {
-        gap: 1rem;
+    .secao-navegacao {
+        padding: 3rem 3%;
     }
 }
 
 @media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
     .header {
-        padding: 1rem;
+        padding: 1rem 3%;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        justify-content: flex-start;
     }
 
     .logo {
-        font-size: 1.3rem;
+        font-size: 1.4rem;
+        letter-spacing: 2px;
     }
 
     .nav {
-        width: 100%;
         order: 3;
+        width: 100%;
+        justify-content: center;
+        margin-top: 0.5rem;
     }
 
     .nav ul {
-        flex-direction: column;
-        align-items: center;
-        gap: 0.8rem;
+        gap: 0.6rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav a {
+        font-size: 0.75rem;
+        padding-bottom: 0.15rem;
+    }
+
+    .btn-idioma {
+        font-size: 0.7rem;
+        padding: 0.4rem 0.6rem;
+        letter-spacing: 0.3px;
     }
 
     .hero-section {
-        padding: 3rem 2rem;
+        padding: 3rem 3%;
     }
 
     .hero-section h1 {
         font-size: 2rem;
+        margin-bottom: 1.5rem;
     }
 
     .hero-subtitle {
-        font-size: 1rem;
+        font-size: 0.95rem;
     }
 
     .secao-tecnologia {
-        padding: 3rem 2rem;
+        padding: 2.5rem 3%;
     }
 
-    .secao-defunto-imagem {
-        padding: 3rem 2rem;
+    .secao-tecnologia h2 {
+        font-size: 1.3rem;
+    }
+
+    .secao-tecnologia p {
+        font-size: 0.95rem;
+    }
+
+    .secao-defunto-autor {
+        padding: 2.5rem 3%;
+        gap: 1.5rem;
+    }
+
+    .defunto-texto p {
+        font-size: 0.9rem;
+    }
+
+    .livro-placeholder {
+        width: 150px;
+        height: 225px;
+        font-size: 0.9rem;
+    }
+
+    .secao-navegacao {
+        padding: 2.5rem 3%;
+    }
+
+    .secao-navegacao h2 {
+        font-size: 1.3rem;
+        margin-bottom: 2rem;
     }
 
     .cards-grid {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+
+    .card h3 {
+        font-size: 1.1rem;
+    }
+
+    .card p {
+        font-size: 0.85rem;
+    }
+
+    .secao-projeto {
+        padding: 2.5rem 3%;
+    }
+
+    .secao-projeto h2 {
+        font-size: 1.3rem;
+    }
+
+    .secao-projeto p {
+        font-size: 0.9rem;
     }
 
     .footer {
-        padding: 1.5rem;
+        padding: 1.5rem 3%;
+        margin-top: 2rem;
+    }
+
+    .footer p {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    .header {
+        padding: 0.8rem 2%;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+        letter-spacing: 1px;
+    }
+
+    .nav ul {
+        gap: 0.4rem;
+    }
+
+    .nav a {
+        font-size: 0.65rem;
+    }
+
+    .btn-idioma {
+        font-size: 0.65rem;
+        padding: 0.3rem 0.5rem;
+    }
+
+    .hero-section {
+        padding: 2rem 3%;
+    }
+
+    .hero-section h1 {
+        font-size: 1.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.85rem;
+    }
+
+    .btn-primario {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.85rem;
+    }
+
+    .secao-navegacao {
+        padding: 2rem 3%;
+    }
+
+    .livro-placeholder {
+        width: 120px;
+        height: 180px;
+        font-size: 0.75rem;
     }
 }
 
