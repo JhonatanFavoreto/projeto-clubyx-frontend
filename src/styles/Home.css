@@ -159,7 +159,7 @@ p {
 
 /* Seção Hero */
 .hero-section {
-    padding: 6rem 5%;
+    padding: 1rem 5%;
     text-align: center;
     max-width: 900px;
     margin: 0 auto;
@@ -314,16 +314,23 @@ p {
 /* Rodapé */
 .footer {
     text-align: center;
-    padding: 2.5rem;
+    padding: 3rem 2rem;
     background-color: var(--cor-texto);
     color: var(--cor-fundo);
     margin-top: 4rem;
+    border-top: 3px solid var(--cor-destaque);
 }
 
 .footer p {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: var(--cor-fundo);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.8rem;
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+.footer p:last-child {
+    margin-bottom: 0;
 }
 
 /* Responsivo */
@@ -419,7 +426,7 @@ p {
     }
 
     .hero-section {
-        padding: 3rem 3%;
+        padding: 0.5rem 3%;
     }
 
     .hero-section h1 {
@@ -497,12 +504,12 @@ p {
     }
 
     .footer {
-        padding: 1.5rem 3%;
+        padding: 2rem 2%;
         margin-top: 2rem;
     }
 
     .footer p {
-        font-size: 0.8rem;
+        font-size: 0.85rem;
     }
 }
 
@@ -538,7 +545,7 @@ p {
     }
 
     .hero-section {
-        padding: 2rem 3%;
+        padding: 0.5rem 3%;
     }
 
     .hero-section h1 {
