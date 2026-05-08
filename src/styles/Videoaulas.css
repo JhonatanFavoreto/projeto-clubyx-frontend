@@ -1,0 +1,109 @@
+.videoaulas-container {
+    padding: 4rem 5%;
+    max-width: 1000px;
+    margin: 0 auto;
+    font-family: 'Lora', serif;
+    color: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.page-header h1 {
+    font-size: 3.5rem;
+    color: #1a1a1a;
+    margin-bottom: 1.5rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.page-header p {
+    font-size: 1.1rem;
+    color: #333;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.titulo-secao {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: #1a1a1a;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.aula-card {
+    background-color: #faf7f2;
+    border: 1px solid #d8cfc0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding: 2rem;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .aula-card {
+        grid-template-columns: 1fr;
+    }
+}
+
+.video-placeholder {
+    background-color: #000;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+}
+
+.video-progress-bar {
+    width: 90%;
+    height: 4px;
+    background-color: #ff0000;
+    margin: 1rem 5%;
+    position: relative;
+}
+
+.video-knob {
+    width: 12px;
+    height: 12px;
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.aula-info h3 {
+    font-size: 2rem;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.aula-info h4 {
+    font-size: 1.2rem;
+    color: #1a1a1a;
+    font-family: 'Lora', serif;
+    font-weight: normal;
+}
+
+.aula-info .aula-subtitulo {
+    font-style: italic;
+    font-size: 1rem;
+    color: #444;
+    margin-bottom: 1.5rem;
+}
+
+.aula-info p {
+    color: #333;
+    line-height: 1.6;
+    font-size: 1rem;
+}

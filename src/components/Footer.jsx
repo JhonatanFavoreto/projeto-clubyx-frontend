@@ -1,11 +1,10 @@
+import '../styles/Home.css';
+
 export default function Footer() {
     return (
-        <footer className="footer">
-            <p>
-                Ao verme que primeiro roeu as frias carnes do meu cadáver dedico com saudosa
-                lembrança estas memórias póstumas.
-            </p>
-            <p>© {new Date().getFullYear()} O Defunto Autor. Todos os direitos reservados.</p>
+        <footer className="footer" style={{ marginTop: 'auto' }}>
+            <p>Projeto Integrador 2026 | SENAI (Desenvolvimento de Sistemas) + SESI</p>
+            <p>Desenvolvido de forma colaborativa.</p>
         </footer>
     );
 }

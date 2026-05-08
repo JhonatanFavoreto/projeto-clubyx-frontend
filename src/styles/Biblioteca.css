@@ -1,0 +1,81 @@
+.biblioteca-container {
+    padding: 4rem 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: 'Lora', serif;
+    color: #1a1a1a;
+}
+
+.biblioteca-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.biblioteca-header h1 {
+    font-size: 3.5rem;
+    color: #1a1a1a;
+    margin-bottom: 1.5rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.biblioteca-header p {
+    font-size: 1.1rem;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.livros-section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: #1a1a1a;
+    margin-bottom: 2rem;
+}
+
+.grid-livros {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.livro-card {
+    background-color: #faf7f2;
+    border: 1px solid #d8cfc0;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    min-height: 250px;
+}
+
+.livro-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.livro-card h3 {
+    font-size: 1.8rem;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.livro-autor {
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #444;
+    margin-bottom: 1.5rem;
+    font-family: 'Lora', serif;
+}
+
+.livro-descricao {
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.6;
+    font-family: 'Lora', serif;
+}
+
+/* Footer Global Adjustment if needed, but keeping it localized or relying on existing */

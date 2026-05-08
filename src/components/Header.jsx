@@ -1,17 +1,31 @@
+import { Link } from 'react-router-dom';
+
 export default function Header() {
     return (
         <header className="header">
-            <div className="logo">O Defunto Autor</div>
+            <div className="logo">CLUBYX</div>
             <nav className="nav">
                 <ul>
                     <li>
-                        <a href="#obra">A Obra</a>
+                        <Link to="/">Home</Link>
                     </li>
                     <li>
-                        <a href="#autor">O Autor</a>
+                        <Link to="/obra">A Obra</Link>
                     </li>
                     <li>
-                        <a href="#capitulos">Capítulos</a>
+                        <Link to="/biblioteca">Biblioteca</Link>
+                    </li>
+                    <li>
+                        <Link to="/vestibular">Vestibular</Link>
+                    </li>
+                    <li>
+                        <Link to="/videoaulas">Videoaulas</Link>
+                    </li>
+                    <li>
+                        <Link to="/curiosidades">Curiosidades</Link>
+                    </li>
+                    <li>
+                        <Link to="/sobre">Sobre</Link>
                     </li>
                 </ul>
             </nav>

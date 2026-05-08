@@ -1,40 +1,11 @@
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import '../styles/Home.css';
 
 export default function Home() {
     return (
         <>
-            {/* Header */}
-            <header className="header">
-                <div className="logo">CLUBYX</div>
-
-                <nav className="nav">
-                    <ul>
-                        <li>
-                            <a href="#home">Home</a>
-                        </li>
-                        <li>
-                            <a href="#obra">A Obra</a>
-                        </li>
-                        <li>
-                            <a href="#biblioteca">Biblioteca</a>
-                        </li>
-                        <li>
-                            <a href="#vestibular">Vestibular</a>
-                        </li>
-                        <li>
-                            <a href="#videoaulas">Videoaulas</a>
-                        </li>
-                        <li>
-                            <a href="#curiosidades">Curiosidades</a>
-                        </li>
-                        <li>
-                            <a href="#sobre">Sobre</a>
-                        </li>
-                    </ul>
-                </nav>
-
-                <button className="btn-idioma">PT | EN</button>
-            </header>
+            <Header />
 
             {/* Hero Section */}
             <section className="hero-section" id="home">
@@ -140,11 +111,7 @@ export default function Home() {
                 </p>
             </section>
 
-            {/* Footer */}
-            <footer className="footer">
-                <p>Projeto Integrador 2026 | SENAI (Desenvolvimento de Sistemas) + SESI</p>
-                <p>Desenvolvido de forma colaborativa.</p>
-            </footer>
+            <Footer />
         </>
     );
 }
