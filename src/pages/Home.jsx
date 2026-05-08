@@ -57,7 +57,7 @@ export default function Home() {
                         <span>
                             MEMÓRIAS
                             <br />
-                            PÓSTHUMAS DE
+                            PÓSTUMAS DE
                             <br />
                             BRÁS CUBAS
                         </span>
