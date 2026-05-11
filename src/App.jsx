@@ -6,6 +6,8 @@ import Vestibular from './pages/Vestibular';
 import Videoaulas from './pages/Videoaulas';
 import Curiosidades from './pages/Curiosidades';
 import Sobre from './pages/Sobre';
+import Login from './pages/Login';
+import Cadastro from './pages/Cadastro';
 import './App.css';
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
                 <Route path="/videoaulas" element={<Videoaulas />} />
                 <Route path="/curiosidades" element={<Curiosidades />} />
                 <Route path="/sobre" element={<Sobre />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/cadastro" element={<Cadastro />} />
             </Routes>
         </Router>
     );
