@@ -8,6 +8,7 @@ import Curiosidades from './pages/Curiosidades';
 import Sobre from './pages/Sobre';
 import Login from './pages/Login';
 import Cadastro from './pages/Cadastro';
+import Simulados from './pages/Simulados';
 import './App.css';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
                 <Route path="/sobre" element={<Sobre />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/cadastro" element={<Cadastro />} />
+                <Route path="/simulados" element={<Simulados />} />
             </Routes>
         </Router>
     );

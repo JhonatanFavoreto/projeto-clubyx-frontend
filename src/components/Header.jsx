@@ -27,6 +27,9 @@ export default function Header() {
                     <li>
                         <Link to="/sobre">Sobre</Link>
                     </li>
+                    <li>
+                        <Link to="/simulados">Simulados</Link>
+                    </li>
                 </ul>
             </nav>
             <button className="btn-idioma">PT / EN</button>
