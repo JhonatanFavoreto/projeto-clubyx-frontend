@@ -111,28 +111,44 @@ export default function ConteudosResumos() {
                                     {conteudo.length > 0 ? (
                                         conteudo.map((item, index) => (
                                             <div className="tema-redacao" key={index}>
-                                                <h3>{item.materia}</h3>
+                                                {/* CONTAINER 1: MATÉRIA, RESUMO E ANÁLISES */}
+                                                <div className="bloco-conteudo-principal">
+                                                    <h3 className="materia-titulo">
+                                                        {item.materia}
+                                                    </h3>
 
-                                                {item.resumo && (
-                                                    <p>
-                                                        <strong>Resumo:</strong> {item.resumo}
-                                                    </p>
-                                                )}
-                                                {item.dicas && (
-                                                    <p>
-                                                        <strong>Dicas:</strong> {item.dicas}
-                                                    </p>
-                                                )}
-                                                {item.analises && (
-                                                    <p>
-                                                        <strong>Análises:</strong> {item.analises}
-                                                    </p>
-                                                )}
-                                                {item.curiosidades && (
-                                                    <p>
-                                                        <strong>Curiosidades:</strong>{' '}
-                                                        {item.curiosidades}
-                                                    </p>
+                                                    {item.resumo && (
+                                                        <div className="sub-bloco-info">
+                                                            <h4>Resumo</h4>
+                                                            <p>{item.resumo}</p>
+                                                        </div>
+                                                    )}
+
+                                                    {item.analises && (
+                                                        <div className="sub-bloco-info">
+                                                            <h4>Análises</h4>
+                                                            <p>{item.analises}</p>
+                                                        </div>
+                                                    )}
+                                                </div>
+
+                                                {/* CONTAINER 2: DICAS E CURIOSIDADES (ABAIXO) */}
+                                                {(item.dicas || item.curiosidades) && (
+                                                    <div className="bloco-conteudo-dicas">
+                                                        {item.dicas && (
+                                                            <div className="sub-bloco-info">
+                                                                <h4>Dicas</h4>
+                                                                <p>{item.dicas}</p>
+                                                            </div>
+                                                        )}
+
+                                                        {item.curiosidades && (
+                                                            <div className="sub-bloco-info">
+                                                                <h4>Curiosidades</h4>
+                                                                <p>{item.curiosidades}</p>
+                                                            </div>
+                                                        )}
+                                                    </div>
                                                 )}
                                             </div>
                                         ))
