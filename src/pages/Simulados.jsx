@@ -6,11 +6,8 @@ export default function Simulados() {
     return (
         <div className="simulados-page">
             <header className="header">
-                <div className="logo">CLUBYX</div>
                 <Header/>
             </header>
-
-            <div className="top-line"></div>
 
             <section className="hero">
                 <h1>Simulados</h1>

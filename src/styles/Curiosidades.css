@@ -6,26 +6,6 @@
     color: #1a1a1a;
 }
 
-.page-header {
-    text-align: center;
-    margin-bottom: 4rem;
-}
-
-.page-header h1 {
-    font-size: 3rem;
-    color: #1a1a1a;
-    margin-bottom: 1rem;
-    font-family: 'Playfair Display', serif;
-}
-
-.page-header p {
-    font-size: 1.1rem;
-    color: #444;
-    max-width: 650px;
-    margin: 0 auto;
-    line-height: 1.6;
-}
-
 .autor-container {
     display: flex;
     background-color: #faf7f2;

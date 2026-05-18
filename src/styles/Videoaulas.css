@@ -9,25 +9,6 @@
     gap: 3rem;
 }
 
-.page-header {
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
-.page-header h1 {
-    font-size: 3.5rem;
-    color: #1a1a1a;
-    margin-bottom: 1.5rem;
-    font-family: 'Playfair Display', serif;
-}
-
-.page-header p {
-    font-size: 1.1rem;
-    color: #333;
-    max-width: 700px;
-    margin: 0 auto;
-    line-height: 1.6;
-}
 
 .titulo-secao {
     font-family: 'Playfair Display', serif;

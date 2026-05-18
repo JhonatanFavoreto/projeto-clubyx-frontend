@@ -1,11 +1,13 @@
 /* App.css - Estilos não utilizados atualmente, importados pelo Home.css */
 
 
-  @media (max-width: 1024px) {
+@media (max-width: 1024px) {
+  .sua-classe-aqui {
     border-right: none;
     border-bottom: 1px solid var(--border);
   }
 }
+
 
 #next-steps ul {
   list-style: none;
