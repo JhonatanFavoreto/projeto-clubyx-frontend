@@ -1,8 +1,32 @@
+import { useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../styles/AObra.css';
 
 export default function AObra() {
+    useEffect(() => {
+        const carregarLivros = async () => {
+            try {
+                const response = await fetch('https://projeto-clubyx.onrender.com/livros', {
+                    headers: {
+                        API_KEY: 'Clubyx_dev',
+                    },
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Erro ${response.status} ao buscar /livros`);
+                }
+
+                const data = await response.json();
+                console.log('Resposta de /livros:', data);
+            } catch (error) {
+                console.error('Erro ao buscar livros:', error);
+            }
+        };
+
+        carregarLivros();
+    }, []);
+
     return (
         <div className="aobra-page">
             <Header />
