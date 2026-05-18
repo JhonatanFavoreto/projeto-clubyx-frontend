@@ -1,82 +1,150 @@
 .sobre-container {
-    padding: 4rem 5%;
-    max-width: 1000px;
+    /* Utiliza as mesmas larguras e margens do .main-content original */
+    width: min(1120px, calc(100% - 3rem));
     margin: 0 auto;
+    padding: 4rem 0 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
     font-family: 'Lora', serif;
-    color: #1a1a1a;
 }
 
 .page-header {
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
 }
 
 .page-header h1 {
-    font-size: 3.5rem;
-    color: #1a1a1a;
-    margin-bottom: 1.5rem;
+    margin: 0 0 1.5rem;
     font-family: 'Playfair Display', serif;
+    /* Usa a fonte fluida idêntica ao .title-main */
+    font-size: clamp(2.5rem, 4vw, 4.4rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--cor-texto);
+    text-wrap: balance;
 }
 
 .page-header p {
-    font-size: 1.1rem;
-    color: #333;
-    max-width: 720px;
+    max-width: 760px;
     margin: 0 auto;
-    line-height: 1.6;
+    color: var(--cor-texto-suave);
+    font-size: 1.05rem;
+    line-height: 1.9;
 }
 
 .sobre-content {
-    display: grid;
-    grid-template-columns: 1fr 1.3fr;
-    gap: 4rem;
-    align-items: start;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
 }
 
-@media (max-width: 768px) {
-    .sobre-content {
-        grid-template-columns: 1fr;
-    }
+/* --- Blocos (Equipe e Objetivo) herdando o estilo de .obra-bloco --- */
+.equipe-card, 
+.objetivo-section {
+    padding: 2.5rem;
+    border: 1px solid var(--cor-borda);
+    border-radius: 26px;
+    background: var(--cor-card);
+    box-shadow: var(--sombra-card);
+    backdrop-filter: blur(12px);
 }
 
 .equipe-card {
-    background-color: #faf7f2;
-    border: 1px solid #d8cfc0;
-    padding: 2.5rem;
+    text-align: center;
 }
 
-.equipe-card h2 {
-    font-size: 2.2rem;
+.equipe-card h2, 
+.objetivo-section h2 {
+    margin: 0 0 1.5rem;
     font-family: 'Playfair Display', serif;
-    color: #1a1a1a;
-    margin-bottom: 1.5rem;
-}
-
-.equipe-list p {
-    font-size: 1.05rem;
-    line-height: 1.6;
-    color: #333;
-    margin-bottom: 0.3rem;
-}
-
-.equipe-list .turma {
-    font-weight: bold;
-}
-
-.equipe-list .grupo-espaco {
-    margin-bottom: 1.5rem;
+    /* Fonte fluida idêntica ao .title-section */
+    font-size: clamp(1.8rem, 2vw, 2.5rem);
+    color: var(--cor-destaque);
+    letter-spacing: -0.02em;
 }
 
 .objetivo-section h2 {
-    font-size: 2.5rem;
-    font-family: 'Playfair Display', serif;
-    color: #4a0e17;
-    margin-bottom: 1.5rem;
+    text-align: center;
 }
 
 .objetivo-section p {
+    margin: 0 0 1rem;
+    color: var(--cor-texto-suave);
+    font-size: 1.02rem;
+    line-height: 1.9;
+    text-align: justify;
+}
+
+.objetivo-section p:last-child {
+    margin-bottom: 0;
+}
+
+/* --- Bloco da Equipe Horizontal --- */
+.grid-personagens {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.25rem;
+}
+
+/* Adaptando os cards de personagens para visual de tag horizontal */
+.sobre-container .personagem-card {
+    position: relative;
+    padding: 1rem 1.5rem 1rem 2rem; 
+    border: 1px solid rgba(93, 24, 32, 0.12);
+    border-radius: 20px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(246, 238, 228, 0.92));
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    cursor: default;
+}
+
+/* Aquele tracinho vertical bonitinho da esquerda */
+.sobre-container .personagem-card::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0.8rem;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 60%;
+    border-radius: 999px;
+    background: linear-gradient(180deg, var(--cor-destaque), #b6855d);
+}
+
+.sobre-container .personagem-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(93, 24, 32, 0.1);
+    border-color: rgba(93, 24, 32, 0.3);
+}
+
+.personagem-info p {
     font-size: 1.05rem;
-    line-height: 1.7;
-    color: #333;
-    margin-bottom: 1rem;
+    font-weight: 600;
+    color: var(--cor-texto);
+    margin: 0;
+    line-height: 1.5;
+}
+/* Empilha o nome e o curso e alinha ao centro verticalmente */
+.personagem-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100%;
+    text-align: left; /* Garante que o texto alinhe à esquerda junto à barrinha */
+}
+
+.nome-integrante {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--cor-texto);
+    margin: 0;
+    line-height: 1.2;
+}
+
+.curso-integrante {
+    font-size: 0.85rem;
+    color: var(--cor-texto-suave);
+    margin-top: 0.25rem;
+    font-style: italic;
 }

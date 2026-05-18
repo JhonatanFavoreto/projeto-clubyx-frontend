@@ -5,7 +5,7 @@ import Biblioteca from './pages/Biblioteca';
 import Vestibular from './pages/Vestibular';
 import Videoaulas from './pages/Videoaulas';
 import Curiosidades from './pages/Curiosidades';
-import Sobre from './pages/Sobre';
+import Sobre from './pages/SobreA';
 import Login from './pages/Login';
 import Cadastro from './pages/Cadastro';
 import Simulados from './pages/Simulados';
