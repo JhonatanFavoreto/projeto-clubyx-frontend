@@ -1,3 +1,7 @@
+/* Importar Fontes do Google */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+
 /* Variáveis de Cores - Paleta "O Defunto Autor" */
 :root {
     --cor-fundo: #f4efe6; /* Papel Pergaminho */
@@ -572,5 +576,3 @@ p {
     }
 }
 
-/* Importar Fontes do Google */
-@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
