@@ -6,7 +6,6 @@ export default function Simulados() {
     return (
         <div className="simulados-page">
             <header className="header">
-                <div className="logo">CLUBYX</div>
                 <Header/>
             </header>
 
@@ -20,7 +19,6 @@ export default function Simulados() {
                     livro Memórias Póstumas de Brás Cubas
                 </p>
 
-                <button className="start-bnt">Realizar simulado</button>
             </section>
 
             <main className="content">
@@ -50,6 +48,12 @@ export default function Simulados() {
                     <button>D) um elogio ao progresso científico.</button>
 
                     <button>E) uma defesa da continuidade da linhagem familiar.</button>
+                </div>
+
+                <div className="next-button-container">
+                    <button className="next-button">
+                        
+                    </button>
                 </div>
             </main>
 

@@ -23,15 +23,21 @@ export default function Biblioteca() {
                 'A vida dos meninos de rua em Salvador na década de 1930. Uma obra marcante da segunda fase do Modernismo brasileiro com forte crítica social.',
         },
         {
-            titulo: 'Titulo',
-            autor: 'Autor',
-            descricao: 'Resumo no livro',
+            titulo: 'Quarto de Despejo: Diário de Uma Favelada',
+            autor: 'Carolina Maria de Jesus',
+            descricao: 'Narra a luta diária contra a fome, a pobreza extrema e a violência, retratando a favela como o "quarto de despejo" (lixo) da cidade',
         },
         {
-            titulo: 'Titulo',
-            autor: 'Autor',
-            descricao: 'Resumo no livro',
+            titulo: 'O Guarani',
+            autor: 'José de Alencar',
+            descricao: 'Romance indianista que narra a paixão platônica e devoção do índio Peri por Ceci, filha de um fidalgo português, no século XVII.',
         },
+        {
+            titulo: "Olhos D'Água",
+            autor: 'Conceição Evaristo',
+            descricao: 'Uma coletânea de 15 contos que retratam a vivência de afro-brasileiros em situação de vulnerabilidade.',
+
+        }
     ];
 
     return (
