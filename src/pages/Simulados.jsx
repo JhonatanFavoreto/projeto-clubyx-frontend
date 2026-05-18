@@ -1,12 +1,20 @@
+import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../styles/Simulados.css';
 
 export default function Simulados() {
+
+    const navigate = useNavigate();
+
+    const proximaPagina = () => {
+        navigate('/simulados2');
+    };
+    
     return (
         <div className="simulados-page">
             <header className="header">
-                <Header/>
+                <Header />
             </header>
 
             <div className="top-line"></div>
@@ -18,7 +26,6 @@ export default function Simulados() {
                     Realize simulados para melhorar o seu desempenho nos vestibulares utilizando o
                     livro Memórias Póstumas de Brás Cubas
                 </p>
-
             </section>
 
             <main className="content">
@@ -32,13 +39,14 @@ export default function Simulados() {
                     </p>
 
                     <p>
-                        Com base no trecho final de Memórias Póstumas de Brás Cubas, responda às questões.
+                        Com base no trecho final de Memórias Póstumas de Brás Cubas, responda às
+                        questões.
                     </p>
                 </div>
 
                 <h4>A frase final do romance revela principalmente</h4>
 
-                <div className='options'>
+                <div className="options">
                     <button>A) uma valorização da família tradicional.</button>
 
                     <button>B) uma visão otimista sobre a humanidade.</button>
@@ -51,14 +59,14 @@ export default function Simulados() {
                 </div>
 
                 <div className="next-button-container">
-                    <button className="next-button">
-                        
+                    <button className="next-button" onClick={proximaPagina}>
+                        Próxima questão →
                     </button>
                 </div>
             </main>
 
-            <footer className='footer'>
-               <Footer/>
+            <footer className="footer">
+                <Footer />
             </footer>
         </div>
     );

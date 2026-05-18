@@ -151,6 +151,28 @@ body {
   border-color: #b9b1a5;
 }
 
+.next-button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 30px;
+}
+
+.next-button {
+    background-color: #4a0e17;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.next-button:hover {
+    background-color: #581721;
+    transform: scale(1.03);
+}
+
 .footer {
   margin-top: 300px;
   background: #111;
