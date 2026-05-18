@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import AObra from './pages/AObra';
 import Biblioteca from './pages/Biblioteca';
-import Vestibular from './pages/Vestibular';
+import Vestibular from './pages/VestibularA';
 import Videoaulas from './pages/Videoaulas';
 import Curiosidades from './pages/Curiosidades';
 import Sobre from './pages/SobreA';
