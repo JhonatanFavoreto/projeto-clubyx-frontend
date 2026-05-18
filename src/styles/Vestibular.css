@@ -1,212 +1,359 @@
-/* ==========================================================================
-   6. CONTEÚDO INTERNO: MATERIAIS DE ESTUDO (REDAÇÃO E TEMAS)
-   Refatorado com base na identidade visual de .aobra-page
-   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
 
-.grid-redacao {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    width: 100%;
-    /* Espaçamento extra para separar nitidamente os blocos do Header e do Footer */
-    margin: 4rem 0 6rem;
-}
+.aobra-page {
+    --cor-fundo: #f4efe6;
+    --cor-fundo-secundario: #ede2d1;
+    --cor-texto: #1f1a17;
+    --cor-texto-suave: #5f564d;
+    --cor-destaque: #5d1820;
+    --cor-destaque-escuro: #3f1016;
+    --cor-borda: rgba(93, 24, 32, 0.18);
+    --cor-card: rgba(255, 251, 245, 0.82);
+    --sombra-card: 0 18px 40px rgba(44, 28, 18, 0.08);
 
-.subtitulo-redacao {
-    text-align: center;
-    color: var(--cor-texto-suave);
-    font-size: 1.1rem;
-    margin-bottom: 1.5rem;
-    font-style: italic;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at top left, rgba(93, 24, 32, 0.1), transparent 28%),
+        linear-gradient(180deg, #f7f1e8 0%, var(--cor-fundo) 32%, #efe5d6 100%);
+    color: var(--cor-texto);
     font-family: 'Lora', serif;
-    line-height: 1.6;
 }
 
-/* Modificado para uma coluna simples e perfeitamente centralizada no meio */
-.temas-grid {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2.5rem;
-    width: 100%;
-}
-
-/* Define uma largura padrão máxima fixa e centraliza o bloco na página */
-.tema-redacao {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    width: 100%;
-    max-width: 650px; /* Controla o tamanho do bloco para ficar perfeito no centro */
+.vestibular-container {
+    width: min(1120px, calc(100% - 3rem));
     margin: 0 auto;
+    padding: 4rem 2rem 5rem;
+    display: grid;
+    gap: 2rem;
 }
 
-/* CONTAINER SUPERIOR: Matéria, Resumo e Análises (Agora semelhante ao bloco inferior) */
-.bloco-conteudo-principal {
-    position: relative;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(246, 238, 228, 0.92));
-    border: 1px solid rgba(93, 24, 32, 0.12);
-    border-radius: 20px;
-    padding: 2rem 2rem 2rem 2.5rem; /* Padding esquerdo levemente maior para compensar a barra */
-    box-shadow: 0 10px 25px rgba(44, 28, 18, 0.04);
+.page-header {
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centraliza os filhos horizontalmente */
-    gap: 1.75rem;
-    width: 100%;
-    box-sizing: border-box;
+    margin-bottom: 2rem;
 }
 
-/* Detalhe estético lateral no bloco principal para igualar ao de dicas e personagens */
-.bloco-conteudo-principal::before {
-    content: '';
-    position: absolute;
-    top: 1.5rem;
-    left: 0;
-    width: 4px;
-    height: calc(100% - 3rem);
-    border-radius: 999px;
-    background: linear-gradient(180deg, var(--cor-destaque), #b6855d);
-}
-
-/* CONTAINER INFERIOR: Dicas e Curiosidades */
-.bloco-conteudo-dicas {
-    position: relative;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(246, 238, 228, 0.92));
-    border: 1px solid rgba(93, 24, 32, 0.12);
-    border-radius: 20px;
-    padding: 2rem 2rem 2rem 2.5rem; /* Padding esquerdo ajustado igualmente */
-    box-shadow: 0 10px 25px rgba(44, 28, 18, 0.04);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centraliza os filhos horizontalmente */
-    gap: 1.5rem;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-/* Detalhe estético lateral no bloco de dicas */
-.bloco-conteudo-dicas::before {
-    content: '';
-    position: absolute;
-    top: 1.5rem;
-    left: 0;
-    width: 4px;
-    height: calc(100% - 3rem);
-    border-radius: 999px;
-    background: linear-gradient(180deg, var(--cor-destaque), #b6855d);
-}
-
-/* Estilização focada no Título da Matéria */
-.materia-titulo {
+.page-header h1 {
+    margin: 0 0 1.5rem;
     font-family: 'Playfair Display', serif;
-    font-size: clamp(1.6rem, 2.2vw, 2.2rem);
+    font-size: clamp(2.5rem, 4vw, 4.4rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--cor-texto);
+    text-wrap: balance;
+}
+
+.page-header p {
+    max-width: 760px;
+    margin: 0 auto;
+    color: var(--cor-texto-suave);
+    font-size: 1.05rem;
+    line-height: 1.9;
+}
+
+.titulo-secao {
+    margin: 0 0 1.875rem;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 2vw, 2.5rem);
     color: var(--cor-destaque);
-    font-weight: 800;
-    margin: 0 0 0.5rem;
     letter-spacing: -0.02em;
     text-align: center;
-    width: 100%;
 }
 
-/* Sub-blocos internos de informação (Resumo, Análises, Dicas, etc) */
-.sub-bloco-info {
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-    align-items: center; /* Alinha o conteúdo interno no meio */
-    text-align: center;
-    width: 100%;
+.temas-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
 }
 
-/* Títulos internos (Resumo:, Dicas:, etc) */
-.sub-bloco-info h4 {
+.tema-redacao {
+    padding: 2rem 2.1rem;
+    border: 1px solid var(--cor-borda);
+    border-radius: 26px;
+    background:
+        linear-gradient(135deg, rgba(93, 24, 32, 0.08), rgba(255, 255, 255, 0) 55%),
+        linear-gradient(180deg, rgba(255, 251, 245, 0.98), rgba(244, 239, 230, 0.98));
+    box-shadow: var(--sombra-card);
+    backdrop-filter: blur(12px);
+}
+
+.tema-redacao h3 {
+    margin: 0 0 1rem;
     font-family: 'Playfair Display', serif;
-    font-size: 1.25rem;
-    color: var(--cor-texto);
-    font-weight: 700;
-    margin: 0;
-    text-align: center;
-    letter-spacing: -0.01em;
+    font-size: 1.3rem;
+    color: var(--cor-destaque);
+    letter-spacing: -0.02em;
 }
 
-/* Parágrafos de conteúdo */
-.sub-bloco-info p {
+.tema-redacao p {
+    margin: 0 0 0.875rem;
     color: var(--cor-texto-suave);
-    font-family: 'Lora', serif;
     font-size: 1.02rem;
-    line-height: 1.8;
-    margin: 0;
-    max-width: 92%;
-    text-align: center; /* Centraliza a linha de texto corrido */
+    line-height: 1.9;
 }
 
-/* Centralização do Card de Destaque */
-.tema-card-full {
-    width: 100%;
-    max-width: 650px;
-    margin: 0 auto;
+.tema-redacao p:last-child {
+    margin-bottom: 0;
 }
-
-/* ==========================================================================
-   REGRAS DE RESPONSIVIDADE (MEDIA QUERIES)
-   ========================================================================== */
 
 @media (max-width: 900px) {
-    .bloco-conteudo-principal,
-    .bloco-conteudo-dicas {
-        padding: 1.75rem 1.75rem 1.75rem 2.25rem;
+    .vestibular-container {
+        width: min(100% - 2rem, 1120px);
+    }
+
+    .temas-grid {
+        gap: 1.5rem;
     }
 }
 
 @media (max-width: 560px) {
-    .grid-redacao {
+    .vestibular-container {
+        padding: 2.5rem 0 4rem;
         gap: 1.5rem;
-        /* Reduz ligeiramente os respiros em telas mobile */
-        margin: 2.5rem 0 4rem;
     }
 
-    .temas-grid {
-        gap: 2rem;
+    .page-header h1 {
+        font-size: clamp(2.1rem, 10vw, 3rem);
     }
 
-    .subtitulo-redacao {
-        font-size: 1rem;
+    .tema-redacao {
+        padding: 1.25rem;
+    }
+
+    .tema-redacao p {
+        font-size: 0.98rem;
+    }
+}
+
+/* Estilos de compatibilidade com estrutura anterior */
+.main-content {
+    width: min(1120px, calc(100% - 3rem));
+    margin: 0 auto;
+    padding: 4rem 0 5rem;
+    display: grid;
+    gap: 2rem;
+}
+
+.section-header {
+    display: grid;
+    grid-template-columns: minmax(220px, 320px) minmax(0, 1fr);
+    align-items: stretch;
+    gap: 2rem;
+    position: relative;
+    overflow: hidden;
+    padding: 2rem;
+    border: 1px solid var(--cor-borda);
+    border-radius: 32px;
+    background:
+        linear-gradient(135deg, rgba(93, 24, 32, 0.08), rgba(255, 255, 255, 0) 55%),
+        linear-gradient(180deg, rgba(255, 251, 245, 0.98), rgba(244, 239, 230, 0.98));
+    box-shadow: var(--sombra-card);
+}
+
+.section-header::after {
+    content: '';
+    position: absolute;
+    inset: auto 2rem 1.25rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(93, 24, 32, 0.28), transparent);
+}
+
+.title-main {
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 4vw, 4.4rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--cor-texto);
+    align-self: flex-start;
+    width: fit-content;
+    text-align: left;
+    text-wrap: balance;
+}
+
+.hero-capa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-conteudo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1.5rem;
+    grid-column: 1 / -1;
+    width: 100%;
+}
+
+.hero-titulo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.9rem;
+    width: 100%;
+}
+
+.hero-texto-container {
+    width: 100%;
+}
+
+.hero-etiqueta {
+    margin: 0 0 0.9rem;
+    color: var(--cor-destaque);
+    font-size: 0.84rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.subtitle-main {
+    max-width: 760px;
+    margin: 0;
+    color: var(--cor-texto-suave);
+    font-size: 1.05rem;
+    line-height: 1.9;
+    text-align: left;
+}
+
+.obra-bloco {
+    padding: 2rem 2.1rem;
+    border: 1px solid var(--cor-borda);
+    border-radius: 26px;
+    background: var(--cor-card);
+    box-shadow: var(--sombra-card);
+    backdrop-filter: blur(12px);
+}
+
+.title-section {
+    margin: 0 0 1.25rem;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 2vw, 2.5rem);
+    color: var(--cor-destaque);
+    letter-spacing: -0.02em;
+}
+
+.obra-bloco p {
+    margin: 0;
+    color: var(--cor-texto-suave);
+    font-size: 1.02rem;
+    line-height: 1.9;
+}
+
+.texto-formatado {
+    text-align: center;
+}
+
+.grid-personagens {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.personagem-card {
+    position: relative;
+    min-height: 100%;
+    padding: 1.25rem 1.25rem 1.25rem 1.5rem;
+    border: 1px solid rgba(93, 24, 32, 0.12);
+    border-radius: 20px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(246, 238, 228, 0.92));
+}
+
+.personagem-card::before {
+    content: '';
+    position: absolute;
+    top: 1.1rem;
+    left: 0;
+    width: 4px;
+    height: calc(100% - 2.2rem);
+    border-radius: 999px;
+    background: linear-gradient(180deg, var(--cor-destaque), #b6855d);
+}
+
+.personagem-info {
+    display: flex;
+    align-items: center;
+    min-height: 100%;
+}
+
+.personagem-info p {
+    margin: 0;
+    padding-left: 0.25rem;
+    color: var(--cor-texto);
+    line-height: 1.7;
+}
+
+.obra-capa-imagem {
+    display: block;
+    width: min(100%, 320px);
+    aspect-ratio: 4 / 5.4;
+    border-radius: 24px;
+    border: 1px solid rgba(93, 24, 32, 0.16);
+    box-shadow:
+        0 22px 36px rgba(39, 24, 16, 0.14),
+        0 0 0 8px rgba(255, 255, 255, 0.45);
+    object-fit: cover;
+}
+
+@media (max-width: 900px) {
+    .main-content {
+        width: min(100% - 2rem, 1120px);
+    }
+
+    .section-header {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+        border-radius: 26px;
+    }
+
+    .obra-bloco {
+        padding: 1.5rem;
+        border-radius: 22px;
+    }
+
+    .hero-capa {
+        order: -1;
+    }
+
+    .hero-titulo-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 560px) {
+    .main-content {
+        padding: 2.5rem 0 4rem;
+        gap: 1.5rem;
+    }
+
+    .section-header {
+        padding: 1.2rem;
+    }
+
+    .section-header::after {
+        inset: auto 1.25rem 1rem;
+    }
+
+    .obra-bloco {
+        padding: 1.25rem;
+    }
+
+    .title-section {
         margin-bottom: 1rem;
     }
 
-    .bloco-conteudo-principal,
-    .bloco-conteudo-dicas {
-        padding: 1.25rem 1.25rem 1.25rem 1.5rem;
+    .obra-bloco p,
+    .subtitle-main {
+        font-size: 0.98rem;
+    }
+
+    .personagem-card {
+        padding: 1rem 1rem 1rem 1.25rem;
         border-radius: 16px;
     }
 
-    .bloco-conteudo-principal::before,
-    .bloco-conteudo-dicas::before {
-        top: 1.1rem;
-        height: calc(100% - 2.2rem);
-    }
-
-    .bloco-conteudo-principal {
-        gap: 1.25rem;
-    }
-
-    .bloco-conteudo-dicas {
-        gap: 1.25rem;
-    }
-
-    .materia-titulo {
-        font-size: 1.45rem;
-    }
-
-    .sub-bloco-info h4 {
-        font-size: 1.15rem;
-    }
-
-    .sub-bloco-info p {
-        font-size: 0.98rem;
-        max-width: 100%;
+    .title-main {
+        font-size: clamp(2.1rem, 10vw, 3rem);
     }
 }
