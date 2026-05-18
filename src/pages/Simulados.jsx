@@ -49,6 +49,12 @@ export default function Simulados() {
 
                     <button>E) uma defesa da continuidade da linhagem familiar.</button>
                 </div>
+
+                <div className="next-button-container">
+                    <button className="next-button">
+                        
+                    </button>
+                </div>
             </main>
 
             <footer className='footer'>

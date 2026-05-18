@@ -96,6 +96,10 @@ export default function Home() {
                         <h3>Sobre</h3>
                         <p>Conheça a equipe do SENAI e SESI por trás do projeto, e a plataforma.</p>
                     </div>
+                    <div className='card'>
+                        <h3>Simulados</h3>
+                        <p>Simulados para testar o seu conhecimento com base no livro.</p>
+                    </div>
                 </div>
             </section>
 

@@ -30,8 +30,14 @@ export default function Biblioteca() {
         {
             titulo: 'O Guarani',
             autor: 'José de Alencar',
-            descricao: 'Romance indianista que narra a paixão platônica e devoção do índio Peri por Ceci, filha de um fidalgo português, no século XVII. ',
+            descricao: 'Romance indianista que narra a paixão platônica e devoção do índio Peri por Ceci, filha de um fidalgo português, no século XVII.',
         },
+        {
+            titulo: "Olhos D'Água",
+            autor: 'Conceição Evaristo',
+            descricao: 'Uma coletânea de 15 contos que retratam a vivência de afro-brasileiros em situação de vulnerabilidade.',
+
+        }
     ];
 
     return (
