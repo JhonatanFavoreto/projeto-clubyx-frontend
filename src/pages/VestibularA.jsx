@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import LoadingBook from '../components/LoadingBook'; // Importei o LoadingBook como no Sobre.js
+import LoadingBook from '../components/LoadingBook';
 import '../styles/Vestibular.css';
 
 export default function ConteudosResumos() {
@@ -29,9 +29,7 @@ export default function ConteudosResumos() {
 
                 let listaFinal = [];
 
-                // LÓGICA ATUALIZADA: Extrai MATERIA, RESUMO, DICAS, ANALISES e CURIOSIDADES
                 if (Array.isArray(data)) {
-                    // Se a API retornar um array de objetos
                     listaFinal = data
                         .map((item) => ({
                             materia: item.materia ? item.materia.trim() : '',
@@ -42,7 +40,6 @@ export default function ConteudosResumos() {
                         }))
                         .filter((item) => item.materia !== '');
                 } else if (data?.materia) {
-                    // Se a API retornar strings separadas por vírgulas
                     const materias = data.materia.split(',').map((n) => n.trim());
                     const resumos = data.resumo ? data.resumo.split(',').map((c) => c.trim()) : [];
                     const dicas = data.dicas ? data.dicas.split(',').map((c) => c.trim()) : [];
@@ -56,7 +53,6 @@ export default function ConteudosResumos() {
                     listaFinal = materias
                         .map((materia, index) => ({
                             materia: materia,
-                            // Pega o dado na mesma posição do array, ou usa o único dado disponível
                             resumo: resumos[index] || data.resumo || '',
                             dicas: dicas[index] || data.dicas || '',
                             analises: analises[index] || data.analises || '',
@@ -85,69 +81,74 @@ export default function ConteudosResumos() {
                 display: 'flex',
                 flexDirection: 'column',
             }}>
+            {/* O Header permanece fixo no topo, independente do carregamento */}
             <Header />
 
-            <main className="vestibular-container" style={{ flex: 1 }}>
-                {/* Header da Página */}
-                <div className="page-header">
-                    <h1>Conteúdos e Resumos</h1>
-                    <p>
-                        Explore os resumos focados nas principais matérias e tópicos exigidos nos
-                        vestibulares, analisados pela nossa equipe.
-                    </p>
-                </div>
-
-                {/* Renderização Condicional: Loading, Erro ou Conteúdo */}
-                {loading ? (
-                    <LoadingBook title="Carregando conteúdos..." />
-                ) : error ? (
-                    <div style={{ textAlign: 'center', padding: '2rem' }}>
-                        <p>{error}</p>
-                    </div>
-                ) : (
-                    <section>
-                        <h2 className="titulo-secao">Materiais de Estudo</h2>
-
-                        <div className="temas-grid">
-                            {conteudo.length > 0 ? (
-                                conteudo.map((item, index) => (
-                                    <div className="tema-redacao" key={index}>
-                                        <h3>{item.materia}</h3>
-
-                                        {/* Renderiza apenas se houver conteúdo */}
-                                        {item.resumo && (
-                                            <p>
-                                                <strong>Resumo:</strong> {item.resumo}
-                                            </p>
-                                        )}
-                                        {item.dicas && (
-                                            <p>
-                                                <strong>Dicas:</strong> {item.dicas}
-                                            </p>
-                                        )}
-                                        {item.analises && (
-                                            <p>
-                                                <strong>Análises:</strong> {item.analises}
-                                            </p>
-                                        )}
-                                        {item.curiosidades && (
-                                            <p>
-                                                <strong>Curiosidades:</strong> {item.curiosidades}
-                                            </p>
-                                        )}
-                                    </div>
-                                ))
-                            ) : (
-                                <p style={{ textAlign: 'center', width: '100%' }}>
-                                    Nenhum conteúdo ou resumo disponível no momento.
-                                </p>
-                            )}
+            {loading ? (
+                <LoadingBook title="Carregando conteúdos..." />
+            ) : (
+                <>
+                    <main className="vestibular-container" style={{ flex: 1 }}>
+                        {/* Header da Página */}
+                        <div className="page-header">
+                            <h1>Conteúdos e Resumos</h1>
+                            <p>
+                                Explore os resumos focados nas principais matérias e tópicos
+                                exigidos nos vestibulares, analisados pela nossa equipe.
+                            </p>
                         </div>
-                    </section>
-                )}
-            </main>
 
-            <Footer />
+                        {/* Renderização Condicional: Erro ou Conteúdo */}
+                        {error ? (
+                            <div style={{ textAlign: 'center', padding: '2rem' }}>
+                                <p>{error}</p>
+                            </div>
+                        ) : (
+                            <section>
+                                <h2 className="titulo-secao">Materiais de Estudo</h2>
+
+                                <div className="temas-grid">
+                                    {conteudo.length > 0 ? (
+                                        conteudo.map((item, index) => (
+                                            <div className="tema-redacao" key={index}>
+                                                <h3>{item.materia}</h3>
+
+                                                {item.resumo && (
+                                                    <p>
+                                                        <strong>Resumo:</strong> {item.resumo}
+                                                    </p>
+                                                )}
+                                                {item.dicas && (
+                                                    <p>
+                                                        <strong>Dicas:</strong> {item.dicas}
+                                                    </p>
+                                                )}
+                                                {item.analises && (
+                                                    <p>
+                                                        <strong>Análises:</strong> {item.analises}
+                                                    </p>
+                                                )}
+                                                {item.curiosidades && (
+                                                    <p>
+                                                        <strong>Curiosidades:</strong>{' '}
+                                                        {item.curiosidades}
+                                                    </p>
+                                                )}
+                                            </div>
+                                        ))
+                                    ) : (
+                                        <p style={{ textAlign: 'center', width: '100%' }}>
+                                            Nenhum conteúdo ou resumo disponível no momento.
+                                        </p>
+                                    )}
+                                </div>
+                            </section>
+                        )}
+                    </main>
+
+                    <Footer />
+                </>
+            )}
         </div>
     );
 }
