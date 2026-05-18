@@ -19,6 +19,9 @@ export default function Header() {
                         <Link to="/vestibular">Vestibular</Link>
                     </li>
                     <li>
+                        <Link to="/simulados">Simulados</Link>
+                    </li>
+                    <li>
                         <Link to="/videoaulas">Videoaulas</Link>
                     </li>
                     <li>
@@ -26,9 +29,6 @@ export default function Header() {
                     </li>
                     <li>
                         <Link to="/sobre">Sobre</Link>
-                    </li>
-                    <li>
-                        <Link to="/simulados">Simulados</Link>
                     </li>
                 </ul>
             </nav>
