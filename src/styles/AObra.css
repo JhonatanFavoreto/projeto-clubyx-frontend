@@ -32,7 +32,7 @@
     gap: 2rem;
     position: relative;
     overflow: hidden;
-    padding: 2rem;
+    padding: 2rem 4rem;  /* ← aumentado de 2rem para 4rem nos lados */
     border: 1px solid var(--cor-borda);
     border-radius: 32px;
     background:

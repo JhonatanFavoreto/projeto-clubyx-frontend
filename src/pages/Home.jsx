@@ -37,34 +37,6 @@ export default function Home() {
                 </p>
             </section>
 
-            {/* Seção: A Voz do Defunto Autor */}
-            <section className="secao-defunto-autor">
-                <div className="defunto-texto">
-                    <h2>A Voz do Defunto Autor</h2>
-                    <p>
-                        Livre das máscaras e convenções sociais de seu tempo, Brás Cubas utiliza sua
-                        posição além-túmulo para uma confissão de inescapável impudência. Sem
-                        pudores, ele exibe as próprias falhas e a vaidade de suas paixões e fracasso
-                        retumbante de suas ambições burguesas. Mergulhe nas páginas da obra mais
-                        revolucionária de Machado de Assis, que inaugurou o Realismo no Brasil. Em
-                        nosso ambiente interativo, você irá desconstruir a ironia machadiana e
-                        transformar a leitura deste grande clássico na sua maior e mais letal
-                        vantagem competitiva para os exames.
-                    </p>
-                </div>
-                <div className="defunto-imagem">
-                    <div className="livro-placeholder">
-                        <span>
-                            MEMÓRIAS
-                            <br />
-                            PÓSTUMAS DE
-                            <br />
-                            BRÁS CUBAS
-                        </span>
-                    </div>
-                </div>
-            </section>
-
             {/* Seção: Navegue pela Plataforma */}
             <section className="secao-navegacao" id="biblioteca">
                 <h2>Navegue pela Plataforma</h2>
