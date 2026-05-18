@@ -27,8 +27,7 @@ export default function Curiosidades() {
     }, []);
 
     const materia = conteudo?.materia || 'Curiosidades';
-    const textoCuriosidades =
-        conteudo?.curiosidades || 'Curiosidades indisponiveis no momento.';
+    const textoCuriosidades = conteudo?.curiosidades || 'Curiosidades indisponiveis no momento.';
 
     const detalhesConteudo = [
         { titulo: 'Resumo', texto: conteudo?.resumo || 'Resumo indisponivel no momento.' },
@@ -72,9 +71,18 @@ export default function Curiosidades() {
                             </div>
                         </section>
 
-                        <section className="obra-bloco">
-                            <h2 className="title-section">Curiosidades da Obra</h2>
-                            <p className="texto-formatado texto-longo">{textoCuriosidades}</p>
+                        <section className="section-header">
+                            <div className="hero-conteudo">
+                                <div className="hero-titulo-container">
+                                    <h2 className="title-section">Curiosidades da Obra</h2>
+                                </div>
+
+                                <div className="hero-texto-container">
+                                    <p className="subtitle-main texto-formatado texto-longo">
+                                        {textoCuriosidades}
+                                    </p>
+                                </div>
+                            </div>
                         </section>
 
                         <section className="obra-bloco">
