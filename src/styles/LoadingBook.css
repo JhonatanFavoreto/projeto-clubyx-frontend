@@ -1,0 +1,44 @@
+.loading-book {
+    display: grid;
+    justify-items: center;
+    gap: 1.25rem;
+    min-height: calc(100vh - 180px);
+    padding: 3rem 1.5rem;
+    background:
+        radial-gradient(circle at top, rgba(93, 24, 32, 0.08), transparent 30%),
+        linear-gradient(180deg, rgba(255, 251, 245, 0.96), rgba(244, 239, 230, 0.99));
+    text-align: center;
+    align-content: center;
+}
+
+.loading-book-image {
+    display: block;
+    width: min(240px, 58vw);
+    height: auto;
+    animation: loading-book-float 1.9s ease-in-out infinite;
+    filter: drop-shadow(0 18px 28px rgba(69, 23, 21, 0.18));
+}
+
+.loading-book-text h2 {
+    margin: 0 0 0.45rem;
+    color: #4a0e17;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2rem);
+}
+
+.loading-book-text p {
+    margin: 0;
+    color: #655c55;
+    line-height: 1.7;
+}
+
+@keyframes loading-book-float {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+}

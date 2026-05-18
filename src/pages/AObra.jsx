@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import LoadingBook from '../components/LoadingBook';
 import '../styles/AObra.css';
 
 export default function AObra() {
@@ -50,26 +51,45 @@ export default function AObra() {
             <Header />
 
             <main className="main-content">
+                {loading ? (
+                    <LoadingBook
+                        title="Carregando a obra"
+                        message="Estamos buscando os detalhes do livro para montar a pagina."
+                    />
+                ) : (
+                    <>
                 <section className="section-header">
-                    <h1 className="title-main">
-                        {loading ? 'Carregando obra...' : `A Obra: ${livro?.nome || ''}`}
-                    </h1>
-                    <p className="subtitle-main">
-                        {error ||
-                            'Os dados abaixo estao sendo carregados diretamente do backend da plataforma.'}
-                    </p>
+                    {fotoUrl && (
+                        <div className="hero-capa">
+                            <img
+                                className="obra-capa-imagem"
+                                src={fotoUrl}
+                                alt={livro?.nome || 'Capa do livro'}
+                            />
+                        </div>
+                    )}
+
+                    <div className="hero-conteudo">
+                        <div className="hero-topo">
+                            <div>
+                                <p className="hero-etiqueta">Livro em destaque</p>
+                                <h1 className="title-main">
+                                    {loading ? 'Carregando obra...' : livro?.nome || 'A Obra'}
+                                </h1>
+                            </div>
+                        </div>
+
+                        <p className="subtitle-main">
+                            {error || `Ano de publicacao: ${livro?.publicacao || '---'}`}
+                        </p>
+                    </div>
                 </section>
 
                 <section className="obra-bloco">
                     <h2 className="title-section">Resumo sobre o livro</h2>
-                    <p style={{ whiteSpace: 'pre-line' }}>
+                    <p className="texto-formatado">
                         {livro?.resumo || 'Resumo indisponivel no momento.'}
                     </p>
-                </section>
-
-                <section className="obra-bloco">
-                    <h2 className="title-section">Publicacao</h2>
-                    <p>{livro?.publicacao || 'Data de publicacao indisponivel.'}</p>
                 </section>
 
                 <section className="obra-bloco">
@@ -91,26 +111,11 @@ export default function AObra() {
 
                 <section className="obra-bloco">
                     <h2 className="title-section">Contexto Histórico</h2>
-                    <p style={{ whiteSpace: 'pre-line' }}>
+                    <p className="texto-formatado">
                         {livro?.contextoHist || 'Contexto historico indisponivel no momento.'}
                     </p>
                 </section>
-
-                {fotoUrl && (
-                    <section className="obra-bloco">
-                        <h2 className="title-section">Capa da Obra</h2>
-                        <img
-                            src={fotoUrl}
-                            alt={livro?.nome || 'Capa do livro'}
-                            style={{
-                                display: 'block',
-                                maxWidth: '320px',
-                                width: '100%',
-                                borderRadius: '12px',
-                                margin: '0 auto',
-                            }}
-                        />
-                    </section>
+                    </>
                 )}
             </main>
             <Footer />
