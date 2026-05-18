@@ -6,7 +6,7 @@ export async function request(path, options = {}) {
         ...options,
         headers: {
             'Content-Type': 'application/json',
-            API_KEY,
+            'x-api-key': API_KEY,
             ...options.headers,
         },
     });
