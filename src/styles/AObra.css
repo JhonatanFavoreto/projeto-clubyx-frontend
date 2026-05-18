@@ -121,7 +121,8 @@
 }
 
 .texto-formatado {
-    white-space: pre-line;
+    text-align: center;
+
 }
 
 .grid-personagens {
