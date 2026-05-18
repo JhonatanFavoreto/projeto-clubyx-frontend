@@ -1,6 +1,5 @@
 .sobre-container {
-    /* Utiliza as mesmas larguras e margens do .main-content original */
-    width: min(1120px, calc(100% - 3rem));
+    width: min(1320px, calc(100% - 3rem));
     margin: 0 auto;
     padding: 4rem 0 5rem;
     display: flex;
@@ -17,7 +16,6 @@
 .page-header h1 {
     margin: 0 0 1.5rem;
     font-family: 'Playfair Display', serif;
-    /* Usa a fonte fluida idêntica ao .title-main */
     font-size: clamp(2.5rem, 4vw, 4.4rem);
     line-height: 0.95;
     letter-spacing: -0.03em;
@@ -26,7 +24,7 @@
 }
 
 .page-header p {
-    max-width: 760px;
+    max-width: 900px;
     margin: 0 auto;
     color: var(--cor-texto-suave);
     font-size: 1.05rem;
@@ -39,7 +37,7 @@
     gap: 2.5rem;
 }
 
-/* --- Blocos (Equipe e Objetivo) herdando o estilo de .obra-bloco --- */
+/* --- Blocos (Equipe e Objetivo) --- */
 .equipe-card, 
 .objetivo-section {
     padding: 2.5rem;
@@ -58,7 +56,6 @@
 .objetivo-section h2 {
     margin: 0 0 1.5rem;
     font-family: 'Playfair Display', serif;
-    /* Fonte fluida idêntica ao .title-section */
     font-size: clamp(1.8rem, 2vw, 2.5rem);
     color: var(--cor-destaque);
     letter-spacing: -0.02em;
@@ -80,7 +77,6 @@
     margin-bottom: 0;
 }
 
-/* --- Bloco da Equipe Horizontal --- */
 .grid-personagens {
     display: flex;
     flex-wrap: wrap;
@@ -88,23 +84,24 @@
     gap: 1.25rem;
 }
 
-/* Adaptando os cards de personagens para visual de tag horizontal */
 .sobre-container .personagem-card {
     position: relative;
-    padding: 1rem 1.5rem 1rem 2rem; 
+    min-width: 240px; 
+    padding: 1rem 1.5rem 1rem 2.5rem; 
     border: 1px solid rgba(93, 24, 32, 0.12);
     border-radius: 20px;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(246, 238, 228, 0.92));
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     cursor: default;
+    flex: 1 1 auto;
+    max-width: 350px; 
 }
 
-/* Aquele tracinho vertical bonitinho da esquerda */
 .sobre-container .personagem-card::before {
     content: '';
     position: absolute;
     top: 50%;
-    left: 0.8rem;
+    left: 1rem;
     transform: translateY(-50%);
     width: 4px;
     height: 60%;
@@ -118,20 +115,12 @@
     border-color: rgba(93, 24, 32, 0.3);
 }
 
-.personagem-info p {
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: var(--cor-texto);
-    margin: 0;
-    line-height: 1.5;
-}
-/* Empilha o nome e o curso e alinha ao centro verticalmente */
 .personagem-info {
     display: flex;
     flex-direction: column;
     justify-content: center;
     min-height: 100%;
-    text-align: left; /* Garante que o texto alinhe à esquerda junto à barrinha */
+    text-align: left; 
 }
 
 .nome-integrante {
@@ -146,5 +135,4 @@
     font-size: 0.85rem;
     color: var(--cor-texto-suave);
     margin-top: 0.25rem;
-    font-style: italic;
 }

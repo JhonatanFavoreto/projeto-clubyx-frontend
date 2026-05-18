@@ -5,7 +5,6 @@ import LoadingBook from "../components/LoadingBook";
 import "../styles/Sobre.css";
 
 export default function Sobre() {
-  // Agora armazenará um array de objetos: [{ nome: "...", curso: "..." }]
   const [integrantes, setIntegrantes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -33,9 +32,7 @@ export default function Sobre() {
 
         let listaFinal = [];
 
-        // LÓGICA ATUALIZADA: Extrai NOME e CURSO
         if (Array.isArray(data)) {
-          // Se a API retornar um array de objetos (um para cada integrante)
           listaFinal = data
             .map((item) => ({
               nome: item.nome ? item.nome.trim() : "",
@@ -43,14 +40,12 @@ export default function Sobre() {
             }))
             .filter((item) => item.nome !== "");
         } else if (data?.nome) {
-          // Se a API retornar um único objeto com strings separadas por vírgula
           const nomes = data.nome.split(",").map((n) => n.trim());
           const cursos = data.curso ? data.curso.split(",").map((c) => c.trim()) : [];
 
           listaFinal = nomes
             .map((nome, index) => ({
               nome: nome,
-              // Pega o curso na mesma posição do array, ou usa o único curso disponível
               curso: cursos[index] || data.curso || "",
             }))
             .filter((item) => item.nome !== "");
@@ -109,7 +104,6 @@ export default function Sobre() {
                         <div className="personagem-card" key={index}>
                           <div className="personagem-info">
                             <p className="nome-integrante">{membro.nome}</p>
-                            {/* Renderiza o curso apenas se ele existir */}
                             {membro.curso && (
                               <span className="curso-integrante">{membro.curso}</span>
                             )}
