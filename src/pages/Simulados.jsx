@@ -1,7 +1,7 @@
-
 import { useNavigate } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import LoadingBook from '../components/LoadingBook';
 import '../styles/Simulados.css';
 import { useState, useEffect } from 'react';
 
@@ -12,7 +12,7 @@ export default function AObra() {
     const [error, setError] = useState(null);
 
     const navigate = useNavigate();
-    
+
     const proximaPagina = () => {
         navigate('/simulados2');
     };
@@ -51,59 +51,67 @@ export default function AObra() {
         carregarDados();
     }, []);
 
-    if (loading) return <p>Carregando...</p>;
-    if (error) return <p>{error}</p>;
-
     return (
         <div className="simulados-page">
-            <header className="header">
-                <Header />
-            </header>
+            <Header />
 
             <div className="top-line"></div>
 
-            <section className="hero">
-                <h1 className="texto-formatado">
-                    {livro?.nome || 'Nome indisponivel no momento.'}
-                </h1>
+            {loading ? (
+                <LoadingBook
+                    title="Carregando simulados"
+                    message="Aguarde enquanto carregamos as questões."
+                />
+            ) : error ? (
+                <section className="hero">
+                    <h2>{error}</h2>
+                </section>
+            ) : (
+                <>
+                    <section className="hero">
+                        <h1 className="texto-formatado">
+                            {livro?.nome || 'Nome indisponivel no momento.'}
+                        </h1>
 
-                <p className="texto-formatado">
-                    {livro?.resumo || 'Resumo indisponivel no momento.'}
-                </p>
-            </section>
+                        <p className="texto-formatado">
+                            {livro?.resumo || 'Resumo indisponivel no momento.'}
+                        </p>
+                    </section>
 
-            <main className="content">
-                <h2>Questão 01</h2>
+                    <main className="content">
+                        <h2>Questão 01</h2>
 
-                <h4 className="texto-formatado">
-                    {questoes[0]?.enunciado || 'Enunciado indisponivel no momento.'}
-                </h4>
+                        <h4 className="texto-formatado">
+                            {questoes[0]?.enunciado || 'Enunciado indisponivel no momento.'}
+                        </h4>
 
-                <div className="options">
-                    <button>
-                        {questoes[0]?.alternativas?.[0]?.texto ||
-                            'Enunciado indisponível no momento.'}
-                    </button>
-                    <button>
-                        {questoes[0]?.alternativas?.[1]?.texto ||
-                            'Enunciado indisponível no momento.'}
-                    </button>
-                    <button>
-                        {questoes[0]?.alternativas?.[2]?.texto ||
-                            'Enunciado indisponível no momento.'}
-                    </button>
-                    <button>
-                        {questoes[0]?.alternativas?.[3]?.texto ||
-                            'Enunciado indisponível no momento.'}
-                    </button>
-                </div>
+                        <div className="options">
+                            <button>
+                                {questoes[0]?.alternativas?.[0]?.texto ||
+                                    'Enunciado indisponível no momento.'}
+                            </button>
+                            <button>
+                                {questoes[0]?.alternativas?.[1]?.texto ||
+                                    'Enunciado indisponível no momento.'}
+                            </button>
+                            <button>
+                                {questoes[0]?.alternativas?.[2]?.texto ||
+                                    'Enunciado indisponível no momento.'}
+                            </button>
+                            <button>
+                                {questoes[0]?.alternativas?.[3]?.texto ||
+                                    'Enunciado indisponível no momento.'}
+                            </button>
+                        </div>
 
-                <div className="next-button-container">
-                    <button className="next-button" onClick={proximaPagina}>
-                        Próxima questão →
-                    </button>
-                </div>
-            </main>
+                        <div className="next-button-container">
+                            <button className="next-button" onClick={proximaPagina}>
+                                Próxima questão →
+                            </button>
+                        </div>
+                    </main>
+                </>
+            )}
 
             <footer className="footer">
                 <Footer />
