@@ -54,12 +54,14 @@ export default function Home() {
                         </h1>
                         <p className="hero-subtitle">
                             "Ao verme que primeiro roeu as frías carnes do meu cadáver dedico como
-                            saudosa lembrança estas memórias pósthumas."
+                            saudosa lembrança estas memórias póstumas."
                         </p>
-                        {/* Evento onClick adicionado com a função navigate */}
+                            {/* Evento onClick adicionado com a função navigate */}
+
                         <button className="btn-primario" onClick={() => navigate('/obra')}>
                             Começar os Estudos
-                        </button>
+                            </button>
+
                     </section>
 
                     <section className="secao-tecnologia" id="obra">
