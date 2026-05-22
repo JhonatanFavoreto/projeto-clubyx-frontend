@@ -76,15 +76,15 @@ export default function Header() {
                     cursor: pointer !important;
                     color: #222222 !important;
                     background-color: transparent;
-                    border: 1px solid #222222;
+                    border: 1px solid #4A0E17;
                     border-radius: 4px;
                     font-weight: 600;
                     transition: all 0.2s ease-in-out;
                 }
 
-                /* HOVER DO BOTÃO: Fica com texto branco e fundo na cor da logo */
+                /* HOVER DO BOTÃO: Fundo vinho e texto na cor desejada #F4EFE6 */
                 header.header .btn-idioma:hover {
-                    color: #ffffff !important;
+                    color: #F4EFE6 !important; /* COR DO TEXTO ATUALIZADA */
                     background-color: #4A0E17 !important;
                     border-color: #4A0E17 !important;
                 }
