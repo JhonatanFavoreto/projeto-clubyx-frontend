@@ -16,6 +16,10 @@ export default function AObra() {
         navigate('/resultado');
     };
 
+    const paginaAnterior = () => {
+        navigate('/simulados4');
+    };
+
     useEffect(() => {
         const carregarDados = async () => {
             try {
@@ -97,7 +101,11 @@ export default function AObra() {
                     </button>
                 </div>
 
-                <div className="next-button-container">
+                <div className="buttons-container">
+                    <button className="back-button" onClick={paginaAnterior}>
+                        ← Voltar
+                    </button>
+
                     <button className="next-button finalizar-button" onClick={proximaPagina}>
                         Finalizar Simulado ✓
                     </button>
