@@ -13,7 +13,7 @@ export default function AObra() {
     const navigate = useNavigate();
 
     const proximaPagina = () => {
-        navigate('/simulados3');
+        navigate('/resultado');
     };
 
     useEffect(() => {
@@ -72,34 +72,34 @@ export default function AObra() {
             </section>
 
             <main className="content">
-                <h2>Questão 02</h2>
+                <h2>Questão 05</h2>
 
                 <h4 className="texto-formatado">
-                    {questoes[1]?.enunciado || 'Enunciado indisponivel no momento.'}
+                    {questoes[4]?.enunciado || 'Enunciado indisponivel no momento.'}
                 </h4>
 
                 <div className="options">
                     <button>
-                        {questoes[1]?.alternativas?.[0]?.texto ||
+                        {questoes[4]?.alternativas?.[0]?.texto ||
                             'Enunciado indisponível no momento.'}
                     </button>
                     <button>
-                        {questoes[1]?.alternativas?.[1]?.texto ||
+                        {questoes[4]?.alternativas?.[1]?.texto ||
                             'Enunciado indisponível no momento.'}
                     </button>
                     <button>
-                        {questoes[1]?.alternativas?.[2]?.texto ||
+                        {questoes[4]?.alternativas?.[2]?.texto ||
                             'Enunciado indisponível no momento.'}
                     </button>
                     <button>
-                        {questoes[1]?.alternativas?.[3]?.texto ||
+                        {questoes[4]?.alternativas?.[3]?.texto ||
                             'Enunciado indisponível no momento.'}
                     </button>
                 </div>
 
                 <div className="next-button-container">
-                    <button className="next-button" onClick={proximaPagina}>
-                        Próxima questão →
+                    <button className="next-button finalizar-button" onClick={proximaPagina}>
+                        Finalizar Simulado ✓
                     </button>
                 </div>
             </main>

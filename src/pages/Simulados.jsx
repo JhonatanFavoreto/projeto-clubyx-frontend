@@ -1,71 +1,113 @@
-import { useNavigate } from "react-router-dom";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
-import "../styles/Simulados.css";
 
-export default function Simulados() {
-  const navigate = useNavigate();
+import { useNavigate } from 'react-router-dom';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
+import '../styles/Simulados.css';
+import { useState, useEffect } from 'react';
 
-  const proximaPagina = () => {
-    navigate("/simulados2");
-  };
+export default function AObra() {
+    const [livro, setLivro] = useState(null);
+    const [questoes, setQuestoes] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-  return (
-    <>
-      <Header />
+    const navigate = useNavigate();
+    
+    const proximaPagina = () => {
+        navigate('/simulados2');
+    };
 
-      <div className="simulados-page">
-        <div className="top-line"></div>
+    useEffect(() => {
+        const carregarDados = async () => {
+            try {
+                const [resSimulados, resQuestoes] = await Promise.all([
+                    fetch('https://projeto-clubyx.onrender.com/simulados', {
+                        headers: { 'x-api-key': 'Clubyx_dev' },
+                    }),
+                    fetch('https://projeto-clubyx.onrender.com/questoes', {
+                        headers: { 'x-api-key': 'Clubyx_dev' },
+                    }),
+                ]);
 
-        <section className="hero">
-          <h1>Simulados</h1>
+                if (!resSimulados.ok)
+                    throw new Error(`Erro ${resSimulados.status} ao buscar /simulados`);
+                if (!resQuestoes.ok)
+                    throw new Error(`Erro ${resQuestoes.status} ao buscar /questoes`);
 
-          <p>
-            Realize simulados para melhorar o seu desempenho nos vestibulares
-            utilizando o livro Memórias Póstumas de Brás Cubas
-          </p>
-        </section>
+                const dataSimulados = await resSimulados.json();
+                const dataQuestoes = await resQuestoes.json();
+                console.log('DADOS DA API:', dataQuestoes);
 
-        <main className="content">
-          <h2>Questão 01</h2>
+                setLivro(Array.isArray(dataSimulados) ? dataSimulados[0] : dataSimulados);
+                setQuestoes(Array.isArray(dataQuestoes) ? dataQuestoes : [dataQuestoes]);
+            } catch (error) {
+                console.error('Erro ao buscar dados:', error);
+                setError('Não foi possível carregar os dados.');
+            } finally {
+                setLoading(false);
+            }
+        };
 
-          <h3>Texto I</h3>
+        carregarDados();
+    }, []);
 
-          <div className="question-text">
-            <p>
-              “Não tive filhos, não transmiti a nenhuma criatura o legado da nossa
-              miséria.”
-            </p>
+    if (loading) return <p>Carregando...</p>;
+    if (error) return <p>{error}</p>;
 
-            <p>
-              Com base no trecho final de Memórias Póstumas de Brás Cubas,
-              responda às questões.
-            </p>
-          </div>
+    return (
+        <div className="simulados-page">
+            <header className="header">
+                <Header />
+            </header>
 
-          <h4>A frase final do romance revela principalmente</h4>
+            <div className="top-line"></div>
 
-          <div className="options">
-            <button>A) uma valorização da família tradicional.</button>
+            <section className="hero">
+                <h1 className="texto-formatado">
+                    {livro?.nome || 'Nome indisponivel no momento.'}
+                </h1>
 
-            <button>B) uma visão otimista sobre a humanidade.</button>
+                <p className="texto-formatado">
+                    {livro?.resumo || 'Resumo indisponivel no momento.'}
+                </p>
+            </section>
 
-            <button>C) uma crítica pessimista a existência humana.</button>
+            <main className="content">
+                <h2>Questão 01</h2>
 
-            <button>D) um elogio ao progresso científico.</button>
+                <h4 className="texto-formatado">
+                    {questoes[0]?.enunciado || 'Enunciado indisponivel no momento.'}
+                </h4>
 
-            <button>E) uma defesa da continuidade da linhagem familiar.</button>
-          </div>
+                <div className="options">
+                    <button>
+                        {questoes[0]?.alternativas?.[0]?.texto ||
+                            'Enunciado indisponível no momento.'}
+                    </button>
+                    <button>
+                        {questoes[0]?.alternativas?.[1]?.texto ||
+                            'Enunciado indisponível no momento.'}
+                    </button>
+                    <button>
+                        {questoes[0]?.alternativas?.[2]?.texto ||
+                            'Enunciado indisponível no momento.'}
+                    </button>
+                    <button>
+                        {questoes[0]?.alternativas?.[3]?.texto ||
+                            'Enunciado indisponível no momento.'}
+                    </button>
+                </div>
 
-          <div className="next-button-container">
-            <button className="next-button" onClick={proximaPagina}>
-              Próxima questão →
-            </button>
-          </div>
-        </main>
-      </div>
+                <div className="next-button-container">
+                    <button className="next-button" onClick={proximaPagina}>
+                        Próxima questão →
+                    </button>
+                </div>
+            </main>
 
-      <Footer />
-    </>
-  );
+            <footer className="footer">
+                <Footer />
+            </footer>
+        </div>
+    );
 }
