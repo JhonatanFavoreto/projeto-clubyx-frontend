@@ -1,67 +1,68 @@
+/* ==========================================================================
+   Seção Sobre (Alinhada à Identidade Visual Global)
+   ========================================================================== */
+
 .sobre-container {
-    /* Utiliza as mesmas larguras e margens do .main-content original */
-    width: min(1120px, calc(100% - 3rem));
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 4rem 0 5rem;
+    padding: 5rem 5% 7rem; /* Aumentado o espaçamento superior e inferior da página */
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 4.5rem; /* Aumentado drasticamente o espaçamento entre os grandes containers */
     font-family: 'Lora', serif;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
 }
 
+/* Header da Página */
 .page-header {
     text-align: center;
-    margin-bottom: 2rem;
+    max-width: 900px;
+    margin: 0 auto 1.5rem auto; /* Mais respiro abaixo do header principal */
 }
 
 .page-header h1 {
     margin: 0 0 1.5rem;
     font-family: 'Playfair Display', serif;
-    /* Usa a fonte fluida idêntica ao .title-main */
-    font-size: clamp(2.5rem, 4vw, 4.4rem);
-    line-height: 0.95;
-    letter-spacing: -0.03em;
+    font-size: 3.5rem;
+    line-height: 1.1;
     color: var(--cor-texto);
     text-wrap: balance;
 }
 
 .page-header p {
-    max-width: 760px;
+    max-width: 800px;
     margin: 0 auto;
-    color: var(--cor-texto-suave);
-    font-size: 1.05rem;
-    line-height: 1.9;
+    color: var(--cor-texto-secundario);
+    font-size: 1.1rem;
+    font-style: italic;
+    line-height: 1.8;
 }
 
 .sobre-content {
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
+    gap: 4.5rem; /* Espaçamento amplo também entre os blocos internos de conteúdo */
 }
 
-/* --- Blocos (Equipe e Objetivo) herdando o estilo de .obra-bloco --- */
-.equipe-card, 
+.equipe-card,
 .objetivo-section {
-    padding: 2.5rem;
+    padding: 3rem 2.5rem; /* Mais respiro interno (padding) vertical */
     border: 1px solid var(--cor-borda);
-    border-radius: 26px;
-    background: var(--cor-card);
-    box-shadow: var(--sombra-card);
-    backdrop-filter: blur(12px);
+    background-color: var(--cor-fundo-card);
+    border-radius: 0 !important; /* Totalmente quadrado */
 }
 
 .equipe-card {
     text-align: center;
 }
 
-.equipe-card h2, 
+.equipe-card h2,
 .objetivo-section h2 {
-    margin: 0 0 1.5rem;
+    margin: 2rem; /* Mais distância entre o título do bloco e o conteúdo abaixo */
     font-family: 'Playfair Display', serif;
-    /* Fonte fluida idêntica ao .title-section */
-    font-size: clamp(1.8rem, 2vw, 2.5rem);
+    font-size: 2.2rem;
     color: var(--cor-destaque);
-    letter-spacing: -0.02em;
 }
 
 .objetivo-section h2 {
@@ -69,82 +70,80 @@
 }
 
 .objetivo-section p {
-    margin: 0 0 1rem;
-    color: var(--cor-texto-suave);
-    font-size: 1.02rem;
-    line-height: 1.9;
-    text-align: justify;
+    margin: 0 0 1.5rem;
+    color: var(--cor-texto-secundario);
+    font-size: 1rem;
+    line-height: 1.8;
+    text-align: center;
 }
 
 .objetivo-section p:last-child {
     margin-bottom: 0;
 }
 
-/* --- Bloco da Equipe Horizontal --- */
+/* --- Bloco da Equipe Horizontal (Grid Otimizada para 2 ou 3 por linha) --- */
 .grid-personagens {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.25rem;
+    display: grid;
+    /* Mantém a lógica de 2 ou 3 por linha, reduzindo ligeiramente a largura mínima */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem; /* Reduzido o espaço entre os cards para acompanhar o tamanho menor */
+    width: 100%;
 }
 
-/* Adaptando os cards de personagens para visual de tag horizontal */
+/* Ajustando proporções: Cards compactos e equilibrados (Metade do tamanho anterior) */
 .sobre-container .personagem-card {
+    background-color: var(--cor-fundo-card);
+    border: 1px solid var(--cor-borda);
+    padding: 1.25rem 1.5rem; /* Padding reduzido para compactar a altura e comprimento */
+    min-height: 80px; /* Reduzido drasticamente para cortar o tamanho pela metade */
+    display: flex;
+    align-items: center;
     position: relative;
-    padding: 1rem 1.5rem 1rem 2rem; 
-    border: 1px solid rgba(93, 24, 32, 0.12);
-    border-radius: 20px;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(246, 238, 228, 0.92));
+    border-radius: 0 !important; /* Força canto quadrado */
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     cursor: default;
 }
 
-/* Aquele tracinho vertical bonitinho da esquerda */
+/* Tracinho vertical à esquerda perfeitamente ajustado ao novo card menor */
 .sobre-container .personagem-card::before {
     content: '';
     position: absolute;
-    top: 50%;
-    left: 0.8rem;
-    transform: translateY(-50%);
+    top: 1.25rem;
+    left: 0;
     width: 4px;
-    height: 60%;
-    border-radius: 999px;
-    background: linear-gradient(180deg, var(--cor-destaque), #b6855d);
+    height: calc(100% - 2.5rem); /* Acompanha dinamicamente o tamanho menor do card */
+    background-color: var(--cor-destaque);
 }
 
+/* Efeito Hover */
 .sobre-container .personagem-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(93, 24, 32, 0.1);
-    border-color: rgba(93, 24, 32, 0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.04);
+    border-color: var(--cor-destaque);
 }
 
-.personagem-info p {
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: var(--cor-texto);
-    margin: 0;
-    line-height: 1.5;
-}
-/* Empilha o nome e o curso e alinha ao centro verticalmente */
+/* Informações do Integrante */
 .personagem-info {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: 100%;
-    text-align: left; /* Garante que o texto alinhe à esquerda junto à barrinha */
+    padding-left: 1rem; /* Ajustado proporcionalmente */
+    text-align: left;
 }
 
 .nome-integrante {
-    font-size: 1.05rem;
-    font-weight: 600;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; /* Reduzido de 1.4rem para harmonizar com o card menor */
+    font-weight: 700;
     color: var(--cor-texto);
     margin: 0;
     line-height: 1.2;
 }
 
 .curso-integrante {
-    font-size: 0.85rem;
-    color: var(--cor-texto-suave);
-    margin-top: 0.25rem;
+    font-family: 'Lora', serif;
+    font-size: 0.85rem; /* Reduzido de 0.95rem para não apertar o espaço */
+    color: var(--cor-texto-secundario);
+    margin-top: 0.3rem; /* Menos espaçamento superior */
     font-style: italic;
 }
