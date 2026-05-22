@@ -81,99 +81,65 @@ export default function ConteudosResumos() {
   }, []);
 
   return (
-    <div className="vestibular-page">
+    <>
       <Header />
 
-      <main className="main-content">
-        {loading ? (
-          <LoadingBook title="Carregando conteúdos..." />
-        ) : (
-          <>
-            {/* Header da Página */}
-            <section className="section-header">
-              <div className="hero-conteudo">
-                <div className="hero-topo">
-                  <div>
-                    <p className="hero-etiqueta">Vestibular</p>
-                    <h1 className="title-main">Conteúdos e Resumos</h1>
+      <div className="vestibular-page">
+        <main className="main-content">
+          {loading ? (
+            <LoadingBook title="Carregando conteúdos..." />
+          ) : (
+            <>
+              {/* Header da Página */}
+              <section className="section-header">
+                <div className="hero-conteudo">
+                  <div className="hero-topo">
+                    <div>
+                      <p className="hero-etiqueta">Vestibular</p>
+                      <h1 className="title-main">Conteúdos e Resumos</h1>
+                    </div>
                   </div>
+                  <p className="subtitle-main">
+                    Explore os resumos focados nas principais matérias e tópicos
+                    exigidos nos vestibulares, analisados pela nossa equipe.
+                  </p>
                 </div>
-                <p className="subtitle-main">
-                  Explore os resumos focados nas principais matérias e tópicos
-                  exigidos nos vestibulares, analisados pela nossa equipe.
-                </p>
-              </div>
-            </section>
+              </section>
 
-            {/* Renderização Condicional: Erro ou Conteúdo */}
-            {error ? (
-              <div style={{ textAlign: "center", padding: "2rem" }}>
-                <p>{error}</p>
-              </div>
-            ) : (
-              <section>
-                <div className="temas-grid">
-                  {conteudo.length > 0 ? (
-                    conteudo.map((item, index) => (
-                      <div className="obra-bloco" key={index}>
-                        <h3
-                          className="title-section"
-                          style={{ textAlign: "left", fontSize: "2rem" }}
-                        >
-                          {item.materia}
-                        </h3>
+              {/* Renderização Condicional: Erro ou Conteúdo */}
+              {error ? (
+                <div style={{ textAlign: "center", padding: "2rem" }}>
+                  <p>{error}</p>
+                </div>
+              ) : (
+                <section>
+                  <div className="temas-grid">
+                    {conteudo.length > 0 ? (
+                      conteudo.map((item, index) => (
+                        <div className="obra-bloco" key={index}>
+                          <h3
+                            className="title-section"
+                            style={{ textAlign: "left", fontSize: "2rem" }}
+                          >
+                            {item.materia}
+                          </h3>
 
-                        <div className="conteudo-grid">
-                          {/* CONTAINER 1: RESUMO E ANÁLISES */}
-                          <div className="bloco-conteudo-principal">
-                            {item.resumo && (
-                              <div className="sub-bloco-info">
-                                <h4
-                                  className="hero-etiqueta"
-                                  style={{ marginBottom: "0.5rem" }}
-                                >
-                                  Resumo
-                                </h4>
-                                <p className="texto-formatado">{item.resumo}</p>
-                              </div>
-                            )}
-
-                            {item.analises && (
-                              <div
-                                className="sub-bloco-info"
-                                style={{ marginTop: "1.5rem" }}
-                              >
-                                <h4
-                                  className="hero-etiqueta"
-                                  style={{ marginBottom: "0.5rem" }}
-                                >
-                                  Análises
-                                </h4>
-                                <p className="texto-formatado">
-                                  {item.analises}
-                                </p>
-                              </div>
-                            )}
-                          </div>
-
-                          {/* CONTAINER 2: DICAS E CURIOSIDADES */}
-                          {(item.dicas || item.curiosidades) && (
-                            <div className="bloco-conteudo-dicas">
-                              {item.dicas && (
+                          <div className="conteudo-grid">
+                            {/* CONTAINER 1: RESUMO E ANÁLISES */}
+                            <div className="bloco-conteudo-principal">
+                              {item.resumo && (
                                 <div className="sub-bloco-info">
                                   <h4
                                     className="hero-etiqueta"
                                     style={{ marginBottom: "0.5rem" }}
                                   >
-                                    Dicas
+                                    Resumo
                                   </h4>
-                                  <p className="texto-formatado">
-                                    {item.dicas}
-                                  </p>
+                                  <p className="texto-formatado">{item.resumo}</p>
                                 </div>
                               )}
 
-                              {item.curiosidades && (
+                              {item.analises && (
                                 <div
                                   className="sub-bloco-info"
                                   style={{ marginTop: "1.5rem" }}
@@ -182,31 +148,67 @@ export default function ConteudosResumos() {
                                     className="hero-etiqueta"
                                     style={{ marginBottom: "0.5rem" }}
                                   >
-                                    Curiosidades
+                                    Análises
                                   </h4>
                                   <p className="texto-formatado">
-                                    {item.curiosidades}
+                                    {item.analises}
                                   </p>
                                 </div>
                               )}
                             </div>
-                          )}
+
+                            {/* CONTAINER 2: DICAS E CURIOSIDADES */}
+                            {(item.dicas || item.curiosidades) && (
+                              <div className="bloco-conteudo-dicas">
+                                {item.dicas && (
+                                  <div className="sub-bloco-info">
+                                    <h4
+                                      className="hero-etiqueta"
+                                      style={{ marginBottom: "0.5rem" }}
+                                    >
+                                      Dicas
+                                    </h4>
+                                    <p className="texto-formatado">
+                                      {item.dicas}
+                                    </p>
+                                  </div>
+                                )}
+
+                                {item.curiosidades && (
+                                  <div
+                                    className="sub-bloco-info"
+                                    style={{ marginTop: "1.5rem" }}
+                                  >
+                                    <h4
+                                      className="hero-etiqueta"
+                                      style={{ marginBottom: "0.5rem" }}
+                                    >
+                                      Curiosidades
+                                    </h4>
+                                    <p className="texto-formatado">
+                                      {item.curiosidades}
+                                    </p>
+                                  </div>
+                                )}
+                              </div>
+                            )}
+                          </div>
                         </div>
-                      </div>
-                    ))
-                  ) : (
-                    <p style={{ textAlign: "center", width: "100%" }}>
-                      Nenhum conteúdo ou resumo disponível no momento.
-                    </p>
-                  )}
-                </div>
-              </section>
-            )}
-          </>
-        )}
-      </main>
+                      ))
+                    ) : (
+                      <p style={{ textAlign: "center", width: "100%" }}>
+                        Nenhum conteúdo ou resumo disponível no momento.
+                      </p>
+                    )}
+                  </div>
+                </section>
+              )}
+            </>
+          )}
+        </main>
+      </div>
 
       <Footer />
-    </div>
+    </>
   );
 }

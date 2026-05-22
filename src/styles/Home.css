@@ -1,14 +1,15 @@
-/* Importar Fontes do Google */
+/* ==========================================================================
+   Importação de Fontes e Variáveis Globais (Mantendo o Padrão da Biblioteca)
+   ========================================================================== */
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
 
-
-/* Variáveis de Cores - Paleta "O Defunto Autor" */
 :root {
-    --cor-fundo: #f4efe6; /* Papel Pergaminho */
-    --cor-texto: #1a1a1a; /* Preto Luto */
-    --cor-destaque: #4a0e17; /* Vinho Bordô */
-    --cor-borda: #d8cfc0; /* Detalhes e separadores */
-    --cor-cinza: #6b6b6b; /* Cinza para textos secundários */
+    --cor-fundo: #f4efe6;       /* Papel Pergaminho */
+    --cor-fundo-card: #faf7f2;  /* Bege Claro da Seção Biblioteca */
+    --cor-texto: #1a1a1a;       /* Preto Luto */
+    --cor-texto-secundario: #333333; /* Cinza Escuro da Biblioteca */
+    --cor-destaque: #4a0e17;    /* Vinho Bordô */
+    --cor-borda: #d8cfc0;       /* Detalhes e separadores */
 }
 
 /* Reset Básico */
@@ -26,53 +27,16 @@ body {
     line-height: 1.6;
 }
 
-h1,
-h2,
-h3,
-.logo {
+h1, h2, h3, .logo {
     font-family: 'Playfair Display', serif;
     color: var(--cor-texto);
 }
 
-h1 {
-    font-size: 3.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    letter-spacing: -1px;
-}
-
-h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 2rem;
-    text-align: center;
-}
-
-h3 {
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-}
-
 p {
+    font-family: 'Lora', serif;
     font-size: 1rem;
     line-height: 1.8;
-    color: var(--cor-cinza);
-}
-
-/* Cabeçalho */
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.2rem 5%;
-    border-bottom: 2px solid var(--cor-borda);
-    background-color: var(--cor-fundo);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    gap: 2rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    color: var(--cor-texto-secundario);
 }
 
 .logo {
@@ -110,7 +74,6 @@ p {
     white-space: nowrap;
     padding-bottom: 0.25rem;
     border-bottom: 2px solid transparent;
-    position: relative;
 }
 
 .nav a:hover {
@@ -118,7 +81,7 @@ p {
     border-bottom-color: var(--cor-destaque);
 }
 
-/* Botão de Idioma */
+/* Botões */
 .btn-idioma {
     background: transparent;
     border: 2px solid var(--cor-texto);
@@ -141,7 +104,6 @@ p {
     box-shadow: 0 4px 8px rgba(74, 14, 23, 0.15);
 }
 
-/* Botão Primário */
 .btn-primario {
     background-color: var(--cor-destaque);
     color: var(--cor-fundo);
@@ -161,161 +123,111 @@ p {
     background-color: #330a10;
 }
 
-/* Seção Hero */
+/* ==========================================================================
+   Seções da Página Inicial (Home)
+   ========================================================================== */
+
+/* Hero Section */
 .hero-section {
-    padding: 1rem 5%;
+    padding: 4rem 5%;
     text-align: center;
     max-width: 900px;
     margin: 0 auto;
-    background-color: var(--cor-fundo);
 }
 
 .hero-section h1 {
-    font-size: 4rem;
-    margin-bottom: 2rem;
-    color: var(--cor-texto);
+    font-size: 3.5rem; /* Alinhado com o h1 da biblioteca */
+    margin-bottom: 1.5rem;
 }
 
 .hero-subtitle {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin-bottom: 2rem;
-    color: var(--cor-cinza);
     font-style: italic;
     line-height: 1.8;
 }
 
-/* Seção Tecnologia */
-.secao-tecnologia {
-    padding: 5rem 5%;
-    background-color: var(--cor-fundo);
-    max-width: 900px;
+/* Seções de Texto Comum (Tecnologia e Projeto) */
+.secao-tecnologia,
+.secao-projeto {
+    padding: 4rem 5%;
+    max-width: 1200px;
     margin: 0 auto;
     text-align: center;
 }
 
-.secao-tecnologia h2 {
-    font-size: 2rem;
-    margin-bottom: 2.5rem;
-}
-
-.secao-tecnologia p {
-    margin-bottom: 1.5rem;
-    text-align: justify;
-    font-size: 1.05rem;
-}
-
-/* Seção Defunto Autor */
-.secao-defunto-autor {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-    padding: 5rem 5%;
-    background-color: var(--cor-fundo);
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.defunto-texto h2 {
-    text-align: left;
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-}
-
-.defunto-texto p {
-    text-align: justify;
-    font-size: 1.05rem;
-    line-height: 1.9;
-}
-
-.defunto-imagem {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.livro-placeholder {
-    width: 200px;
-    height: 300px;
-    background: linear-gradient(135deg, #8b4513 0%, #654321 100%);
-    border: 3px solid #3e2723;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #f4efe6;
-    text-align: center;
-    font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
-    font-weight: 700;
-    padding: 2rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    line-height: 1.4;
-}
-
-/* Seção Navegação */
-.secao-navegacao {
-    padding: 5rem 5%;
-    background-color: var(--cor-fundo);
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
+.secao-tecnologia h2,
+.secao-projeto h2,
 .secao-navegacao h2 {
-    margin-bottom: 3rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; /* Alinhado com .livros-section-title */
+    margin-bottom: 2rem;
+}
+
+.secao-tecnologia p,
+.secao-projeto p {
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto 1.5rem auto;
+    text-align: center; /* Centralizado para combinar com o header da biblioteca */
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   Grid de Navegação por Cards (Alinhado com a Grid de Livros)
+   ========================================================================== */
+.secao-navegacao {
+    padding: 4rem 5%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Igual ao grid-livros */
     gap: 2rem;
 }
 
+/* Estilização Base do Card adaptada para Links e Divs */
+.cards-grid .card {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+}
+
 .card {
+    background-color: var(--cor-fundo-card); /* Mesma cor #faf7f2 */
+    border: 1px solid var(--cor-borda);       /* Mesma borda #d8cfc0 */
     padding: 2rem;
-    border: 1px solid var(--cor-borda);
-    background-color: #fdfbf7;
-    transition: all 0.3s;
+    min-height: 220px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
 }
 
+/* Efeito Hover idêntico ao da Biblioteca */
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(74, 14, 23, 0.1);
-    border-color: var(--cor-destaque);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    border-color: var(--cor-destaque); /* Mantém o destaque sutil no contorno */
 }
 
 .card h3 {
-    color: var(--cor-destaque);
-    margin-bottom: 1rem;
-    font-size: 1.3rem;
+    font-family: 'Playfair Display', serif;
+    color: var(--cor-texto);
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
 }
 
 .card p {
-    font-size: 0.95rem;
-    line-height: 1.7;
+    font-size: 1rem;
+    color: var(--cor-texto-secundario);
+    line-height: 1.6;
 }
 
-/* Seção Projeto */
-.secao-projeto {
-    padding: 5rem 5%;
-    background-color: var(--cor-fundo);
-    max-width: 900px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.secao-projeto h2 {
-    margin-bottom: 2rem;
-}
-
-.secao-projeto p {
-    font-size: 1.05rem;
-    text-align: justify;
-    line-height: 1.9;
-}
-
-/* Rodapé */
+/* ==========================================================================
+   Rodapé Global
+   ========================================================================== */
 .footer {
     text-align: center;
     padding: 3rem 2rem;
@@ -330,249 +242,33 @@ p {
     color: var(--cor-fundo);
     margin-bottom: 0.8rem;
     line-height: 1.6;
-    font-weight: 500;
 }
+
 
 .footer p:last-child {
     margin-bottom: 0;
 }
 
-/* Responsivo */
-@media (max-width: 1200px) {
-    .nav ul {
-        gap: 1.2rem;
-    }
-
-    .nav a {
-        font-size: 0.85rem;
-    }
-}
-
+/* ==========================================================================
+   Responsividade Adaptada
+   ========================================================================== */
 @media (max-width: 1024px) {
-    h1 {
-        font-size: 2.5rem;
-    }
-
-    h2 {
-        font-size: 1.8rem;
-    }
-
-    .header {
-        padding: 1.2rem 3%;
-    }
-
-    .logo {
-        font-size: 1.7rem;
-    }
-
-    .nav ul {
-        gap: 1rem;
-    }
-
-    .secao-defunto-autor {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-        padding: 3rem 5%;
-    }
-
-    .defunto-texto h2 {
-        text-align: center;
-    }
-
-    .secao-navegacao {
-        padding: 3rem 3%;
-    }
+    .hero-section h1 { font-size: 2.8rem; }
+    .secao-tecnologia h2, .secao-projeto h2, .secao-navegacao h2 { font-size: 1.8rem; }
+    .nav ul { gap: 1rem; }
 }
 
 @media (max-width: 768px) {
-    h1 {
-        font-size: 2rem;
-    }
-
-    h2 {
-        font-size: 1.5rem;
-    }
-
     .header {
         padding: 1rem 3%;
-        gap: 1.5rem;
+        gap: 1.2rem;
         flex-wrap: wrap;
-        justify-content: flex-start;
     }
-
-    .logo {
-        font-size: 1.4rem;
-        letter-spacing: 2px;
-    }
-
     .nav {
         order: 3;
         width: 100%;
-        justify-content: center;
         margin-top: 0.5rem;
     }
-
-    .nav ul {
-        gap: 0.6rem;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .nav a {
-        font-size: 0.75rem;
-        padding-bottom: 0.15rem;
-    }
-
-    .btn-idioma {
-        font-size: 0.7rem;
-        padding: 0.4rem 0.6rem;
-        letter-spacing: 0.3px;
-    }
-
-    .hero-section {
-        padding: 0.5rem 3%;
-    }
-
-    .hero-section h1 {
-        font-size: 2rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .hero-subtitle {
-        font-size: 0.95rem;
-    }
-
-    .secao-tecnologia {
-        padding: 2.5rem 3%;
-    }
-
-    .secao-tecnologia h2 {
-        font-size: 1.3rem;
-    }
-
-    .secao-tecnologia p {
-        font-size: 0.95rem;
-    }
-
-    .secao-defunto-autor {
-        padding: 2.5rem 3%;
-        gap: 1.5rem;
-    }
-
-    .defunto-texto p {
-        font-size: 0.9rem;
-    }
-
-    .livro-placeholder {
-        width: 150px;
-        height: 225px;
-        font-size: 0.9rem;
-    }
-
-    .secao-navegacao {
-        padding: 2.5rem 3%;
-    }
-
-    .secao-navegacao h2 {
-        font-size: 1.3rem;
-        margin-bottom: 2rem;
-    }
-
-    .cards-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-
-    .card {
-        padding: 1.5rem;
-    }
-
-    .card h3 {
-        font-size: 1.1rem;
-    }
-
-    .card p {
-        font-size: 0.85rem;
-    }
-
-    .secao-projeto {
-        padding: 2.5rem 3%;
-    }
-
-    .secao-projeto h2 {
-        font-size: 1.3rem;
-    }
-
-    .secao-projeto p {
-        font-size: 0.9rem;
-    }
-
-    .footer {
-        padding: 2rem 2%;
-        margin-top: 2rem;
-    }
-
-    .footer p {
-        font-size: 0.85rem;
-    }
+    .hero-section h1 { font-size: 2.2rem; }
+    .cards-grid { grid-template-columns: 1fr; } /* Empilha em telas menores */
 }
-
-@media (max-width: 480px) {
-    h1 {
-        font-size: 1.5rem;
-    }
-
-    h2 {
-        font-size: 1.2rem;
-    }
-
-    .header {
-        padding: 0.8rem 2%;
-    }
-
-    .logo {
-        font-size: 1.2rem;
-        letter-spacing: 1px;
-    }
-
-    .nav ul {
-        gap: 0.4rem;
-    }
-
-    .nav a {
-        font-size: 0.65rem;
-    }
-
-    .btn-idioma {
-        font-size: 0.65rem;
-        padding: 0.3rem 0.5rem;
-    }
-
-    .hero-section {
-        padding: 0.5rem 3%;
-    }
-
-    .hero-section h1 {
-        font-size: 1.5rem;
-    }
-
-    .hero-subtitle {
-        font-size: 0.85rem;
-    }
-
-    .btn-primario {
-        padding: 0.8rem 1.5rem;
-        font-size: 0.85rem;
-    }
-
-    .secao-navegacao {
-        padding: 2rem 3%;
-    }
-
-    .livro-placeholder {
-        width: 120px;
-        height: 180px;
-        font-size: 0.75rem;
-    }
-}
-

@@ -1,60 +1,39 @@
-.aobra-page {
-    --cor-fundo: #f4efe6;
-    --cor-fundo-secundario: #ede2d1;
-    --cor-texto: #1f1a17;
-    --cor-texto-suave: #5f564d;
-    --cor-destaque: #5d1820;
-    --cor-destaque-escuro: #3f1016;
-    --cor-borda: rgba(93, 24, 32, 0.18);
-    --cor-card: rgba(255, 251, 245, 0.82);
-    --sombra-card: 0 18px 40px rgba(44, 28, 18, 0.08);
+/* ==========================================================================
+   Seção A Obra (Alinhada à Identidade Visual Global)
+   ========================================================================== */
 
+.aobra-page {
     min-height: 100vh;
-    background:
-        radial-gradient(circle at top left, rgba(93, 24, 32, 0.1), transparent 28%),
-        linear-gradient(180deg, #f7f1e8 0%, var(--cor-fundo) 32%, #efe5d6 100%);
+    background-color: var(--cor-fundo);
     color: var(--cor-texto);
     font-family: 'Lora', serif;
 }
 
 .main-content {
-    width: min(1120px, calc(100% - 3rem));
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 4rem 0 5rem;
+    padding: 4rem 5%;
     display: grid;
-    gap: 2rem;
+    gap: 4.5rem; /* Espaçamento amplo e padronizado entre grandes blocos */
 }
 
+/* Header da Seção Principal */
 .section-header {
     display: grid;
     grid-template-columns: minmax(220px, 320px) minmax(0, 1fr);
-    align-items: stretch;
-    gap: 2rem;
-    position: relative;
-    overflow: hidden;
-    padding: 2rem 4rem;  /* ← aumentado de 2rem para 4rem nos lados */
+    align-items: center;
+    gap: 2.5rem;
+    padding: 2.5rem 4rem;
     border: 1px solid var(--cor-borda);
-    border-radius: 32px;
-    background:
-        linear-gradient(135deg, rgba(93, 24, 32, 0.08), rgba(255, 255, 255, 0) 55%),
-        linear-gradient(180deg, rgba(255, 251, 245, 0.98), rgba(244, 239, 230, 0.98));
-    box-shadow: var(--sombra-card);
-}
-
-.section-header::after {
-    content: '';
-    position: absolute;
-    inset: auto 2rem 1.25rem;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(93, 24, 32, 0.28), transparent);
+    background-color: var(--cor-fundo-card);
+    border-radius: 0 !important; /* Totalmente quadrado */
 }
 
 .title-main {
     margin: 0;
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2.5rem, 4vw, 4.4rem);
-    line-height: 0.95;
-    letter-spacing: -0.03em;
+    font-size: 3.5rem;
+    line-height: 1.1;
     color: var(--cor-texto);
     text-wrap: balance;
 }
@@ -74,169 +53,118 @@
 
 .hero-topo {
     display: flex;
+    flex-direction: column;
     align-items: flex-start;
-    gap: 1.5rem;
+    gap: 0.5rem;
 }
 
 .hero-etiqueta {
-    margin: 0 0 0.9rem;
+    margin: 0;
     color: var(--cor-destaque);
-    font-size: 0.84rem;
+    font-size: 0.85rem;
     font-weight: 700;
-    letter-spacing: 0.14em;
+    letter-spacing: 2px;
     text-transform: uppercase;
 }
 
 .subtitle-main {
     max-width: 760px;
     margin: 0;
-    color: var(--cor-texto-suave);
-    font-size: 1.05rem;
-    line-height: 1.9;
+    color: var(--cor-texto-secundario);
+    font-size: 1.1rem;
+    font-style: italic;
+    line-height: 1.8;
     text-align: left;
 }
 
+/* Blocos de Conteúdo */
 .obra-bloco {
-    padding: 2rem 2.1rem;
+    padding: 3rem 2.5rem;
     border: 1px solid var(--cor-borda);
-    border-radius: 26px;
-    background: var(--cor-card);
-    box-shadow: var(--sombra-card);
-    backdrop-filter: blur(12px);
+    background-color: var(--cor-fundo-card);
+    border-radius: 0 !important; /* Totalmente quadrado */
 }
 
 .title-section {
-    margin: 0 0 1.25rem;
+    margin: 0 0 1.5rem;
     font-family: 'Playfair Display', serif;
-    font-size: clamp(1.8rem, 2vw, 2.5rem);
+    font-size: 2.2rem;
     color: var(--cor-destaque);
-    letter-spacing: -0.02em;
 }
 
 .obra-bloco p {
-    margin: 0;
-    color: var(--cor-texto-suave);
-    font-size: 1.02rem;
-    line-height: 1.9;
+    margin: 0 0 1.5rem;
+    color: var(--cor-texto-secundario);
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.obra-bloco p:last-child {
+    margin-bottom: 0;
 }
 
 .texto-formatado {
     text-align: center;
-
 }
+
 
 .grid-personagens {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
 }
 
 .personagem-card {
+    background-color: var(--cor-fundo-card);
+    border: 1px solid var(--cor-borda);
+    padding: 1.5rem 1.75rem;
+    min-height: 95px;
+    display: flex;
+    align-items: center;
     position: relative;
-    min-height: 100%;
-    padding: 1.25rem 1.25rem 1.25rem 1.5rem;
-    border: 1px solid rgba(93, 24, 32, 0.12);
-    border-radius: 20px;
-    background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(246, 238, 228, 0.92));
+    border-radius: 0 !important; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    cursor: default;
 }
 
 .personagem-card::before {
     content: '';
     position: absolute;
-    top: 1.1rem;
+    top: 1.5rem;
     left: 0;
     width: 4px;
-    height: calc(100% - 2.2rem);
-    border-radius: 999px;
-    background: linear-gradient(180deg, var(--cor-destaque), #b6855d);
+    height: calc(100% - 3rem);
+    background-color: var(--cor-destaque);
+}
+.personagem-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.04);
+    border-color: var(--cor-destaque);
 }
 
 .personagem-info {
     display: flex;
-    align-items: center;
-    min-height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 1rem;
+    text-align: left;
 }
 
 .personagem-info p {
     margin: 0;
-    padding-left: 0.25rem;
+    padding: 0;
     color: var(--cor-texto);
-    line-height: 1.7;
+    font-size: 1.05rem; /* Ajuste fino na leitura */
+    line-height: 1.5;
 }
 
+/* Imagem de Capa da Obra Literária */
 .obra-capa-imagem {
     display: block;
     width: min(100%, 320px);
     aspect-ratio: 4 / 5.4;
-    border-radius: 24px;
-    border: 1px solid rgba(93, 24, 32, 0.16);
-    box-shadow:
-        0 22px 36px rgba(39, 24, 16, 0.14),
-        0 0 0 8px rgba(255, 255, 255, 0.45);
+    border-radius: 0 !important; /* Remove o arredondamento da imagem */
+    border: 1px solid var(--cor-borda);
     object-fit: cover;
-}
-
-@media (max-width: 900px) {
-    .main-content {
-        width: min(100% - 2rem, 1120px);
-    }
-
-    .section-header {
-        grid-template-columns: 1fr;
-        padding: 1.5rem;
-        border-radius: 26px;
-    }
-
-    .obra-bloco {
-        padding: 1.5rem;
-        border-radius: 22px;
-    }
-
-    .hero-capa {
-        order: -1;
-    }
-
-    .hero-topo {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-}
-
-@media (max-width: 560px) {
-    .main-content {
-        padding: 2.5rem 0 4rem;
-        gap: 1.5rem;
-    }
-
-    .section-header {
-        padding: 1.2rem;
-    }
-
-    .section-header::after {
-        inset: auto 1.25rem 1rem;
-    }
-
-    .obra-bloco {
-        padding: 1.25rem;
-    }
-
-    .title-section {
-        margin-bottom: 1rem;
-    }
-
-    .obra-bloco p,
-    .subtitle-main {
-        font-size: 0.98rem;
-    }
-
-    .personagem-card {
-        padding: 1rem 1rem 1rem 1.25rem;
-        border-radius: 16px;
-    }
-
-    .obra-capa-imagem {
-        width: min(100%, 260px);
-        border-radius: 18px;
-    }
 }
