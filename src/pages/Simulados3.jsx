@@ -13,7 +13,7 @@ export default function AObra() {
     const navigate = useNavigate();
 
     const proximaPagina = () => {
-        navigate('/simulados3');
+        navigate('/simulados4');
     };
 
     useEffect(() => {
@@ -72,27 +72,27 @@ export default function AObra() {
             </section>
 
             <main className="content">
-                <h2>Questão 02</h2>
+                <h2>Questão 03</h2>
 
                 <h4 className="texto-formatado">
-                    {questoes[1]?.enunciado || 'Enunciado indisponivel no momento.'}
+                    {questoes[2]?.enunciado || 'Enunciado indisponivel no momento.'}
                 </h4>
 
                 <div className="options">
                     <button>
-                        {questoes[1]?.alternativas?.[0]?.texto ||
+                        {questoes[2]?.alternativas?.[0]?.texto ||
                             'Enunciado indisponível no momento.'}
                     </button>
                     <button>
-                        {questoes[1]?.alternativas?.[1]?.texto ||
+                        {questoes[2]?.alternativas?.[1]?.texto ||
                             'Enunciado indisponível no momento.'}
                     </button>
                     <button>
-                        {questoes[1]?.alternativas?.[2]?.texto ||
+                        {questoes[2]?.alternativas?.[2]?.texto ||
                             'Enunciado indisponível no momento.'}
                     </button>
                     <button>
-                        {questoes[1]?.alternativas?.[3]?.texto ||
+                        {questoes[2]?.alternativas?.[3]?.texto ||
                             'Enunciado indisponível no momento.'}
                     </button>
                 </div>

@@ -79,7 +79,7 @@ body {
 }
 
 .hero h1 {
-  font-size: 5rem;
+  font-size: 3.5rem;
   margin-bottom: 20px;
   font-weight: 700;
 }
@@ -175,6 +175,14 @@ body {
 .next-button:hover {
   background-color: #581721;
   transform: scale(1.03);
+}
+
+.finalizar-button {
+  background-color: #2f5d3a;
+}
+
+.finalizar-button:hover {
+  background-color: #3d744a;
 }
 
 .footer {
