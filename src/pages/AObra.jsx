@@ -47,83 +47,84 @@ export default function AObra() {
         : [];
 
     return (
-        <div className="aobra-page">
+        <>
             <Header />
 
-            <main className="main-content">
-                {loading ? (
-                    <LoadingBook title="Carregando a obra" />
-                ) : (
-                    <>
-                        <section className="section-header">
-                            {fotoUrl && (
-                                <div className="hero-capa">
-                                    <img
-                                        className="obra-capa-imagem"
-                                        src={
-                                            'https://altabooks.com.br/wp-content/uploads/2025/12/CAPA_3000px_MEMORIAS-POSTUMAS-DE-BRAS-CUBAS_-scaled.jpg'
-                                        }
-                                        alt={livro?.foto || 'Capa do livro'}
-                                    />
-                                </div>
-                            )}
-
-                            <div className="hero-conteudo">
-                                <div className="hero-topo">
-                                    <div>
-                                        <p className="hero-etiqueta">Livro em destaque</p>
-                                        <h1 className="title-main">
-                                            {loading
-                                                ? 'Carregando obra...'
-                                                : livro?.nome || 'A Obra'}
-                                        </h1>
+            <div className="aobra-page">
+                <main className="main-content">
+                    {loading ? (
+                        <LoadingBook title="Carregando a obra" />
+                    ) : (
+                        <>
+                            <section className="section-header">
+                                {fotoUrl && (
+                                    <div className="hero-capa">
+                                        <img
+                                            className="obra-capa-imagem"
+                                            src={
+                                                'https://altabooks.com.br/wp-content/uploads/2025/12/CAPA_3000px_MEMORIAS-POSTUMAS-DE-BRAS-CUBAS_-scaled.jpg'
+                                            }
+                                            alt={livro?.foto || 'Capa do livro'}
+                                        />
                                     </div>
-                                </div>
+                                )}
 
-                                <p className="subtitle-main">
-                                    {error || `Ano de publicacao: ${livro?.publicacao || '---'}`}
-                                </p>
-                            </div>
-                        </section>
+                                <div className="hero-conteudo">
+                                    <div className="hero-topo">
+                                        <div>
+                                            <p className="hero-etiqueta">Livro em destaque</p>
+                                            <h1 className="title-main">
+                                                {loading
+                                                    ? 'Carregando obra...'
+                                                    : livro?.nome || 'A Obra'}
+                                            </h1>
+                                        </div>
+                                    </div>
+
+                                    <p className="subtitle-main">
+                                        {error || `Ano de publicacao: ${livro?.publicacao || '---'}`}
+                                    </p>
+                                </div>
+                            </section>
 
                             <section className="obra-bloco">
                                 <div>
-                            <h2 className="title-section">Resumo sobre o livro</h2>
-                            <p className="texto-formatado">
-                                {livro?.resumo || 'Resumo indisponivel no momento.'}
-                            </p>
-
+                                    <h2 className="title-section">Resumo sobre o livro</h2>
+                                    <p className="texto-formatado">
+                                        {livro?.resumo || 'Resumo indisponivel no momento.'}
+                                    </p>
                                 </div>
                                 <div>
-                            <h2 className="title-section" style={{marginTop: '60px'}}>Contexto Histórico</h2>
-                            <p className="texto-formatado">
-                                {livro?.contextoHist ||
-                                    'Contexto historico indisponivel no momento.'}
-                            </p>
-
+                                    <h2 className="title-section" style={{ marginTop: '60px' }}>Contexto Histórico</h2>
+                                    <p className="texto-formatado">
+                                        {livro?.contextoHist ||
+                                            'Contexto historico indisponivel no momento.'}
+                                    </p>
                                 </div>
-                        </section>
+                            </section>
 
-                        <section className="obra-bloco">
-                            <h2 className="title-section">Personagens Principais</h2>
-                            {personagensLista.length > 0 ? (
-                                <div className="grid-personagens">
-                                    {personagensLista.map((personagem) => (
-                                        <div className="personagem-card" key={personagem}>
-                                            <div className="personagem-info">
-                                                <p>{personagem}</p>
+                            <section className="obra-bloco">
+                                <h2 className="title-section">Personagens Principais</h2>
+                                {personagensLista.length > 0 ? (
+                                    <div className="grid-personagens">
+                                        {personagensLista.map((personagem) => (
+                                            <div className="personagem-card" key={personagem}>
+                                                <div className="personagem-info">
+                                                    <p>{personagem}</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            ) : (
-                                <p>Personagens indisponiveis no momento.</p>
-                            )}
-                        </section>
-                    </>
-                )}
-            </main>
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <p>Personagens indisponiveis no momento.</p>
+                                )}
+                            </section>
+                        </>
+                    )}
+                </main>
+            </div>
+
             <Footer />
-        </div>
+        </>
     );
 }

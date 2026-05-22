@@ -11,63 +11,61 @@ export default function Simulados() {
   };
 
   return (
-    <div className="simulados-page">
-      <header className="header">
-        <Header />
-      </header>
+    <>
+      <Header />
 
-      <div className="top-line"></div>
+      <div className="simulados-page">
+        <div className="top-line"></div>
 
-      <section className="hero">
-        <h1>Simulados</h1>
-
-        <p>
-          Realize simulados para melhorar o seu desempenho nos vestibulares
-          utilizando o livro Memórias Póstumas de Brás Cubas
-        </p>
-      </section>
-
-      <main className="content">
-        <h2>Questão 01</h2>
-
-        <h3>Texto I</h3>
-
-        <div className="question-text">
-          <p>
-            “Não tive filhos, não transmiti a nenhuma criatura o legado da nossa
-            miséria.”
-          </p>
+        <section className="hero">
+          <h1>Simulados</h1>
 
           <p>
-            Com base no trecho final de Memórias Póstumas de Brás Cubas,
-            responda às questões.
+            Realize simulados para melhorar o seu desempenho nos vestibulares
+            utilizando o livro Memórias Póstumas de Brás Cubas
           </p>
-        </div>
+        </section>
 
-        <h4>A frase final do romance revela principalmente</h4>
+        <main className="content">
+          <h2>Questão 01</h2>
 
-        <div className="options">
-          <button>A) uma valorização da família tradicional.</button>
+          <h3>Texto I</h3>
 
-          <button>B) uma visão otimista sobre a humanidade.</button>
+          <div className="question-text">
+            <p>
+              “Não tive filhos, não transmiti a nenhuma criatura o legado da nossa
+              miséria.”
+            </p>
 
-          <button>C) uma crítica pessimista a existência humana.</button>
+            <p>
+              Com base no trecho final de Memórias Póstumas de Brás Cubas,
+              responda às questões.
+            </p>
+          </div>
 
-          <button>D) um elogio ao progresso científico.</button>
+          <h4>A frase final do romance revela principalmente</h4>
 
-          <button>E) uma defesa da continuidade da linhagem familiar.</button>
-        </div>
+          <div className="options">
+            <button>A) uma valorização da família tradicional.</button>
 
-        <div className="next-button-container">
-          <button className="next-button" onClick={proximaPagina}>
-            Próxima questão →
-          </button>
-        </div>
-      </main>
+            <button>B) uma visão otimista sobre a humanidade.</button>
 
-      <footer className="footer">
-        <Footer />
-      </footer>
-    </div>
+            <button>C) uma crítica pessimista a existência humana.</button>
+
+            <button>D) um elogio ao progresso científico.</button>
+
+            <button>E) uma defesa da continuidade da linhagem familiar.</button>
+          </div>
+
+          <div className="next-button-container">
+            <button className="next-button" onClick={proximaPagina}>
+              Próxima questão →
+            </button>
+          </div>
+        </main>
+      </div>
+
+      <Footer />
+    </>
   );
 }

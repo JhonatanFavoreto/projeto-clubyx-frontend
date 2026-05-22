@@ -42,11 +42,11 @@ export default function Home() {
 
     return (
         <>
+            <Header />
             {loading ? (
                 <LoadingBook title="Carregando a página inicial..." />
             ) : (
                 <>
-                    <Header />
                     <section className="hero-section" id="home">
                         <h1>
                             {error ? 'Memórias Póstumas de Brás Cubas' : livro?.nome || 'A Obra'}
