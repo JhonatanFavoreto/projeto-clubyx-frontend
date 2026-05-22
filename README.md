@@ -21,7 +21,7 @@ Uma plataforma web colaborativa focada no estudo de obras literárias e prepara�
 1. Clone o repositório:
 
 ```bash
-git clone <https://github.com/JhonatanFavoreto/projeto-clubyx-frontend.git>
+git clone https://github.com/JhonatanFavoreto/projeto-clubyx-frontend.git
 cd projeto-clubyx-frontend
 
 ```
