@@ -123,7 +123,8 @@ export default function Home() {
                                 </p>
                             </Link>
 
-                            <Link to="/simulados" className="card">
+                            {/* Adicionada a classe card-simulados aqui: */}
+                            <Link to="/simulados" className="card card-simulados">
                                 <h3>Simulados</h3>
                                 <p>Simulados para testar o seu conhecimento com base no livro.</p>
                             </Link>
