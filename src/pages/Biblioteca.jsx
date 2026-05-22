@@ -149,7 +149,7 @@ export default function AObra() {
 
                 <div className="grid-livros">
                     {livros.map((livro, index) => (
-                        <div className="livro-card" key={index}>
+                        <div style={{borderRadius: '10px'}} className="livro-card" key={index}>
                             <div style={{display: 'flex'}}>
                                 <h3>{livro.titulo}</h3>
                                 <img style={{width: '8rem', borderRadius: '10px'}} src={livro.capaUrl} alt={livro.titulo} />
