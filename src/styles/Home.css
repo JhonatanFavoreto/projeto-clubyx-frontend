@@ -39,9 +39,6 @@ p {
     color: var(--cor-texto-secundario);
 }
 
-/* ==========================================================================
-   Componentes de Navegação e Header
-   ========================================================================== */
 .logo {
     font-size: 2rem;
     font-weight: 700;
@@ -246,6 +243,7 @@ p {
     margin-bottom: 0.8rem;
     line-height: 1.6;
 }
+
 
 .footer p:last-child {
     margin-bottom: 0;
