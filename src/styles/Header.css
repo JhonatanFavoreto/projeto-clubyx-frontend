@@ -1,0 +1,105 @@
+/* Estilos gerais do Header (Base) */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #ffffff; /* Ajuste para a cor do seu projeto */
+}
+
+.header-nav {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.header-nav a {
+    text-decoration: none;
+    color: #333333; /* Ajuste para a cor do seu projeto */
+    font-size: 1rem;
+}
+
+/* ==========================================
+   MEDIA QUERY PARA MOBILE (Telas até 768px)
+   ========================================== */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column; /* Empilha a logo e o menu verticalmente */
+        gap: 1rem;
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .header-nav {
+        flex-wrap: wrap; /* Se os links forem muitos, eles quebram linha em vez de sumir */
+        justify-content: center;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    .header-nav a {
+        font-size: 0.9rem; /* Diminui um pouco a fonte no celular */
+        padding: 0.5rem;
+    }
+}
+
+/* ===================================================
+   MEDIA QUERY PARA MOBILE (Telas de até 768px)
+   =================================================== */
+@media (max-width: 768px) {
+    /* 1. Força o cabeçalho a empilhar os blocos principais */
+    header.header {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 1rem !important;
+        padding: 1rem !important;
+        height: auto !important; /* Garante que a altura se adapte ao conteúdo */
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* 2. Ajusta o container da nav */
+    header.header .nav {
+        width: 100% !important;
+    }
+
+    /* 3. Faz a lista de links quebrar linha em vez de sumir ou esticar a tela */
+    header.header .nav ul {
+        display: flex !important;
+        flex-wrap: wrap !important; /* Permite os links irem para a linha de baixo */
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 0.5rem 1rem !important; /* Espaçamento entre os links (vertical e horizontal) */
+        padding: 0 !important;
+        margin: 0 !important;
+        list-style: none !important;
+    }
+
+    /* 4. Tira margens bobas dos itens da lista */
+    header.header .nav ul li {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* 5. Deixa os links ligeiramente menores e mais fáceis de tocar com o dedo */
+    header.header .nav ul li a {
+        font-size: 0.9rem !important;
+        display: inline-block !important;
+        padding: 0.3rem 0.5rem !important;
+    }
+
+    /* 6. Centraliza a logo e o botão se necessário */
+    header.header .logo {
+        font-size: 1.5rem !important;
+        text-align: center !important;
+    }
+
+    header.header .btn-idioma {
+        width: auto !important;
+        padding: 0.4rem 1rem !important;
+    }
+}
