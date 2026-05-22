@@ -2,14 +2,15 @@
 import { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { Link } from 'react-router-dom';
-import LoadingBook from '../components/LoadingBook'; // Importado com base no seu exemplo
+import { Link, useNavigate } from 'react-router-dom'; // Importado o useNavigate
+import LoadingBook from '../components/LoadingBook';
 import '../styles/Home.css';
 
 export default function Home() {
     const [livro, setLivro] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const navigate = useNavigate(); // Inicializando o hook de navegação
 
     useEffect(() => {
         const carregarLivros = async () => {
@@ -55,7 +56,10 @@ export default function Home() {
                             "Ao verme que primeiro roeu as frías carnes do meu cadáver dedico como
                             saudosa lembrança estas memórias pósthumas."
                         </p>
-                        <button className="btn-primario">Começar os Estudos</button>
+                        {/* Evento onClick adicionado com a função navigate */}
+                        <button className="btn-primario" onClick={() => navigate('/obra')}>
+                            Começar os Estudos
+                        </button>
                     </section>
 
                     <section className="secao-tecnologia" id="obra">

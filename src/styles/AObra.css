@@ -107,9 +107,7 @@
     text-align: center;
 }
 
-/* ==========================================================================
-   Grid de Personagens / Integrantes (Ajustada: Quadrada e Ligeiramente Maior)
-   ========================================================================== */
+
 .grid-personagens {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -120,28 +118,25 @@
 .personagem-card {
     background-color: var(--cor-fundo-card);
     border: 1px solid var(--cor-borda);
-    padding: 1.5rem 1.75rem; /* Aumentado sutilmente o respiro interno */
-    min-height: 95px;       /* Ligeiramente mais alto que os 80px anteriores */
+    padding: 1.5rem 1.75rem;
+    min-height: 95px;
     display: flex;
     align-items: center;
     position: relative;
-    border-radius: 0 !important; /* Força canto totalmente reto */
+    border-radius: 0 !important; 
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     cursor: default;
 }
 
-/* Tracinho vertical à esquerda retilíneo (Sem gradientes) */
 .personagem-card::before {
     content: '';
     position: absolute;
     top: 1.5rem;
     left: 0;
     width: 4px;
-    height: calc(100% - 3rem); /* Acompanha o novo tamanho dinamicamente */
+    height: calc(100% - 3rem);
     background-color: var(--cor-destaque);
 }
-
-/* Efeito Hover padrão do projeto */
 .personagem-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.04);
@@ -173,4 +168,3 @@
     border: 1px solid var(--cor-borda);
     object-fit: cover;
 }
-
