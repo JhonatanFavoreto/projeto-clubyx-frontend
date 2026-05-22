@@ -1,6 +1,31 @@
-import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 export default function Header() {
+    const location = useLocation();
+
+    // Mapeia o caminho da URL para o título da aba do navegador
+    const getTituloNavegador = (path) => {
+        switch (path) {
+            case '/': return 'CLUBYX | Home';
+            case '/obra': return 'CLUBYX | A Obra';
+            case '/biblioteca': return 'CLUBYX | Biblioteca';
+            case '/vestibular': return 'CLUBYX | Vestibular';
+            case '/simulados': return 'CLUBYX | Simulados';
+            case '/videoaulas': return 'CLUBYX | Videoaulas';
+            case '/curiosidades': return 'CLUBYX | Curiosidades';
+            case '/sobre': return 'CLUBYX | Sobre';
+            case '/login': return 'CLUBYX | Login';
+            case '/cadastro': return 'CLUBYX | Cadastro';
+            default: return 'CLUBYX';
+        }
+    };
+
+    // Altera o título da aba do navegador toda vez que o usuário muda de rota
+    useEffect(() => {
+        document.title = getTituloNavegador(location.pathname);
+    }, [location]);
+
     return (
         <header className="header">
             {/* Controle de responsividade, cores e efeitos globais */}
@@ -84,7 +109,7 @@ export default function Header() {
 
                 /* HOVER DO BOTÃO: Fundo vinho e texto na cor desejada #F4EFE6 */
                 header.header .btn-idioma:hover {
-                    color: #F4EFE6 !important; /* COR DO TEXTO ATUALIZADA */
+                    color: #F4EFE6 !important;
                     background-color: #4A0E17 !important;
                     border-color: #4A0E17 !important;
                 }
@@ -121,7 +146,9 @@ export default function Header() {
                 }
             `}</style>
 
+            {/* Mantido apenas a logo CLUBYX limpa no site */}
             <div className="logo">CLUBYX</div>
+
             <nav className="nav">
                 <ul>
                     <li>

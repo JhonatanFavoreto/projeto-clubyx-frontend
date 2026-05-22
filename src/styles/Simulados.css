@@ -79,7 +79,7 @@ body {
 }
 
 .hero h1 {
-  font-size: 5rem;
+  font-size: 3.5rem;
   margin-bottom: 20px;
   font-weight: 700;
 }
@@ -175,6 +175,39 @@ body {
 .next-button:hover {
   background-color: #581721;
   transform: scale(1.03);
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  gap: 16px;
+}
+
+.back-button {
+  background-color: transparent;
+  color: #4a0e17;
+  border: 1px solid #4a0e17;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+  font-family: inherit;
+}
+
+.back-button:hover {
+  background-color: #4a0e17;
+  color: white;
+}
+
+.finalizar-button {
+  background-color: #4a0e17;
+}
+
+.finalizar-button:hover {
+  background-color: #4a0e17;
 }
 
 .footer {

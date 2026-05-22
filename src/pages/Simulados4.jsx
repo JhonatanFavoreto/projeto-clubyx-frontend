@@ -1,4 +1,3 @@
-
 import { useNavigate } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -12,11 +11,15 @@ export default function AObra() {
     const [error, setError] = useState(null);
 
     const navigate = useNavigate();
-    
+
     const proximaPagina = () => {
-        navigate('/simulados2');
+        navigate('/simulados5');
     };
 
+    const paginaAnterior = () => {
+        navigate('/simulados');
+    };
+    
     useEffect(() => {
         const carregarDados = async () => {
             try {
@@ -73,32 +76,36 @@ export default function AObra() {
             </section>
 
             <main className="content">
-                <h2>Questão 01</h2>
+                <h2>Questão 04</h2>
 
                 <h4 className="texto-formatado">
-                    {questoes[0]?.enunciado || 'Enunciado indisponivel no momento.'}
+                    {questoes[3]?.enunciado || 'Enunciado indisponivel no momento.'}
                 </h4>
 
                 <div className="options">
                     <button>
-                        {questoes[0]?.alternativas?.[0]?.texto ||
+                        {questoes[3]?.alternativas?.[0]?.texto ||
                             'Enunciado indisponível no momento.'}
                     </button>
                     <button>
-                        {questoes[0]?.alternativas?.[1]?.texto ||
+                        {questoes[3]?.alternativas?.[1]?.texto ||
                             'Enunciado indisponível no momento.'}
                     </button>
                     <button>
-                        {questoes[0]?.alternativas?.[2]?.texto ||
+                        {questoes[3]?.alternativas?.[2]?.texto ||
                             'Enunciado indisponível no momento.'}
                     </button>
                     <button>
-                        {questoes[0]?.alternativas?.[3]?.texto ||
+                        {questoes[3]?.alternativas?.[3]?.texto ||
                             'Enunciado indisponível no momento.'}
                     </button>
                 </div>
 
-                <div className="next-button-container">
+                <div className="buttons-container">
+                    <button className="back-button" onClick={paginaAnterior}>
+                        ← Voltar
+                    </button>
+
                     <button className="next-button" onClick={proximaPagina}>
                         Próxima questão →
                     </button>

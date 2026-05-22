@@ -224,6 +224,12 @@ p {
     color: var(--cor-texto-secundario);
     line-height: 1.6;
 }
+.card-simulados {
+    grid-column: 1 / -1; /* Faz o card quebrar a linha e ocupar todo o espaço horizontal do grid */
+    justify-self: center; /* Posiciona o card exatamente no centro da tela */
+    width: 100%;
+    max-width: 350px; /* Mantém a largura máxima similar à dos outros cards para não esticar */
+}
 
 /* ==========================================================================
    Rodapé Global
