@@ -38,10 +38,6 @@ export default function AObra() {
         carregarLivros();
     }, []);
 
-    const fotoUrl = livro?.foto
-        ? `https://projeto-clubyx.onrender.com/${livro.foto.replace(/^\/+/, '')}`
-        : null;
-
     const personagensLista = livro?.personagens
         ? livro.personagens.split(',').map((personagem) => personagem.trim())
         : [];
@@ -57,17 +53,18 @@ export default function AObra() {
                     ) : (
                         <>
                             <section className="section-header">
-                                {fotoUrl && (
+                                {
                                     <div className="hero-capa">
                                         <img
-                                            className="obra-capa-imagem"
                                             src={
-                                                'https://altabooks.com.br/wp-content/uploads/2025/12/CAPA_3000px_MEMORIAS-POSTUMAS-DE-BRAS-CUBAS_-scaled.jpg'
+                                                livro?.foto ||
+                                                'Foto indisponivel no momento.'
                                             }
-                                            alt={livro?.foto || 'Capa do livro'}
+                                                alt={livro?.foto || 'Capa do livro'}
+                                                style={{ width: '18rem', borderRadius:'15px' }}
                                         />
                                     </div>
-                                )}
+                                }
 
                                 <div className="hero-conteudo">
                                     <div className="hero-topo">
@@ -82,7 +79,8 @@ export default function AObra() {
                                     </div>
 
                                     <p className="subtitle-main">
-                                        {error || `Ano de publicacao: ${livro?.publicacao || '---'}`}
+                                        {error ||
+                                            `Ano de publicacao: ${livro?.publicacao || '---'}`}
                                     </p>
                                 </div>
                             </section>
@@ -95,7 +93,9 @@ export default function AObra() {
                                     </p>
                                 </div>
                                 <div>
-                                    <h2 className="title-section" style={{ marginTop: '60px' }}>Contexto Histórico</h2>
+                                    <h2 className="title-section" style={{ marginTop: '60px' }}>
+                                        Contexto Histórico
+                                    </h2>
                                     <p className="texto-formatado">
                                         {livro?.contextoHist ||
                                             'Contexto historico indisponivel no momento.'}
