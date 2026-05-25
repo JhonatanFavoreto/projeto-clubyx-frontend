@@ -54,7 +54,7 @@ export default function Curiosidades() {
             <div className="curiosidades-page">
                 <main className="main-content">
                     {loading ? (
-                        <LoadingBook title="Carregando curiosidades" />
+                        <LoadingBook title="Carregando curiosidades..." />
                     ) : error ? (
                         <section className="obra-bloco">
                             <h2 className="title-section">Erro</h2>
