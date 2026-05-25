@@ -53,7 +53,7 @@ export default function AObra() {
             <div className="aobra-page">
                 <main className="main-content">
                     {loading ? (
-                        <LoadingBook title="Carregando a obra" />
+                        <LoadingBook title="Carregando a obra..." />
                     ) : (
                         <>
                             <section className="section-header">
