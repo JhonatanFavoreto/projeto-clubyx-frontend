@@ -104,7 +104,7 @@ export default function AObra() {
           <main className="main-content">
             <LoadingBook
               title="Carregando simulados..."
-              message="Aguarde enquanto carregamos as questões."
+              message="Estamos abrindo o livro para você."
             />
           </main>
         </div>
