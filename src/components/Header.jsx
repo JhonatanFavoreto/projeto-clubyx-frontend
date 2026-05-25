@@ -7,17 +7,36 @@ export default function Header() {
     // Mapeia o caminho da URL para o título da aba do navegador
     const getTituloNavegador = (path) => {
         switch (path) {
-            case '/': return 'CLUBYX | Home';
-            case '/obra': return 'CLUBYX | A Obra';
-            case '/biblioteca': return 'CLUBYX | Biblioteca';
-            case '/vestibular': return 'CLUBYX | Vestibular';
-            case '/simulados': return 'CLUBYX | Simulados';
-            case '/videoaulas': return 'CLUBYX | Videoaulas';
-            case '/curiosidades': return 'CLUBYX | Curiosidades';
-            case '/sobre': return 'CLUBYX | Sobre';
-            case '/login': return 'CLUBYX | Login';
-            case '/cadastro': return 'CLUBYX | Cadastro';
-            default: return 'CLUBYX';
+            case '/':
+                return 'CLUBYX | Home';
+            case '/obra':
+                return 'CLUBYX | A Obra';
+            case '/biblioteca':
+                return 'CLUBYX | Biblioteca';
+            case '/vestibular':
+                return 'CLUBYX | Vestibular';
+            case '/simulados':
+                return 'CLUBYX | Simulados';
+            case '/simulados2':
+                return 'CLUBYX | Simulados';
+            case '/simulados3':
+                return 'CLUBYX | Simulados';
+            case '/simulados4':
+                return 'CLUBYX | Simulados';
+            case '/simulados5':
+                return 'CLUBYX | Simulados';
+            case '/videoaulas':
+                return 'CLUBYX | Videoaulas';
+            case '/curiosidades':
+                return 'CLUBYX | Curiosidades';
+            case '/sobre':
+                return 'CLUBYX | Sobre';
+            case '/login':
+                return 'CLUBYX | Login';
+            case '/cadastro':
+                return 'CLUBYX | Cadastro';
+            default:
+                return 'CLUBYX';
         }
     };
 
@@ -152,7 +171,7 @@ export default function Header() {
             <nav className="nav">
                 <ul>
                     <li>
-                        <Link to="/">Home</Link>
+                        <Link to="/">Inicio</Link>
                     </li>
                     <li>
                         <Link to="/obra">A Obra</Link>
