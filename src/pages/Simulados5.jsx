@@ -9,6 +9,7 @@ export default function AObra() {
     const [questoes, setQuestoes] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [respostas, setRespostas] = useState({});
 
     const navigate = useNavigate();
 
@@ -18,6 +19,21 @@ export default function AObra() {
 
     const paginaAnterior = () => {
         navigate('/simulados4');
+    };
+
+    const handleAlternativaClick = (questaoIndex, alternativaIndex) => {
+        if (respostas[questaoIndex]) return; // Já foi respondida
+
+        const alternativa = questoes[questaoIndex]?.alternativas?.[alternativaIndex];
+        if (alternativa) {
+            setRespostas({
+                ...respostas,
+                [questaoIndex]: {
+                    index: alternativaIndex,
+                    correta: alternativa.correta || false,
+                },
+            });
+        }
     };
 
     useEffect(() => {
@@ -83,19 +99,55 @@ export default function AObra() {
                 </h4>
 
                 <div className="options">
-                    <button>
+                    <button
+                        onClick={() => handleAlternativaClick(4, 0)}
+                        className={`${
+                            respostas[4]?.index === 0
+                                ? respostas[4]?.correta
+                                    ? 'correcta'
+                                    : 'incorreta'
+                                : ''
+                        }`}
+                        disabled={!!respostas[4]}>
                         {questoes[4]?.alternativas?.[0]?.texto ||
                             'Enunciado indisponível no momento.'}
                     </button>
-                    <button>
+                    <button
+                        onClick={() => handleAlternativaClick(4, 1)}
+                        className={`${
+                            respostas[4]?.index === 1
+                                ? respostas[4]?.correta
+                                    ? 'correcta'
+                                    : 'incorreta'
+                                : ''
+                        }`}
+                        disabled={!!respostas[4]}>
                         {questoes[4]?.alternativas?.[1]?.texto ||
                             'Enunciado indisponível no momento.'}
                     </button>
-                    <button>
+                    <button
+                        onClick={() => handleAlternativaClick(4, 2)}
+                        className={`${
+                            respostas[4]?.index === 2
+                                ? respostas[4]?.correta
+                                    ? 'correcta'
+                                    : 'incorreta'
+                                : ''
+                        }`}
+                        disabled={!!respostas[4]}>
                         {questoes[4]?.alternativas?.[2]?.texto ||
                             'Enunciado indisponível no momento.'}
                     </button>
-                    <button>
+                    <button
+                        onClick={() => handleAlternativaClick(4, 3)}
+                        className={`${
+                            respostas[4]?.index === 3
+                                ? respostas[4]?.correta
+                                    ? 'correcta'
+                                    : 'incorreta'
+                                : ''
+                        }`}
+                        disabled={!!respostas[4]}>
                         {questoes[4]?.alternativas?.[3]?.texto ||
                             'Enunciado indisponível no momento.'}
                     </button>

@@ -1,274 +1,306 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;700&display=swap');
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  background: #f3eee6;
-  font-family: "Cormorant Garamond", serif;
-  color: #1e1e1e;
+    background: #f3eee6;
+    font-family: 'Cormorant Garamond', serif;
+    color: #1e1e1e;
 }
 
 .simulados-page {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .header {
-  width: 100%;
-  height: 70px;
-  background: #f8f5f0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 40px;
-  border-bottom: 1px solid #d8cfc0;
+    width: 100%;
+    height: 70px;
+    background: #f8f5f0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    border-bottom: 1px solid #d8cfc0;
 }
 
 .logo {
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: 1px;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
 .nav {
-  display: flex;
-  gap: 28px;
+    display: flex;
+    gap: 28px;
 }
 
 .nav a {
-  text-decoration: none;
-  color: #1f1f1f;
-  font-size: 16px;
-  transition: 0.2s;
+    text-decoration: none;
+    color: #1f1f1f;
+    font-size: 16px;
+    transition: 0.2s;
 }
 
 .nav a:hover {
-  color: #6b0f1a;
+    color: #6b0f1a;
 }
 
 .header-right {
-  display: flex;
-  align-items: center;
-  gap: 18px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
 }
 
 .header-right span {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 .menu-bnt {
-  border: none;
-  background: transparent;
-  font-size: 22px;
-  cursor: pointer;
+    border: none;
+    background: transparent;
+    font-size: 22px;
+    cursor: pointer;
 }
 
 .top-line {
-  width: 100%;
-  height: 8px;
+    width: 100%;
+    height: 8px;
 }
 
 .hero {
-  text-align: center;
-  padding: 70px 20px 40px;
+    text-align: center;
+    padding: 70px 20px 40px;
 }
 
 .hero h1 {
-  font-size: 3.5rem;
-  margin-bottom: 20px;
-  font-weight: 700;
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    font-weight: 700;
 }
 
 .hero p {
-  max-width: 580px;
-  margin: 0 auto 50px;
-  font-size: 1.3rem;
-  line-height: 1.4;
-  color: #333;
+    max-width: 580px;
+    margin: 0 auto 50px;
+    font-size: 1.3rem;
+    line-height: 1.4;
+    color: #333;
 }
 
 .content {
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 20px 80px;
-  flex: 1;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+    flex: 1;
 }
 
 .content h2 {
-  font-size: 2.2rem;
-  margin-bottom: 20px;
-  font-weight: 700;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    font-weight: 700;
 }
 
 .content h3 {
-  font-size: 1.8rem;
-  margin-bottom: 20px;
-  font-weight: 500;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    font-weight: 500;
 }
 
 .question-text {
-  margin-bottom: 40px;
+    margin-bottom: 40px;
 }
 
 .question-text p {
-  font-size: 1.25rem;
-  line-height: 1.6;
-  color: #1e1e1e;
-  margin-bottom: 5px;
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: #1e1e1e;
+    margin-bottom: 5px;
 }
 
 .content h4 {
-  font-size: 1.35rem;
-  margin-bottom: 25px;
-  font-weight: 700;
+    font-size: 1.35rem;
+    margin-bottom: 25px;
+    font-weight: 700;
 }
 
 .options {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 .options button {
-  width: 100%;
-  text-align: left;
-  padding: 16px 24px;
-  border-radius: 12px;
-  border: 1px solid #ddd;
-  background: #fdfdfc;
-  color: #1e1e1e;
-  font-size: 1.25rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-family: inherit;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    width: 100%;
+    text-align: left;
+    padding: 16px 24px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    background: #fdfdfc;
+    color: #1e1e1e;
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
 }
 
 .options button:hover {
-  background: #f4f1e9;
-  border-color: #c4bbb0;
+    background: #f4f1e9;
+    border-color: #c4bbb0;
 }
 
+.options button:disabled {
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+.options button.correcta {
+    background: #d4edda;
+    border-color: #28a745;
+    color: #155724;
+    font-weight: 600;
+}
+
+.options button.correcta::before {
+    content: '✓ ';
+    color: #28a745;
+    font-weight: 700;
+    margin-right: 8px;
+}
+
+.options button.incorreta {
+    background: #f8d7da;
+    border-color: #dc3545;
+    color: #721c24;
+    font-weight: 600;
+}
+
+.options button.incorreta::before {
+    content: '✕ ';
+    color: #dc3545;
+    font-weight: 700;
+    margin-right: 8px;
+}
 .next-button-container {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 30px;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 30px;
 }
 
 .next-button {
-  background-color: #4a0e17;
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 12px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.3s;
+    background-color: #4a0e17;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 .next-button:hover {
-  background-color: #581721;
-  transform: scale(1.03);
+    background-color: #581721;
+    transform: scale(1.03);
 }
 
 .buttons-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 30px;
-  gap: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    gap: 16px;
 }
 
 .back-button {
-  background-color: transparent;
-  color: #4a0e17;
-  border: 1px solid #4a0e17;
-  padding: 12px 24px;
-  border-radius: 12px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: 0.3s;
-  font-family: inherit;
+    background-color: transparent;
+    color: #4a0e17;
+    border: 1px solid #4a0e17;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: inherit;
 }
 
 .back-button:hover {
-  background-color: #4a0e17;
-  color: white;
+    background-color: #4a0e17;
+    color: white;
 }
 
 .finalizar-button {
-  background-color: #4a0e17;
+    background-color: #4a0e17;
 }
 
 .finalizar-button:hover {
-  background-color: #4a0e17;
+    background-color: #4a0e17;
 }
 
 .footer {
-  margin-top: 50px;
-  background: #111;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 28px 20px;
-  border-top: none;
+    margin-top: 50px;
+    background: #111;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 28px 20px;
+    border-top: none;
 }
 
 .footer p {
-  font-size: 18px;
-  line-height: 1.6;
+    font-size: 18px;
+    line-height: 1.6;
 }
 
 @media (max-width: 900px) {
-  .nav {
-    display: none;
-  }
+    .nav {
+        display: none;
+    }
 
-  .hero h1 {
-    font-size: 3.5rem;
-  }
+    .hero h1 {
+        font-size: 3.5rem;
+    }
 
-  .hero p {
-    font-size: 1.15rem;
-  }
+    .hero p {
+        font-size: 1.15rem;
+    }
 
-  .content h2 {
-    font-size: 1.8rem;
-  }
+    .content h2 {
+        font-size: 1.8rem;
+    }
 
-  .content h3 {
-    font-size: 1.5rem;
-  }
+    .content h3 {
+        font-size: 1.5rem;
+    }
 
-  .question-text p {
-    font-size: 1.1rem;
-  }
+    .question-text p {
+        font-size: 1.1rem;
+    }
 
-  .content h4 {
-    font-size: 1.15rem;
-  }
+    .content h4 {
+        font-size: 1.15rem;
+    }
 
-  .options button {
-    font-size: 1.1rem;
-    padding: 14px 20px;
-  }
+    .options button {
+        font-size: 1.1rem;
+        padding: 14px 20px;
+    }
 }
 
 @media (max-width: 480px) {
-  .hero h1 {
-    font-size: 2.8rem;
-  }
+    .hero h1 {
+        font-size: 2.8rem;
+    }
 
-  .content {
-    padding: 0 15px 40px;
-  }
+    .content {
+        padding: 0 15px 40px;
+    }
 
-  .options button {
-    font-size: 1rem;
-  }
+    .options button {
+        font-size: 1rem;
+    }
 }

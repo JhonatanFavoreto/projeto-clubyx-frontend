@@ -10,11 +10,27 @@ export default function AObra() {
     const [questoes, setQuestoes] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [respostas, setRespostas] = useState({});
 
     const navigate = useNavigate();
 
     const proximaPagina = () => {
         navigate('/simulados2');
+    };
+
+    const handleAlternativaClick = (questaoIndex, alternativaIndex) => {
+        if (respostas[questaoIndex]) return; 
+
+        const alternativa = questoes[questaoIndex]?.alternativas?.[alternativaIndex];
+        if (alternativa) {
+            setRespostas({
+                ...respostas,
+                [questaoIndex]: {
+                    index: alternativaIndex,
+                    correta: alternativa.correta || false,
+                },
+            });
+        }
     };
 
     useEffect(() => {
@@ -86,19 +102,55 @@ export default function AObra() {
                         </h4>
 
                         <div className="options">
-                            <button>
+                            <button
+                                onClick={() => handleAlternativaClick(0, 0)}
+                                className={`${
+                                    respostas[0]?.index === 0
+                                        ? respostas[0]?.correta
+                                            ? 'correcta'
+                                            : 'incorreta'
+                                        : ''
+                                }`}
+                                disabled={!!respostas[0]}>
                                 {questoes[0]?.alternativas?.[0]?.texto ||
                                     'Enunciado indisponível no momento.'}
                             </button>
-                            <button>
+                            <button
+                                onClick={() => handleAlternativaClick(0, 1)}
+                                className={`${
+                                    respostas[0]?.index === 1
+                                        ? respostas[0]?.correta
+                                            ? 'correcta'
+                                            : 'incorreta'
+                                        : ''
+                                }`}
+                                disabled={!!respostas[0]}>
                                 {questoes[0]?.alternativas?.[1]?.texto ||
                                     'Enunciado indisponível no momento.'}
                             </button>
-                            <button>
+                            <button
+                                onClick={() => handleAlternativaClick(0, 2)}
+                                className={`${
+                                    respostas[0]?.index === 2
+                                        ? respostas[0]?.correta
+                                            ? 'correcta'
+                                            : 'incorreta'
+                                        : ''
+                                }`}
+                                disabled={!!respostas[0]}>
                                 {questoes[0]?.alternativas?.[2]?.texto ||
                                     'Enunciado indisponível no momento.'}
                             </button>
-                            <button>
+                            <button
+                                onClick={() => handleAlternativaClick(0, 3)}
+                                className={`${
+                                    respostas[0]?.index === 3
+                                        ? respostas[0]?.correta
+                                            ? 'correcta'
+                                            : 'incorreta'
+                                        : ''
+                                }`}
+                                disabled={!!respostas[0]}>
                                 {questoes[0]?.alternativas?.[3]?.texto ||
                                     'Enunciado indisponível no momento.'}
                             </button>
