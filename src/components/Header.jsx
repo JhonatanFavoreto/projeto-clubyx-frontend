@@ -10,7 +10,7 @@ export default function Header() {
             case '/':
                 return 'CLUBYX | Início';
             case '/obra':
-                return 'CLUBYX | A Obra';
+                return 'CLUBYX | Obra';
             case '/biblioteca':
                 return 'CLUBYX | Biblioteca';
             case '/vestibular':
@@ -176,7 +176,7 @@ export default function Header() {
                         <Link to="/">Início</Link>
                     </li>
                     <li>
-                        <Link to="/obra">A Obra</Link>
+                        <Link to="/obra">Obra</Link>
                     </li>
                     <li>
                         <Link to="/biblioteca">Biblioteca</Link>
