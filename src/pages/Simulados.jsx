@@ -1,173 +1,189 @@
-import { useNavigate } from 'react-router-dom';
-import Footer from '../components/Footer';
-import Header from '../components/Header';
-import LoadingBook from '../components/LoadingBook';
-import '../styles/Simulados.css';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
+import LoadingBook from "../components/LoadingBook";
+import "../styles/Simulados.css";
 
 export default function AObra() {
-    const [livro, setLivro] = useState(null);
-    const [questoes, setQuestoes] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const [respostas, setRespostas] = useState({});
+  const [livro, setLivro] = useState(null);
+  const [questoes, setQuestoes] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [respostas, setRespostas] = useState({});
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const proximaPagina = () => {
-        navigate('/simulados2');
+  const proximaPagina = () => {
+    navigate("/simulados2");
+  };
+
+  const handleAlternativaClick = (questaoIndex, alternativaIndex) => {
+    if (respostas[questaoIndex]) return;
+
+    const alternativa =
+      questoes[questaoIndex]?.alternativas?.[alternativaIndex];
+    if (alternativa) {
+      setRespostas({
+        ...respostas,
+        [questaoIndex]: {
+          index: alternativaIndex,
+          correta: alternativa.correta || false,
+        },
+      });
+    }
+  };
+
+  useEffect(() => {
+    const carregarDados = async () => {
+      try {
+        const [resSimulados, resQuestoes] = await Promise.all([
+          fetch("https://projeto-clubyx.onrender.com/simulados", {
+            headers: { "x-api-key": "Clubyx_dev" },
+          }),
+          fetch("https://projeto-clubyx.onrender.com/questoes", {
+            headers: { "x-api-key": "Clubyx_dev" },
+          }),
+        ]);
+
+        if (!resSimulados.ok)
+          throw new Error(`Erro ${resSimulados.status} ao buscar /simulados`);
+        if (!resQuestoes.ok)
+          throw new Error(`Erro ${resQuestoes.status} ao buscar /questoes`);
+
+        const dataSimulados = await resSimulados.json();
+        const dataQuestoes = await resQuestoes.json();
+        console.log("DADOS DA API:", dataQuestoes);
+
+        setLivro(
+          Array.isArray(dataSimulados) ? dataSimulados[0] : dataSimulados,
+        );
+        setQuestoes(
+          Array.isArray(dataQuestoes) ? dataQuestoes : [dataQuestoes],
+        );
+      } catch (error) {
+        console.error("Erro ao buscar dados:", error);
+        setError("Não foi possível carregar os dados.");
+      } finally {
+        setLoading(false);
+      }
     };
 
-    const handleAlternativaClick = (questaoIndex, alternativaIndex) => {
-        if (respostas[questaoIndex]) return; 
+    carregarDados();
+  }, []);
 
-        const alternativa = questoes[questaoIndex]?.alternativas?.[alternativaIndex];
-        if (alternativa) {
-            setRespostas({
-                ...respostas,
-                [questaoIndex]: {
-                    index: alternativaIndex,
-                    correta: alternativa.correta || false,
-                },
-            });
-        }
-    };
+  return (
+    <>
+      <Header />
 
-    useEffect(() => {
-        const carregarDados = async () => {
-            try {
-                const [resSimulados, resQuestoes] = await Promise.all([
-                    fetch('https://projeto-clubyx.onrender.com/simulados', {
-                        headers: { 'x-api-key': 'Clubyx_dev' },
-                    }),
-                    fetch('https://projeto-clubyx.onrender.com/questoes', {
-                        headers: { 'x-api-key': 'Clubyx_dev' },
-                    }),
-                ]);
-
-                if (!resSimulados.ok)
-                    throw new Error(`Erro ${resSimulados.status} ao buscar /simulados`);
-                if (!resQuestoes.ok)
-                    throw new Error(`Erro ${resQuestoes.status} ao buscar /questoes`);
-
-                const dataSimulados = await resSimulados.json();
-                const dataQuestoes = await resQuestoes.json();
-                console.log('DADOS DA API:', dataQuestoes);
-
-                setLivro(Array.isArray(dataSimulados) ? dataSimulados[0] : dataSimulados);
-                setQuestoes(Array.isArray(dataQuestoes) ? dataQuestoes : [dataQuestoes]);
-            } catch (error) {
-                console.error('Erro ao buscar dados:', error);
-                setError('Não foi possível carregar os dados.');
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        carregarDados();
-    }, []);
-
-    return (
-        <div className="simulados-page">
-            <Header />
-
-            <div className="top-line"></div>
-
-            {loading ? (
-                <LoadingBook
-                    title="Carregando simulados"
-                    message="Aguarde enquanto carregamos as questões."
-                />
-            ) : error ? (
-                <section className="hero">
-                    <h2>{error}</h2>
-                </section>
-            ) : (
-                <>
-                    <section className="hero">
-                        <h1 className="texto-formatado">
-                            {livro?.nome || 'Nome indisponivel no momento.'}
-                        </h1>
-
-                        <p className="texto-formatado">
-                            {livro?.resumo || 'Resumo indisponivel no momento.'}
-                        </p>
-                    </section>
-
-                    <main className="content">
-                        <h2>Questão 01</h2>
-
-                        <h4 className="texto-formatado">
-                            {questoes[0]?.enunciado || 'Enunciado indisponivel no momento.'}
-                        </h4>
-
-                        <div className="options">
-                            <button
-                                onClick={() => handleAlternativaClick(0, 0)}
-                                className={`${
-                                    respostas[0]?.index === 0
-                                        ? respostas[0]?.correta
-                                            ? 'correcta'
-                                            : 'incorreta'
-                                        : ''
-                                }`}
-                                disabled={!!respostas[0]}>
-                                {questoes[0]?.alternativas?.[0]?.texto ||
-                                    'Enunciado indisponível no momento.'}
-                            </button>
-                            <button
-                                onClick={() => handleAlternativaClick(0, 1)}
-                                className={`${
-                                    respostas[0]?.index === 1
-                                        ? respostas[0]?.correta
-                                            ? 'correcta'
-                                            : 'incorreta'
-                                        : ''
-                                }`}
-                                disabled={!!respostas[0]}>
-                                {questoes[0]?.alternativas?.[1]?.texto ||
-                                    'Enunciado indisponível no momento.'}
-                            </button>
-                            <button
-                                onClick={() => handleAlternativaClick(0, 2)}
-                                className={`${
-                                    respostas[0]?.index === 2
-                                        ? respostas[0]?.correta
-                                            ? 'correcta'
-                                            : 'incorreta'
-                                        : ''
-                                }`}
-                                disabled={!!respostas[0]}>
-                                {questoes[0]?.alternativas?.[2]?.texto ||
-                                    'Enunciado indisponível no momento.'}
-                            </button>
-                            <button
-                                onClick={() => handleAlternativaClick(0, 3)}
-                                className={`${
-                                    respostas[0]?.index === 3
-                                        ? respostas[0]?.correta
-                                            ? 'correcta'
-                                            : 'incorreta'
-                                        : ''
-                                }`}
-                                disabled={!!respostas[0]}>
-                                {questoes[0]?.alternativas?.[3]?.texto ||
-                                    'Enunciado indisponível no momento.'}
-                            </button>
-                        </div>
-
-                        <div className="next-button-container">
-                            <button className="next-button" onClick={proximaPagina}>
-                                Próxima questão →
-                            </button>
-                        </div>
-                    </main>
-                </>
-            )}
-
-            <footer className="footer">
-                <Footer />
-            </footer>
+      {loading ? (
+        <div className="aobra-page">
+          <main className="main-content">
+            <LoadingBook
+              title="Carregando simulados"
+              message="Aguarde enquanto carregamos as questões."
+            />
+          </main>
         </div>
-    );
+      ) : (
+        <div className="simulados-page">
+          {error ? (
+            <section className="hero">
+              <h2>{error}</h2>
+            </section>
+          ) : (
+            <>
+              <section className="hero">
+                <h1 className="texto-formatado">
+                  {livro?.nome || "Nome indisponivel no momento."}
+                </h1>
+
+                <p className="texto-formatado">
+                  {livro?.resumo || "Resumo indisponivel no momento."}
+                </p>
+              </section>
+
+              <main className="content">
+                <h2>Questão 01</h2>
+
+                <h4 className="texto-formatado">
+                  {questoes[0]?.enunciado ||
+                    "Enunciado indisponivel no momento."}
+                </h4>
+
+                <div className="options">
+                  <button
+                    onClick={() => handleAlternativaClick(0, 0)}
+                    className={`${
+                      respostas[0]?.index === 0
+                        ? respostas[0]?.correta
+                          ? "correcta"
+                          : "incorreta"
+                        : ""
+                    }`}
+                    disabled={!!respostas[0]}
+                  >
+                    {questoes[0]?.alternativas?.[0]?.texto ||
+                      "Enunciado indisponível no momento."}
+                  </button>
+                  <button
+                    onClick={() => handleAlternativaClick(0, 1)}
+                    className={`${
+                      respostas[0]?.index === 1
+                        ? respostas[0]?.correta
+                          ? "correcta"
+                          : "incorreta"
+                        : ""
+                    }`}
+                    disabled={!!respostas[0]}
+                  >
+                    {questoes[0]?.alternativas?.[1]?.texto ||
+                      "Enunciado indisponível no momento."}
+                  </button>
+                  <button
+                    onClick={() => handleAlternativaClick(0, 2)}
+                    className={`${
+                      respostas[0]?.index === 2
+                        ? respostas[0]?.correta
+                          ? "correcta"
+                          : "incorreta"
+                        : ""
+                    }`}
+                    disabled={!!respostas[0]}
+                  >
+                    {questoes[0]?.alternativas?.[2]?.texto ||
+                      "Enunciado indisponível no momento."}
+                  </button>
+                  <button
+                    onClick={() => handleAlternativaClick(0, 3)}
+                    className={`${
+                      respostas[0]?.index === 3
+                        ? respostas[0]?.correta
+                          ? "correcta"
+                          : "incorreta"
+                        : ""
+                    }`}
+                    disabled={!!respostas[0]}
+                  >
+                    {questoes[0]?.alternativas?.[3]?.texto ||
+                      "Enunciado indisponível no momento."}
+                  </button>
+                </div>
+
+                <div className="next-button-container">
+                  <button className="next-button" onClick={proximaPagina}>
+                    Próxima questão →
+                  </button>
+                </div>
+              </main>
+            </>
+          )}
+
+          <footer className="footer">
+            <Footer />
+          </footer>
+        </div>
+      )}
+    </>
+  );
 }

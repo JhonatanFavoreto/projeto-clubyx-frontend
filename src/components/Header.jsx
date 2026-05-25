@@ -8,7 +8,7 @@ export default function Header() {
     const getTituloNavegador = (path) => {
         switch (path) {
             case '/':
-                return 'CLUBYX | Home';
+                return 'CLUBYX | Início';
             case '/obra':
                 return 'CLUBYX | A Obra';
             case '/biblioteca':
@@ -37,6 +37,8 @@ export default function Header() {
                 return 'CLUBYX | Cadastro';
             default:
                 return 'CLUBYX';
+            case '/resultado':
+                return 'CLUBYX | Resultado';
         }
     };
 
@@ -171,7 +173,7 @@ export default function Header() {
             <nav className="nav">
                 <ul>
                     <li>
-                        <Link to="/">Inicio</Link>
+                        <Link to="/">Início</Link>
                     </li>
                     <li>
                         <Link to="/obra">A Obra</Link>
