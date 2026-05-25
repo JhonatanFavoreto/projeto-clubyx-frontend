@@ -83,7 +83,7 @@ export default function Sobre() {
       >
         <main className="main-content" style={{ flex: 1 }}>
           {loading ? (
-            <LoadingBook title="Carregando a obra" />
+            <LoadingBook title="Carregando sobre" />
           ) : error ? (
             <div style={{ textAlign: "center", padding: "2rem" }}>
               <p>{error}</p>
