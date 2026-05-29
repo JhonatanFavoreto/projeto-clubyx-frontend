@@ -3,187 +3,221 @@
    ========================================================================== */
 
 .curiosidades-page {
-    min-height: 100vh;
-    background-color: var(--cor-fundo);
-    color: var(--cor-texto);
-    font-family: 'Lora', serif;
+  min-height: 100vh;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  font-family: "Lora", serif;
 }
 
 .main-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 4rem 5%;
-    display: grid;
-    gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 5%;
+  display: grid;
+  gap: 3rem;
 }
 
 .section-header {
-    align-items: center;
-    gap: 2.5rem;
-    padding: 2.5rem;
-    border: 1px solid var(--cor-borda);
-    background-color: var(--cor-fundo-card);
+  display: flex; /* Adicionado para garantir o funcionamento do gap e alinhamento */
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 2.5rem;
+  border: 1px solid var(--cor-borda);
+  background-color: var(--cor-fundo-card);
 }
 
 .title-main {
-    margin: 0;
-    font-family: 'Playfair Display', serif;
-    font-size: 3.5rem; /* Alinhado com o h1 principal */
-    line-height: 1.1;
-    color: var(--cor-texto);
-    text-wrap: balance;
+  margin: 0;
+  font-family: "Playfair Display", serif;
+  font-size: 3.5rem; /* Alinhado com o h1 principal */
+  line-height: 1.1;
+  color: var(--cor-texto);
+  text-wrap: balance;
+  word-break: break-word;
 }
 
 .hero-conteudo {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 1rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1rem;
 }
 
 .hero-etiqueta {
-    margin: 0;
-    color: var(--cor-destaque);
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+  margin: 0;
+  color: var(--cor-destaque);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
 .subtitle-main {
-    margin: 0;
-    color: var(--cor-texto-secundario);
-    font-size: 1.1rem;
-    font-style: italic; /* Seguindo o padrão do hero-subtitle */
-    line-height: 1.8;
+  margin: 0;
+  color: var(--cor-texto-secundario);
+  font-size: 1.1rem;
+  font-style: italic; /* Seguindo o padrão do hero-subtitle */
+  line-height: 1.8;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 /* Blocos de Conteúdo e Obras */
 .obra-bloco {
-    padding: 2.5rem;
-    border: 1px solid var(--cor-borda);
-    background-color: var(--cor-fundo-card);
+  padding: 2.5rem;
+  border: 1px solid var(--cor-borda);
+  background-color: var(--cor-fundo-card);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .title-section {
-    margin: 0 0 1.5rem;
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem; /* Alinhado com as h2 das seções comuns */
-    color: var(--cor-destaque);
+  margin: 0 0 1.5rem;
+  font-family: "Playfair Display", serif;
+  font-size: 2.2rem; /* Alinhado com as h2 das seções comuns */
+  color: var(--cor-destaque);
+  word-break: break-word;
 }
 
 .obra-bloco p {
-    margin: 0;
-    color: var(--cor-texto-secundario);
-    font-size: 1rem;
-    line-height: 1.8;
+  margin: 0;
+  color: var(--cor-texto-secundario);
+  font-size: 1rem;
+  line-height: 1.8;
+  word-break: break-word;
 }
 
 /* Formatações de Texto Centrais */
 .texto-formatado {
-    text-align: center;
+  text-align: center;
 }
 
 .texto-longo {
-    max-width: 800px;
-    margin: 0 auto 2rem auto;
-    text-align: center;
-    color: var(--cor-texto-secundario);
-    font-size: 1.1rem;
-    line-height: 1.8;
+  max-width: 800px;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 auto 2rem auto;
+  text-align: center;
+  color: var(--cor-texto-secundario);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 /* Listas de Curiosidades */
 .lista-curiosidades {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-    display: grid;
-    gap: 1rem;
-    list-style-position: inside;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: grid;
+  gap: 1rem;
+  list-style-position: inside;
 }
 
 .lista-curiosidades li {
-    color: var(--cor-texto-secundario);
-    font-size: 1rem;
-    line-height: 1.8;
+  color: var(--cor-texto-secundario);
+  font-size: 1rem;
+  line-height: 1.8;
 }
 
 /* Grid de Fatos (Mapeado exatamente igual ao .cards-grid do Home) */
 .grid-fatos {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-    width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  width: 100%;
 }
 
 /* Cards de Fatos (Cópia fiel do design clássico de .card) */
 .fato-card {
-    background-color: var(--cor-fundo-card);
-    border: 1px solid var(--cor-borda);
-    padding: 2rem;
-    min-height: 220px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  background-color: var(--cor-fundo-card);
+  border: 1px solid var(--cor-borda);
+  padding: 2rem;
+  min-height: 220px;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
 }
 
 /* Efeito Hover idêntico ao da Biblioteca */
 .fato-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-    border-color: var(--cor-destaque);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  border-color: var(--cor-destaque);
 }
 
 .fato-card h3 {
-    margin: 0 0 0.75rem;
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem;
-    color: var(--cor-texto);
+  margin: 0 0 0.75rem;
+  font-family: "Playfair Display", serif;
+  font-size: 1.6rem;
+  color: var(--cor-texto);
 }
 
 .fato-card p {
-    margin: 0;
-    color: var(--cor-texto-secundario);
-    font-size: 1rem;
-    line-height: 1.6;
+  margin: 0;
+  color: var(--cor-texto-secundario);
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 .curiosidades-autor-imagem {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    border: 1px solid var(--cor-borda);
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border: 1px solid var(--cor-borda);
 }
 
 /* ==========================================================================
    Responsividade Adaptada para Curiosidades
    ========================================================================== */
 @media (max-width: 1024px) {
-    .title-main { font-size: 2.8rem; }
-    .title-section { font-size: 1.8rem; }
+  .title-main {
+    font-size: 2.8rem;
+  }
+  .title-section {
+    font-size: 1.8rem;
+  }
 }
 
 @media (max-width: 900px) {
-    .main-content {
-        padding: 2rem 5%;
-        gap: 2rem;
-    }
+  .main-content {
+    padding: 2rem 5%;
+    gap: 2rem;
+  }
 
-    .section-header {
-        grid-template-columns: 1fr;
-        padding: 2rem;
-        gap: 1.5rem;
-    }
-
-    .hero-capa {
-        order: -1;
-        max-width: 300px;
-        margin: 0 auto;
-    }
+  .section-header {
+    padding: 2rem 1.5rem;
+    gap: 1.5rem;
+  }
 }
 
 @media (max-width: 560px) {
-    .title-main { font-size: 2.2rem; }
-    .obra-bloco, .fato-card, .section-header { padding: 1.5rem; }
-    .grid-fatos { grid-template-columns: 1fr; } /* Empilha em telas muito pequenas */
+  .main-content {
+    padding: 1.5rem 5%;
+    gap: 1.5rem;
+  }
+
+  .title-main {
+    font-size: 2.2rem;
+  }
+
+  .obra-bloco,
+  .fato-card,
+  .section-header {
+    padding: 1.5rem 1rem; /* Margens internas ainda menores para evitar transbordamento */
+  }
+
+  .grid-fatos {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  } /* Empilha em telas muito pequenas */
+
+  .texto-longo {
+    font-size: 1rem;
+  }
 }

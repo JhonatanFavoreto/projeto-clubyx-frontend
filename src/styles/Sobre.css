@@ -3,147 +3,199 @@
    ========================================================================== */
 
 .sobre-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 5rem 5% 7rem; /* Aumentado o espaçamento superior e inferior da página */
-    display: flex;
-    flex-direction: column;
-    gap: 4.5rem; /* Aumentado drasticamente o espaçamento entre os grandes containers */
-    font-family: 'Lora', serif;
-    background-color: var(--cor-fundo);
-    color: var(--cor-texto);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 5rem 5% 7rem; /* Aumentado o espaçamento superior e inferior da página */
+  display: flex;
+  flex-direction: column;
+  gap: 4.5rem; /* Aumentado drasticamente o espaçamento entre os grandes containers */
+  font-family: "Lora", serif;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
 }
 
 /* Header da Página */
 .page-header {
-    text-align: center;
-    max-width: 900px;
-    margin: 0 auto 1.5rem auto; /* Mais respiro abaixo do header principal */
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 1.5rem auto; /* Mais respiro abaixo do header principal */
 }
 
 .page-header h1 {
-    margin: 0 0 1.5rem;
-    font-family: 'Playfair Display', serif;
-    font-size: 3.5rem;
-    line-height: 1.1;
-    color: var(--cor-texto);
-    text-wrap: balance;
+  margin: 0 0 1.5rem;
+  font-family: "Playfair Display", serif;
+  font-size: 3.5rem;
+  line-height: 1.1;
+  color: var(--cor-texto);
+  text-wrap: balance;
 }
 
 .page-header p {
-    max-width: 800px;
-    margin: 0 auto;
-    color: var(--cor-texto-secundario);
-    font-size: 1.1rem;
-    font-style: italic;
-    line-height: 1.8;
+  max-width: 800px;
+  margin: 0 auto;
+  color: var(--cor-texto-secundario);
+  font-size: 1.1rem;
+  font-style: italic;
+  line-height: 1.8;
 }
 
 .sobre-content {
-    display: flex;
-    flex-direction: column;
-    gap: 4.5rem; /* Espaçamento amplo também entre os blocos internos de conteúdo */
+  display: flex;
+  flex-direction: column;
+  gap: 4.5rem; /* Espaçamento amplo também entre os blocos internos de conteúdo */
 }
 
 .equipe-card,
 .objetivo-section {
-    padding: 3rem 2.5rem; /* Mais respiro interno (padding) vertical */
-    border: 1px solid var(--cor-borda);
-    background-color: var(--cor-fundo-card);
-    border-radius: 0 !important; /* Totalmente quadrado */
+  padding: 3rem 2.5rem; /* Mais respiro interno (padding) vertical */
+  border: 1px solid var(--cor-borda);
+  background-color: var(--cor-fundo-card);
+  border-radius: 0 !important; /* Totalmente quadrado */
 }
 
 .equipe-card {
-    text-align: center;
+  text-align: center;
 }
 
 .equipe-card h2,
 .objetivo-section h2 {
-    margin: 2rem; /* Mais distância entre o título do bloco e o conteúdo abaixo */
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
-    color: var(--cor-destaque);
+  margin: 2rem; /* Mais distância entre o título do bloco e o conteúdo abaixo */
+  font-family: "Playfair Display", serif;
+  font-size: 2.2rem;
+  color: var(--cor-destaque);
 }
 
 .objetivo-section h2 {
-    text-align: center;
+  text-align: center;
 }
 
 .objetivo-section p {
-    margin: 0 0 1.5rem;
-    color: var(--cor-texto-secundario);
-    font-size: 1rem;
-    line-height: 1.8;
-    text-align: center;
+  margin: 0 0 1.5rem;
+  color: var(--cor-texto-secundario);
+  font-size: 1rem;
+  line-height: 1.8;
+  text-align: center;
 }
 
 .objetivo-section p:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 /* --- Bloco da Equipe Horizontal (Grid Otimizada para 2 ou 3 por linha) --- */
 .grid-personagens {
-    display: grid;
-    /* Mantém a lógica de 2 ou 3 por linha, reduzindo ligeiramente a largura mínima */
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem; /* Reduzido o espaço entre os cards para acompanhar o tamanho menor */
-    width: 100%;
+  display: grid;
+  /* Mantém a lógica de 2 ou 3 por linha, reduzindo ligeiramente a largura mínima */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem; /* Reduzido o espaço entre os cards para acompanhar o tamanho menor */
+  width: 100%;
 }
 
 /* Ajustando proporções: Cards compactos e equilibrados (Metade do tamanho anterior) */
 .sobre-container .personagem-card {
-    background-color: var(--cor-fundo-card);
-    border: 1px solid var(--cor-borda);
-    padding: 1.25rem 1.5rem; /* Padding reduzido para compactar a altura e comprimento */
-    min-height: 80px; /* Reduzido drasticamente para cortar o tamanho pela metade */
-    display: flex;
-    align-items: center;
-    position: relative;
-    border-radius: 0 !important; /* Força canto quadrado */
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-    cursor: default;
+  background-color: var(--cor-fundo-card);
+  border: 1px solid var(--cor-borda);
+  padding: 1.25rem 1.5rem; /* Padding reduzido para compactar a altura e comprimento */
+  min-height: 80px; /* Reduzido drasticamente para cortar o tamanho pela metade */
+  display: flex;
+  align-items: center;
+  position: relative;
+  border-radius: 0 !important; /* Força canto quadrado */
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+  cursor: default;
 }
 
 /* Tracinho vertical à esquerda perfeitamente ajustado ao novo card menor */
 .sobre-container .personagem-card::before {
-    content: '';
-    position: absolute;
-    top: 1.25rem;
-    left: 0;
-    width: 4px;
-    height: calc(100% - 2.5rem); /* Acompanha dinamicamente o tamanho menor do card */
-    background-color: var(--cor-destaque);
+  content: "";
+  position: absolute;
+  top: 1.25rem;
+  left: 0;
+  width: 4px;
+  height: calc(
+    100% - 2.5rem
+  ); /* Acompanha dinamicamente o tamanho menor do card */
+  background-color: var(--cor-destaque);
 }
 
 /* Efeito Hover */
 .sobre-container .personagem-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.04);
-    border-color: var(--cor-destaque);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.04);
+  border-color: var(--cor-destaque);
 }
 
 /* Informações do Integrante */
 .personagem-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-left: 1rem; /* Ajustado proporcionalmente */
-    text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 1rem; /* Ajustado proporcionalmente */
+  text-align: left;
 }
 
 .nome-integrante {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.2rem; /* Reduzido de 1.4rem para harmonizar com o card menor */
-    font-weight: 700;
-    color: var(--cor-texto);
-    margin: 0;
-    line-height: 1.2;
+  font-family: "Playfair Display", serif;
+  font-size: 1.2rem; /* Reduzido de 1.4rem para harmonizar com o card menor */
+  font-weight: 700;
+  color: var(--cor-texto);
+  margin: 0;
+  line-height: 1.2;
 }
 
 .curso-integrante {
-    font-family: 'Lora', serif;
-    font-size: 0.85rem; /* Reduzido de 0.95rem para não apertar o espaço */
-    color: var(--cor-texto-secundario);
-    margin-top: 0.3rem; /* Menos espaçamento superior */
-    font-style: italic;
+  font-family: "Lora", serif;
+  font-size: 0.85rem; /* Reduzido de 0.95rem para não apertar o espaço */
+  color: var(--cor-texto-secundario);
+  margin-top: 0.3rem; /* Menos espaçamento superior */
+  font-style: italic;
+}
+
+/* ==========================================================================
+   Responsividade Adaptada para Sobre
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .page-header h1 {
+    font-size: 2.8rem;
+  }
+  .equipe-card h2,
+  .objetivo-section h2 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .sobre-container {
+    padding: 3rem 5% 4rem;
+    gap: 2.5rem;
+  }
+
+  .sobre-content {
+    gap: 2.5rem;
+  }
+
+  .equipe-card,
+  .objetivo-section {
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .page-header h1 {
+    font-size: 2.2rem;
+    word-break: break-word;
+  }
+  .equipe-card,
+  .objetivo-section {
+    padding: 1.5rem 1rem;
+  }
+  .grid-personagens {
+    grid-template-columns: 1fr;
+  }
+  .equipe-card h2,
+  .objetivo-section h2 {
+    margin: 1rem 0;
+  }
 }

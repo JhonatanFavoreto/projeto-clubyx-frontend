@@ -3,168 +3,231 @@
    ========================================================================== */
 
 .aobra-page {
-    min-height: 100vh;
-    background-color: var(--cor-fundo);
-    color: var(--cor-texto);
-    font-family: 'Lora', serif;
+  min-height: 100vh;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  font-family: "Lora", serif;
 }
 
 .main-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 4rem 5%;
-    display: grid;
-    gap: 4.5rem; /* Espaçamento amplo e padronizado entre grandes blocos */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 5%;
+  display: grid;
+  gap: 4.5rem; /* Espaçamento amplo e padronizado entre grandes blocos */
 }
 
 /* Header da Seção Principal */
 .section-header {
-    display: grid;
-    grid-template-columns: minmax(220px, 320px) minmax(0, 1fr);
-    align-items: center;
-    gap: 2.5rem;
-    padding: 2.5rem 4rem;
-    border: 1px solid var(--cor-borda);
-    background-color: var(--cor-fundo-card);
-    border-radius: 0 !important; /* Totalmente quadrado */
+  display: grid;
+  grid-template-columns: minmax(220px, 320px) minmax(0, 1fr);
+  align-items: center;
+  gap: 2.5rem;
+  padding: 2.5rem 4rem;
+  border: 1px solid var(--cor-borda);
+  background-color: var(--cor-fundo-card);
+  border-radius: 0 !important; /* Totalmente quadrado */
 }
 
 .title-main {
-    margin: 0;
-    font-family: 'Playfair Display', serif;
-    font-size: 3.5rem;
-    line-height: 1.1;
-    color: var(--cor-texto);
-    text-wrap: balance;
+  margin: 0;
+  font-family: "Playfair Display", serif;
+  font-size: 3.5rem;
+  line-height: 1.1;
+  color: var(--cor-texto);
+  text-wrap: balance;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .hero-capa {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero-conteudo {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5rem;
 }
 
 .hero-topo {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
 }
 
 .hero-etiqueta {
-    margin: 0;
-    color: var(--cor-destaque);
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+  margin: 0;
+  color: var(--cor-destaque);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
 .subtitle-main {
-    max-width: 760px;
-    margin: 0;
-    color: var(--cor-texto-secundario);
-    font-size: 1.1rem;
-    font-style: italic;
-    line-height: 1.8;
-    text-align: left;
+  max-width: 760px;
+  margin: 0;
+  color: var(--cor-texto-secundario);
+  font-size: 1.1rem;
+  font-style: italic;
+  line-height: 1.8;
+  text-align: left;
 }
 
 /* Blocos de Conteúdo */
 .obra-bloco {
-    padding: 3rem 2.5rem;
-    border: 1px solid var(--cor-borda);
-    background-color: var(--cor-fundo-card);
-    border-radius: 0 !important; /* Totalmente quadrado */
+  padding: 3rem 2.5rem;
+  border: 1px solid var(--cor-borda);
+  background-color: var(--cor-fundo-card);
+  border-radius: 0 !important; /* Totalmente quadrado */
 }
 
 .title-section {
-    margin: 0 0 1.5rem;
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
-    color: var(--cor-destaque);
+  margin: 0 0 1.5rem;
+  font-family: "Playfair Display", serif;
+  font-size: 2.2rem;
+  color: var(--cor-destaque);
 }
 
 .obra-bloco p {
-    margin: 0 0 1.5rem;
-    color: var(--cor-texto-secundario);
-    font-size: 1rem;
-    line-height: 1.8;
+  margin: 0 0 1.5rem;
+  color: var(--cor-texto-secundario);
+  font-size: 1rem;
+  line-height: 1.8;
 }
 
 .obra-bloco p:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .texto-formatado {
-    text-align: center;
+  text-align: center;
 }
 
-
 .grid-personagens {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
-    width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
 }
 
 .personagem-card {
-    background-color: var(--cor-fundo-card);
-    border: 1px solid var(--cor-borda);
-    padding: 1.5rem 1.75rem;
-    min-height: 95px;
-    display: flex;
-    align-items: center;
-    position: relative;
-    border-radius: 0 !important; 
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-    cursor: default;
+  background-color: var(--cor-fundo-card);
+  border: 1px solid var(--cor-borda);
+  padding: 1.5rem 1.75rem;
+  min-height: 95px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  border-radius: 0 !important;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+  cursor: default;
 }
 
 .personagem-card::before {
-    content: '';
-    position: absolute;
-    top: 1.5rem;
-    left: 0;
-    width: 4px;
-    height: calc(100% - 3rem);
-    background-color: var(--cor-destaque);
+  content: "";
+  position: absolute;
+  top: 1.5rem;
+  left: 0;
+  width: 4px;
+  height: calc(100% - 3rem);
+  background-color: var(--cor-destaque);
 }
 .personagem-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.04);
-    border-color: var(--cor-destaque);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.04);
+  border-color: var(--cor-destaque);
 }
 
 .personagem-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-left: 1rem;
-    text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 1rem;
+  text-align: left;
 }
 
 .personagem-info p {
-    margin: 0;
-    padding: 0;
-    color: var(--cor-texto);
-    font-size: 1.05rem; /* Ajuste fino na leitura */
-    line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  color: var(--cor-texto);
+  font-size: 1.05rem; /* Ajuste fino na leitura */
+  line-height: 1.5;
 }
 
 /* Imagem de Capa da Obra Literária */
 .obra-capa-imagem {
-    display: block;
-    width: min(100%, 320px);
-    aspect-ratio: 4 / 5.4;
-    border-radius: 0 !important; /* Remove o arredondamento da imagem */
-    border: 1px solid var(--cor-borda);
-    object-fit: cover;
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  aspect-ratio: 4 / 5.4;
+  border-radius: 0 !important; /* Remove o arredondamento da imagem */
+  border: 1px solid var(--cor-borda);
+  object-fit: cover;
+}
+
+/* ==========================================================================
+   Responsividade Adaptada para A Obra
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .title-main {
+    font-size: 2.8rem;
+  }
+  .title-section {
+    font-size: 1.8rem;
+  }
+  .section-header {
+    padding: 2rem 2.5rem;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .main-content {
+    padding: 2rem 5%;
+    gap: 2.5rem;
+  }
+
+  .section-header {
+    grid-template-columns: 1fr;
+    padding: 2rem;
+    gap: 1.5rem;
+    text-align: center;
+  }
+
+  .hero-topo {
+    align-items: center;
+  }
+
+  .subtitle-main {
+    text-align: center;
+  }
+
+  .hero-capa {
+    order: -1;
+    max-width: 250px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .title-main {
+    font-size: 2.2rem;
+  }
+  .obra-bloco,
+  .section-header {
+    padding: 1.5rem;
+  }
+  .grid-personagens {
+    grid-template-columns: 1fr;
+  }
 }
