@@ -45,14 +45,18 @@ export default function AObra() {
                 setLivro(Array.isArray(data) ? data[0] : data);
             } catch (error) {
                 console.error('Erro ao buscar livros:', error);
-                setError('Não foi possível carregar os dados do livro.');
+                setError(
+                    idioma === 'pt'
+                        ? 'Não foi possível carregar os dados do livro.'
+                        : 'Could not load book data.',
+                );
             } finally {
                 setLoading(false);
             }
         };
 
         carregarLivros();
-    }, []);
+    }, [idioma]);
 
     const nomeLivro = idioma === 'en' ? livro?.nomeIng || livro?.nome : livro?.nome;
 
@@ -64,9 +68,50 @@ export default function AObra() {
     const personagensTexto =
         idioma === 'en' ? livro?.personagensIng || livro?.personagens : livro?.personagens;
 
-    const personagensLista = personagensTexto
-        ? personagensTexto.split(',').map((personagem) => personagem.trim())
-        : [];
+    const processarPersonagens = () => {
+        if (!personagensTexto) return [];
+
+        if (Array.isArray(personagensTexto)) {
+            return personagensTexto;
+        }
+
+        if (typeof personagensTexto === 'string') {
+            if (personagensTexto.includes('\n')) {
+                const blocos = personagensTexto.split(/\n\s*\n/);
+
+                return blocos
+                    .map((bloco) => {
+                        const linhas = bloco.trim().split('\n');
+
+                        const primeiraLinha = linhas[0] || '';
+                        const descricao = linhas.slice(1).join(' ').trim();
+
+                        const match = primeiraLinha.match(/^([^(]+)(?:\(([^)]+)\))?/);
+
+                        const nome = match ? match[1].trim() : primeiraLinha;
+
+                        const papel = match && match[2] ? match[2].trim() : '';
+
+                        return {
+                            nome,
+                            papel,
+                            descricao,
+                        };
+                    })
+                    .filter((p) => p.nome);
+            }
+
+            return personagensTexto.split(',').map((nome) => ({
+                nome: nome.trim(),
+                papel: '',
+                descricao: '',
+            }));
+        }
+
+        return [];
+    };
+
+    const personagensLista = processarPersonagens();
 
     return (
         <>
@@ -150,17 +195,30 @@ export default function AObra() {
                                 </h2>
 
                                 {personagensLista.length > 0 ? (
-                                    <div className="grid-personagens">
+                                    <div className="personagens-lista-container">
                                         {personagensLista.map((personagem, index) => (
-                                            <div className="personagem-card" key={index}>
-                                                <div className="personagem-info">
-                                                    <p>{personagem}</p>
-                                                </div>
+                                            <div className="personagem-item-bloco" key={index}>
+                                                <h3 className="personagem-titulo">
+                                                    {personagem.nome}
+
+                                                    {personagem.papel && (
+                                                        <span className="personagem-papel">
+                                                            {' '}
+                                                            ({personagem.papel})
+                                                        </span>
+                                                    )}
+                                                </h3>
+
+                                                {personagem.descricao && (
+                                                    <p className="personagem-descricao">
+                                                        {personagem.descricao}
+                                                    </p>
+                                                )}
                                             </div>
                                         ))}
                                     </div>
                                 ) : (
-                                    <p>
+                                    <p className="texto-esquerdo">
                                         {idioma === 'pt'
                                             ? 'Personagens indisponíveis no momento.'
                                             : 'Characters unavailable at the moment.'}
