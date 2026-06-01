@@ -109,58 +109,54 @@
   text-align: center;
 }
 
-.grid-personagens {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5rem;
-  width: 100%;
-}
-
-.personagem-card {
-  background-color: var(--cor-fundo-card);
-  border: 1px solid var(--cor-borda);
-  padding: 1.5rem 1.75rem;
-  min-height: 95px;
-  display: flex;
-  align-items: center;
-  position: relative;
-  border-radius: 0 !important;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease,
-    border-color 0.3s ease;
-  cursor: default;
-}
-
-.personagem-card::before {
-  content: "";
-  position: absolute;
-  top: 1.5rem;
-  left: 0;
-  width: 4px;
-  height: calc(100% - 3rem);
-  background-color: var(--cor-destaque);
-}
-.personagem-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.04);
-  border-color: var(--cor-destaque);
-}
-
-.personagem-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-left: 1rem;
+.texto-esquerdo {
   text-align: left;
 }
 
-.personagem-info p {
-  margin: 0;
-  padding: 0;
+/* ==========================================================================
+   Novo Layout de Personagens (Bloco único alinhado ao flex-start)
+   ========================================================================== */
+.personagens-lista-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alinha os blocos inteiros no início */
+  text-align: left;        /* Garante a leitura natural da esquerda para a direita */
+  width: 100%;
+  gap: 2rem;               /* Espaçamento elegante entre os blocos de personagens */
+}
+
+.personagem-item-bloco {
+  width: 100%;
+  border-bottom: 1px solid var(--cor-borda);
+  padding-bottom: 2rem;
+}
+
+.personagem-item-bloco:last-child {
+  border-bottom: none;     /* Remove a borda do último elemento */
+  padding-bottom: 0;
+}
+
+.personagem-titulo {
+  margin: 0 0 0.75rem 0;
+  font-family: "Playfair Display", serif;
+  font-size: 1.35rem;
   color: var(--cor-texto);
-  font-size: 1.05rem; /* Ajuste fino na leitura */
-  line-height: 1.5;
+  font-weight: 700;
+}
+
+.personagem-papel {
+  font-family: "Lora", serif;
+  font-size: 1.05rem;
+  color: var(--cor-destaque);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.personagem-descricao {
+  margin: 0 !important;
+  color: var(--cor-texto-secundario);
+  font-size: 1rem;
+  line-height: 1.8;
 }
 
 /* Imagem de Capa da Obra Literária */
@@ -170,7 +166,7 @@
   max-width: 320px;
   height: auto;
   aspect-ratio: 4 / 5.4;
-  border-radius: 0 !important; /* Remove o arredondamento da imagem */
+  border-radius: 0 !important;
   border: 1px solid var(--cor-borda);
   object-fit: cover;
 }
@@ -226,8 +222,5 @@
   .obra-bloco,
   .section-header {
     padding: 1.5rem;
-  }
-  .grid-personagens {
-    grid-template-columns: 1fr;
   }
 }
