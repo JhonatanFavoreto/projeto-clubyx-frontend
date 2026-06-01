@@ -94,10 +94,11 @@
 .sobre-container .personagem-card {
   background-color: var(--cor-fundo-card);
   border: 1px solid var(--cor-borda);
-  padding: 1.25rem 1.5rem; /* Padding reduzido para compactar a altura e comprimento */
-  min-height: 80px; /* Reduzido drasticamente para cortar o tamanho pela metade */
+  padding: 1.25rem 1.5rem;
+  min-height: 96px;
   display: flex;
   align-items: center;
+  gap: 1rem;
   position: relative;
   border-radius: 0 !important; /* Força canto quadrado */
   transition:
@@ -118,6 +119,32 @@
     100% - 2.5rem
   ); /* Acompanha dinamicamente o tamanho menor do card */
   background-color: var(--cor-destaque);
+}
+
+/* Foto do integrante (se disponível) */
+.personagem-photo {
+  width: 72px;
+  height: 72px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid rgba(0,0,0,0.06);
+  background-color: #f2f2f2;
+}
+
+/* Placeholder com iniciais quando não houver foto */
+.personagem-initials {
+  width: 72px;
+  height: 72px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--cor-destaque);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  flex-shrink: 0;
 }
 
 /* Efeito Hover */
