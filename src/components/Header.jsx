@@ -4,7 +4,18 @@ import { Link, useLocation } from 'react-router-dom';
 export default function Header() {
     const location = useLocation();
 
-    // Mapeia o caminho da URL para o título da aba do navegador
+    const idiomaAtual = localStorage.getItem('idioma') || 'pt';
+
+    const trocarIdioma = () => {
+        const novoIdioma = idiomaAtual === 'pt' ? 'en' : 'pt';
+
+        localStorage.setItem('idioma', novoIdioma);
+
+        window.dispatchEvent(new Event('idiomaAlterado'));
+
+        window.location.reload();
+    };
+
     const getTituloNavegador = (path) => {
         switch (path) {
             case '/':
@@ -35,25 +46,20 @@ export default function Header() {
                 return 'CLUBYX | Login';
             case '/cadastro':
                 return 'CLUBYX | Cadastro';
-            default:
-                return 'CLUBYX';
             case '/resultado':
                 return 'CLUBYX | Resultado';
+            default:
+                return 'CLUBYX';
         }
     };
 
-    // Altera o título da aba do navegador toda vez que o usuário muda de rota
     useEffect(() => {
         document.title = getTituloNavegador(location.pathname);
     }, [location]);
 
     return (
         <header className="header">
-            {/* Controle de responsividade, cores e efeitos globais */}
             <style>{`
-                /* ===================================================
-                   ESTILOS PARA TELAS GRANDES (Desktops e Notebooks)
-                   =================================================== */
                 header.header {
                     display: flex !important;
                     flex-direction: row !important;
@@ -115,7 +121,6 @@ export default function Header() {
                     opacity: 0.9;
                 }
 
-                /* Estilo base do Botão de Idioma */
                 header.header .btn-idioma {
                     white-space: nowrap !important;
                     padding: 0.5rem 1rem !important;
@@ -128,16 +133,12 @@ export default function Header() {
                     transition: all 0.2s ease-in-out;
                 }
 
-                /* HOVER DO BOTÃO: Fundo vinho e texto na cor desejada #F4EFE6 */
                 header.header .btn-idioma:hover {
                     color: #F4EFE6 !important;
                     background-color: #4A0E17 !important;
                     border-color: #4A0E17 !important;
                 }
 
-                /* ===================================================
-                   MEDIA QUERY PARA TELAS MÉDIAS E PEQUENAS (Tablets e Celulares)
-                   =================================================== */
                 @media (max-width: 1024px) {
                     header.header {
                         flex-direction: column !important;
@@ -167,7 +168,6 @@ export default function Header() {
                 }
             `}</style>
 
-            {/* Mantido apenas a logo CLUBYX limpa no site */}
             <div className="logo">CLUBYX</div>
 
             <nav className="nav">
@@ -198,7 +198,10 @@ export default function Header() {
                     </li>
                 </ul>
             </nav>
-            <button className="btn-idioma">PT / EN</button>
+
+            <button className="btn-idioma" onClick={trocarIdioma}>
+                {idiomaAtual === 'pt' ? 'PT / EN' : 'EN / PT'}
+            </button>
         </header>
     );
 }
