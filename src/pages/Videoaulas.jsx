@@ -8,6 +8,16 @@ export default function Videoaulas() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const [idioma, setIdioma] = useState(localStorage.getItem('idioma') || 'pt');
+
+    useEffect(() => {
+        const atualizarIdioma = () => {
+            setIdioma(localStorage.getItem('idioma') || 'pt');
+        };
+        window.addEventListener('idiomaAlterado', atualizarIdioma);
+        return () => window.removeEventListener('idiomaAlterado', atualizarIdioma);
+    }, []);
+
     useEffect(() => {
         const carregarVideos = async () => {
             try {
@@ -27,22 +37,44 @@ export default function Videoaulas() {
                 const data = await response.json();
                 console.log('Resposta da API:', data);
 
-                // Garante que 'videosArr' seja sempre uma array.
-                // Se a API retornar { videos: [...] }, usamos data.videos.
-                // Se retornar um array direto [...], usamos o próprio data.
                 const videosArr = data.videos || (Array.isArray(data) ? data : [data]);
-
                 setVideos(videosArr);
             } catch (error) {
                 console.error('Erro ao buscar videoaulas:', error);
-                setError('Não foi possível carregar os dados das videoaulas.');
+                setError(
+                    idioma === 'en'
+                        ? 'Could not load video lessons data.'
+                        : 'Não foi possível carregar os dados das videoaulas.'
+                );
             } finally {
                 setLoading(false);
             }
         };
 
         carregarVideos();
-    }, []);
+    }, [idioma]);
+
+    const en = idioma === 'en';
+
+    const t = {
+        pageTitle: en ? 'Video Lessons about the Book' : 'Videoaulas sobre o livro',
+        pageDesc: en
+            ? 'In this video lessons section, the main strategies for understanding the work with a focus on college entrance exams are presented. The content highlights the key innovative aspects of the reading.'
+            : 'Nesta seção de videoaulas, são apresentadas as principais estratégias para compreender a obra com foco no vestibular. O conteúdo destaca os principais papéis inovadores da leitura.',
+        aulasDisponiveis: en ? 'Available Lessons' : 'Aulas Disponíveis',
+        carregando: en ? 'Loading video lessons...' : 'Carregando videoaulas...',
+        nenhumaAula: en ? 'No video lessons found.' : 'Nenhuma videoaula encontrada.',
+        videoIndisponivel: en ? 'Video unavailable at the moment.' : 'Vídeo não disponível no momento.',
+        navegadorSemSupporte: en ? 'Your browser does not support the video tag.' : 'Seu navegador não suporta a tag de vídeo.',
+        aulaLabel: en ? 'Lesson' : 'Aula',
+        tituloFallback: en ? 'Posthumous Memoirs of Brás Cubas' : 'Memórias Póstumas de Brás Cubas',
+        resumoFallback: en
+            ? 'General summary of the content covered in the lesson with a focus on literature and history.'
+            : 'Resumo geral sobre o conteúdo abordado na aula com foco em literatura e história.',
+        aulaSubtitulo: en
+            ? 'Introduction and analysis focused on the most tested aspects.'
+            : 'Introdução e análise focada nos aspectos mais cobrados.',
+    };
 
     return (
         <div
@@ -56,20 +88,16 @@ export default function Videoaulas() {
 
             <main className="videoaulas-container">
                 <div className="page-header">
-                    <h1>Videoaulas sobre o livro</h1>
-                    <p>
-                        Nesta seção de videoaulas, são apresentadas as principais estratégias para
-                        compreender a obra com foco no vestibular. O conteúdo destaca os principais
-                        papéis inovadores da leitura.
-                    </p>
+                    <h1>{t.pageTitle}</h1>
+                    <p>{t.pageDesc}</p>
                 </div>
 
                 <section>
-                    <h2 className="titulo-secao">Aulas Disponíveis</h2>
+                    <h2 className="titulo-secao">{t.aulasDisponiveis}</h2>
 
                     {loading ? (
                         <p style={{ textAlign: 'center', padding: '20px' }}>
-                            Carregando videoaulas...
+                            {t.carregando}
                         </p>
                     ) : error ? (
                         <p style={{ textAlign: 'center', color: 'red', padding: '20px' }}>
@@ -77,23 +105,19 @@ export default function Videoaulas() {
                         </p>
                     ) : videos.length === 0 ? (
                         <p style={{ textAlign: 'center', padding: '20px' }}>
-                            Nenhuma videoaula encontrada.
+                            {t.nenhumaAula}
                         </p>
                     ) : (
                         <div>
                             {videos.map((video, idx) => {
-                                // Mapeia os campos vindos da API (ajuste se os nomes no banco forem diferentes)
                                 const videoUrl = video.url || video.linkVideo || '';
                                 const isYoutube =
                                     videoUrl.includes('youtube') || videoUrl.includes('youtu.be');
                                 const titulo =
-                                    video.title || video.nome || 'Memórias Póstumas de Brás Cubas';
+                                    video.title || video.nome || t.tituloFallback;
                                 const resumo =
-                                    video.resumo ||
-                                    video.description ||
-                                    'Resumo geral sobre o conteúdo abordado na aula com foco em literatura e história.';
+                                    video.resumo || video.description || t.resumoFallback;
 
-                                // Trata URL do youtube para embed
                                 let embedUrl = videoUrl;
                                 if (isYoutube && videoUrl.includes('watch?v=')) {
                                     embedUrl = videoUrl.replace('watch?v=', 'embed/').split('&')[0];
@@ -101,7 +125,6 @@ export default function Videoaulas() {
 
                                 return (
                                     <div className="aula-card" key={video.id || idx}>
-                                        {/* Início do Vídeo Real */}
                                         <div
                                             className="video-real-container"
                                             style={{
@@ -114,7 +137,7 @@ export default function Videoaulas() {
                                                     width="100%"
                                                     height="315"
                                                     src={embedUrl}
-                                                    title={`Videoaula - ${titulo}`}
+                                                    title={`${t.aulaLabel} - ${titulo}`}
                                                     frameBorder="0"
                                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                                     allowFullScreen
@@ -126,7 +149,7 @@ export default function Videoaulas() {
                                                     controls
                                                     style={{ borderRadius: '8px' }}>
                                                     <source src={videoUrl} type="video/mp4" />
-                                                    Seu navegador não suporta a tag de vídeo.
+                                                    {t.navegadorSemSupporte}
                                                 </video>
                                             ) : (
                                                 <div className="video-placeholder">
@@ -136,20 +159,16 @@ export default function Videoaulas() {
                                                             textAlign: 'center',
                                                             margin: 'auto',
                                                         }}>
-                                                        Vídeo não disponível no momento.
+                                                        {t.videoIndisponivel}
                                                     </p>
                                                 </div>
                                             )}
                                         </div>
-                                        {/* Fim do Vídeo Real */}
 
                                         <div className="aula-info">
-                                            <h3>Aula {idx + 1}</h3>
+                                            <h3>{t.aulaLabel} {idx + 1}</h3>
                                             <h4>{titulo}</h4>
-                                            <p className="aula-subtitulo">
-                                                Introdução e análise focada nos aspectos mais
-                                                cobrados.
-                                            </p>
+                                            <p className="aula-subtitulo">{t.aulaSubtitulo}</p>
                                             <p>{resumo}</p>
                                         </div>
                                     </div>

@@ -5,18 +5,25 @@ import LoadingBook from '../components/LoadingBook';
 import '../styles/Sobre.css';
 
 export default function Sobre() {
-    // Agora armazenará um array de objetos: [{ nome: "...", curso: "..." }]
     const [integrantes, setIntegrantes] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+
+    const [idioma, setIdioma] = useState(localStorage.getItem('idioma') || 'pt');
+
+    useEffect(() => {
+        const atualizarIdioma = () => {
+            setIdioma(localStorage.getItem('idioma') || 'pt');
+        };
+        window.addEventListener('idiomaAlterado', atualizarIdioma);
+        return () => window.removeEventListener('idiomaAlterado', atualizarIdioma);
+    }, []);
 
     useEffect(() => {
         const carregarIntegrantes = async () => {
             try {
                 const response = await fetch('https://projeto-clubyx.onrender.com/integrantes', {
-                    headers: {
-                        'x-api-key': 'Clubyx_dev',
-                    },
+                    headers: { 'x-api-key': 'Clubyx_dev' },
                 });
 
                 if (!response.ok) {
@@ -30,14 +37,11 @@ export default function Sobre() {
 
                 let listaFinal = [];
 
-                // LÓGICA ATUALIZADA: Extrai NOME e CURSO
                 if (Array.isArray(data)) {
-                    // Se a API retornar um array de objetos (um para cada integrante)
                     listaFinal = data
                         .map((item) => ({
                             nome: item.nome ? item.nome.trim() : '',
                             curso: item.curso ? item.curso.trim() : '',
-                            // tenta várias chaves comumente usadas para imagens
                             foto:
                                 item.foto ||
                                 item.fotoUrl ||
@@ -49,30 +53,24 @@ export default function Sobre() {
                         }))
                         .filter((item) => item.nome !== '');
                 } else if (data?.nome) {
-                    // Se a API retornar um único objeto com strings separadas por vírgula
                     const nomes = data.nome.split(',').map((n) => n.trim());
                     const cursos = data.curso ? data.curso.split(',').map((c) => c.trim()) : [];
 
                     listaFinal = nomes
                         .map((nome, index) => ({
-                            nome: nome,
-                            // Pega o curso na mesma posição do array, ou usa o único curso disponível
+                            nome,
                             curso: cursos[index] || data.curso || '',
                             foto: data.foto || '',
                         }))
                         .filter((item) => item.nome !== '');
                 }
 
-                // Normaliza URLs de imagem: se for um caminho relativo/arquivo, prefixa com o backend.
-                // Observação: caminhos começando com '/' serão prefixados com o backend para evitar
-                // que o browser tente buscá-los no host atual (por exemplo localhost:5173).
                 const BACKEND_BASE = 'https://projeto-clubyx.onrender.com';
                 const normalizeUrl = (url) => {
                     if (!url) return '';
                     const u = String(url).trim();
                     if (!u) return '';
                     if (u.startsWith('http')) return u;
-                    // remove barras duplicadas e prefixa com BACKEND_BASE
                     return `${BACKEND_BASE}/${u.replace(/^\/+/, '')}`;
                 };
 
@@ -81,14 +79,43 @@ export default function Sobre() {
                 setIntegrantes(normalized);
             } catch (error) {
                 console.error('Erro ao buscar integrantes:', error);
-                setError('Não foi possível carregar os dados dos integrantes.');
+                setError(
+                    idioma === 'en'
+                        ? 'Could not load team members data.'
+                        : 'Não foi possível carregar os dados dos integrantes.'
+                );
             } finally {
                 setLoading(false);
             }
         };
 
         carregarIntegrantes();
-    }, []);
+    }, [idioma]);
+
+    const en = idioma === 'en';
+
+    const t = {
+        loading: en ? 'Loading about page...' : 'Carregando sobre...',
+
+        pageTitle: en ? 'About the Project' : 'Sobre o Projeto',
+        pageDesc: en
+            ? 'This project was developed by a team of students with the goal of deepening the study of the work Posthumous Memoirs of Brás Cubas, written by Machado de Assis, using digital resources and interactive methodologies.'
+            : 'Este projeto foi desenvolvido por uma equipe de estudantes com o objetivo de aprofundar o estudo da obra Memórias Póstumas de Brás Cubas, escrita por Machado de Assis, utilizando recursos digitais e metodologias interativas.',
+
+        equipe: en ? 'Team' : 'Equipe',
+        integrantesIndisponiveis: en
+            ? 'Team members unavailable at the moment.'
+            : 'Integrantes indisponíveis no momento.',
+        fotoAlt: en ? 'Photo of' : 'Foto de',
+
+        objetivoTitulo: en ? 'Project Objective' : 'Objetivo do projeto',
+        objetivoP1: en
+            ? 'The Book Club is a collaborative digital platform developed as the 2026 Integrative Project. Our primary objective is to create a tool that unites technology and education, helping students prepare for college entrance exams (ENEM, FUVEST, Unicamp) through interactive and structured content.'
+            : 'O Clube do Livro é uma plataforma digital colaborativa desenvolvida como Projeto Integrador de 2026. O nosso objetivo primordial é criar uma ferramenta que una tecnologia e educação, auxiliando estudantes na preparação para os vestibulares (ENEM, FUVEST, Unicamp) através de conteúdos interativos e estruturados.',
+        objetivoP2: en
+            ? 'The great differentiator of this project is its interdisciplinarity and collaboration. The system meets the requirements of Systems Development (with REST API consumption and PostgreSQL modeling), while also deepening competencies in Portuguese Language through literary analysis and in English, ensuring bilingual support for the platform.'
+            : 'O grande diferencial deste projeto é a sua interdisciplinaridade e colaboração. O sistema atende aos requisitos de Desenvolvimento de Sistemas (com consumo de apis REST e modelagem em PostgreSQL), ao mesmo tempo em que aprofunda as competências de Língua Portuguesa na análise literária e de Inglês, garantindo o suporte bilíngue à plataforma.',
+    };
 
     return (
         <>
@@ -104,7 +131,7 @@ export default function Sobre() {
                 }}>
                 <main className="main-content" style={{ flex: 1 }}>
                     {loading ? (
-                        <LoadingBook title="Carregando sobre..." />
+                        <LoadingBook title={t.loading} />
                     ) : error ? (
                         <div style={{ textAlign: 'center', padding: '2rem' }}>
                             <p>{error}</p>
@@ -112,18 +139,13 @@ export default function Sobre() {
                     ) : (
                         <div className="sobre-container">
                             <div className="page-header">
-                                <h1>Sobre o Projeto</h1>
-                                <p>
-                                    Este projeto foi desenvolvido por uma equipe de estudantes com o
-                                    objetivo de aprofundar o estudo da obra Memórias Póstumas de
-                                    Brás Cubas, escrita por Machado de Assis, utilizando recursos
-                                    digitais e metodologias interativas.
-                                </p>
+                                <h1>{t.pageTitle}</h1>
+                                <p>{t.pageDesc}</p>
                             </div>
 
                             <div className="sobre-content">
                                 <div className="equipe-card">
-                                    <h2>Equipe</h2>
+                                    <h2>{t.equipe}</h2>
                                     <div className="equipe-list">
                                         {integrantes.length > 0 ? (
                                             <div className="grid-personagens">
@@ -133,7 +155,7 @@ export default function Sobre() {
                                                             <img
                                                                 className="personagem-photo"
                                                                 src={membro.foto}
-                                                                alt={`Foto de ${membro.nome}`}
+                                                                alt={`${t.fotoAlt} ${membro.nome}`}
                                                                 loading="lazy"
                                                             />
                                                         ) : (
@@ -153,7 +175,6 @@ export default function Sobre() {
                                                             <p className="nome-integrante">
                                                                 {membro.nome}
                                                             </p>
-                                                            {/* Renderiza o curso apenas se ele existir */}
                                                             {membro.curso && (
                                                                 <span className="curso-integrante">
                                                                     {membro.curso}
@@ -164,30 +185,15 @@ export default function Sobre() {
                                                 ))}
                                             </div>
                                         ) : (
-                                            <p>Integrantes indisponíveis no momento.</p>
+                                            <p>{t.integrantesIndisponiveis}</p>
                                         )}
                                     </div>
                                 </div>
 
                                 <div className="objetivo-section">
-                                    <h2>Objetivo do projeto</h2>
-                                    <p>
-                                        O Clube do Livro é uma plataforma digital colaborativa
-                                        desenvolvida como Projeto Integrador de 2026. O nosso
-                                        objetivo primordial é criar uma ferramenta que uma
-                                        tecnologia e educação, auxiliando estudantes na preparação
-                                        para os vestibulares (ENEM, FUVEST, Unicamp) através de
-                                        conteúdos interativos e estruturados.
-                                    </p>
-                                    <p>
-                                        O grande diferencial deste projeto é a sua
-                                        interdisciplinaridade e colaboração. O sistema atende aos
-                                        requisitos de Desenvolvimento de Sistemas (com consumo de
-                                        apis REST e modelagem em PostgreSQL), ao mesmo tempo em que
-                                        aprofunda as competências de Língua Portuguesa na análise
-                                        literária e de Inglês, garantindo o suporte bilíngue à
-                                        plataforma.
-                                    </p>
+                                    <h2>{t.objetivoTitulo}</h2>
+                                    <p>{t.objetivoP1}</p>
+                                    <p>{t.objetivoP2}</p>
                                 </div>
                             </div>
                         </div>

@@ -9,6 +9,20 @@ export default function ConteudosResumos() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const [idioma, setIdioma] = useState(localStorage.getItem("idioma") || "pt");
+
+  useEffect(() => {
+    const atualizarIdioma = () => {
+      setIdioma(localStorage.getItem("idioma") || "pt");
+    };
+
+    window.addEventListener("idiomaAlterado", atualizarIdioma);
+
+    return () => {
+      window.removeEventListener("idiomaAlterado", atualizarIdioma);
+    };
+  }, []);
+
   useEffect(() => {
     const carregarConteudo = async () => {
       try {
@@ -18,7 +32,7 @@ export default function ConteudosResumos() {
             headers: {
               "x-api-key": "Clubyx_dev",
             },
-          },
+          }
         );
 
         if (!response.ok) {
@@ -40,30 +54,35 @@ export default function ConteudosResumos() {
               dicas: item.dicas ? item.dicas.trim() : "",
               analises: item.analises ? item.analises.trim() : "",
               curiosidades: item.curiosidades ? item.curiosidades.trim() : "",
+              videoAulas: item.videoAulas ? item.videoAulas.trim() : "",
+              // campos em inglês
+              materiaIng: item.materiaIng ? item.materiaIng.trim() : "",
+              resumoConteudoIng: item.resumoConteudoIng ? item.resumoConteudoIng.trim() : "",
+              dicasIng: item.dicasIng ? item.dicasIng.trim() : "",
+              analisesIng: item.analisesIng ? item.analisesIng.trim() : "",
+              curiosidadesIng: item.curiosidadesIng ? item.curiosidadesIng.trim() : "",
             }))
             .filter((item) => item.materia !== "");
         } else if (data?.materia) {
           const materias = data.materia.split(",").map((n) => n.trim());
-          const resumos = data.resumo
-            ? data.resumo.split(",").map((c) => c.trim())
-            : [];
-          const dicas = data.dicas
-            ? data.dicas.split(",").map((c) => c.trim())
-            : [];
-          const analises = data.analises
-            ? data.analises.split(",").map((c) => c.trim())
-            : [];
-          const curiosidades = data.curiosidades
-            ? data.curiosidades.split(",").map((c) => c.trim())
-            : [];
+          const resumos = data.resumo ? data.resumo.split(",").map((c) => c.trim()) : [];
+          const dicas = data.dicas ? data.dicas.split(",").map((c) => c.trim()) : [];
+          const analises = data.analises ? data.analises.split(",").map((c) => c.trim()) : [];
+          const curiosidades = data.curiosidades ? data.curiosidades.split(",").map((c) => c.trim()) : [];
 
           listaFinal = materias
             .map((materia, index) => ({
-              materia: materia,
+              materia,
               resumo: resumos[index] || data.resumo || "",
               dicas: dicas[index] || data.dicas || "",
               analises: analises[index] || data.analises || "",
               curiosidades: curiosidades[index] || data.curiosidades || "",
+              videoAulas: "",
+              materiaIng: "",
+              resumoConteudoIng: "",
+              dicasIng: "",
+              analisesIng: "",
+              curiosidadesIng: "",
             }))
             .filter((item) => item.materia !== "");
         }
@@ -71,14 +90,34 @@ export default function ConteudosResumos() {
         setConteudo(listaFinal);
       } catch (error) {
         console.error("Erro ao buscar conteudo:", error);
-        setError("Não foi possível carregar os dados dos conteúdos e resumos.");
+        setError(
+          idioma === "pt"
+            ? "Não foi possível carregar os dados dos conteúdos e resumos."
+            : "Could not load content and summaries data."
+        );
       } finally {
         setLoading(false);
       }
     };
 
     carregarConteudo();
-  }, []);
+  }, [idioma]);
+
+  // Helpers para pegar o campo no idioma correto
+  const getMateria = (item) =>
+    idioma === "en" ? item.materiaIng || item.materia : item.materia;
+
+  const getResumo = (item) =>
+    idioma === "en" ? item.resumoConteudoIng || item.resumo : item.resumo;
+
+  const getDicas = (item) =>
+    idioma === "en" ? item.dicasIng || item.dicas : item.dicas;
+
+  const getAnalises = (item) =>
+    idioma === "en" ? item.analisesIng || item.analises : item.analises;
+
+  const getCuriosidades = (item) =>
+    idioma === "en" ? item.curiosidadesIng || item.curiosidades : item.curiosidades;
 
   return (
     <>
@@ -87,26 +126,31 @@ export default function ConteudosResumos() {
       <div className="vestibular-page">
         <main className="main-content">
           {loading ? (
-            <LoadingBook title="Carregando conteúdos..." />
+            <LoadingBook
+              title={idioma === "pt" ? "Carregando conteúdos..." : "Loading content..."}
+            />
           ) : (
             <>
-              {/* Header da Página */}
               <section className="section-header">
                 <div className="hero-conteudo">
                   <div className="hero-topo">
                     <div>
-                      <p className="hero-etiqueta">Vestibular</p>
-                      <h1 className="title-main">Conteúdos e Resumos</h1>
+                      <p className="hero-etiqueta">
+                        {idioma === "pt" ? "Vestibular" : "College Entrance"}
+                      </p>
+                      <h1 className="title-main">
+                        {idioma === "pt" ? "Conteúdos e Resumos" : "Content & Summaries"}
+                      </h1>
                     </div>
                   </div>
                   <p className="subtitle-main">
-                    Explore os resumos focados nas principais matérias e tópicos
-                    exigidos nos vestibulares, analisados pela nossa equipe.
+                    {idioma === "pt"
+                      ? "Explore os resumos focados nas principais matérias e tópicos exigidos nos vestibulares, analisados pela nossa equipe."
+                      : "Explore summaries focused on the main subjects and topics required in college entrance exams, analyzed by our team."}
                   </p>
                 </div>
               </section>
 
-              {/* Renderização Condicional: Erro ou Conteúdo */}
               {error ? (
                 <div style={{ textAlign: "center", padding: "2rem" }}>
                   <p>{error}</p>
@@ -121,73 +165,49 @@ export default function ConteudosResumos() {
                             className="title-section"
                             style={{ textAlign: "left", fontSize: "2rem" }}
                           >
-                            {item.materia}
+                            {getMateria(item)}
                           </h3>
 
                           <div className="conteudo-grid">
                             {/* CONTAINER 1: RESUMO E ANÁLISES */}
                             <div className="bloco-conteudo-principal">
-                              {item.resumo && (
+                              {getResumo(item) && (
                                 <div className="sub-bloco-info">
-                                  <h4
-                                    className="hero-etiqueta"
-                                    style={{ marginBottom: "0.5rem" }}
-                                  >
-                                    Resumo
+                                  <h4 className="hero-etiqueta" style={{ marginBottom: "0.5rem" }}>
+                                    {idioma === "pt" ? "Resumo" : "Summary"}
                                   </h4>
-                                  <p className="texto-formatado">{item.resumo}</p>
+                                  <p className="texto-formatado">{getResumo(item)}</p>
                                 </div>
                               )}
 
-                              {item.analises && (
-                                <div
-                                  className="sub-bloco-info"
-                                  style={{ marginTop: "1.5rem" }}
-                                >
-                                  <h4
-                                    className="hero-etiqueta"
-                                    style={{ marginBottom: "0.5rem" }}
-                                  >
-                                    Análises
+                              {getAnalises(item) && (
+                                <div className="sub-bloco-info" style={{ marginTop: "1.5rem" }}>
+                                  <h4 className="hero-etiqueta" style={{ marginBottom: "0.5rem" }}>
+                                    {idioma === "pt" ? "Análises" : "Analysis"}
                                   </h4>
-                                  <p className="texto-formatado">
-                                    {item.analises}
-                                  </p>
+                                  <p className="texto-formatado">{getAnalises(item)}</p>
                                 </div>
                               )}
                             </div>
 
                             {/* CONTAINER 2: DICAS E CURIOSIDADES */}
-                            {(item.dicas || item.curiosidades) && (
+                            {(getDicas(item) || getCuriosidades(item)) && (
                               <div className="bloco-conteudo-dicas">
-                                {item.dicas && (
+                                {getDicas(item) && (
                                   <div className="sub-bloco-info">
-                                    <h4
-                                      className="hero-etiqueta"
-                                      style={{ marginBottom: "0.5rem" }}
-                                    >
-                                      Dicas
+                                    <h4 className="hero-etiqueta" style={{ marginBottom: "0.5rem" }}>
+                                      {idioma === "pt" ? "Dicas" : "Tips"}
                                     </h4>
-                                    <p className="texto-formatado">
-                                      {item.dicas}
-                                    </p>
+                                    <p className="texto-formatado">{getDicas(item)}</p>
                                   </div>
                                 )}
 
-                                {item.curiosidades && (
-                                  <div
-                                    className="sub-bloco-info"
-                                    style={{ marginTop: "1.5rem" }}
-                                  >
-                                    <h4
-                                      className="hero-etiqueta"
-                                      style={{ marginBottom: "0.5rem" }}
-                                    >
-                                      Curiosidades
+                                {getCuriosidades(item) && (
+                                  <div className="sub-bloco-info" style={{ marginTop: "1.5rem" }}>
+                                    <h4 className="hero-etiqueta" style={{ marginBottom: "0.5rem" }}>
+                                      {idioma === "pt" ? "Curiosidades" : "Fun Facts"}
                                     </h4>
-                                    <p className="texto-formatado">
-                                      {item.curiosidades}
-                                    </p>
+                                    <p className="texto-formatado">{getCuriosidades(item)}</p>
                                   </div>
                                 )}
                               </div>
@@ -197,7 +217,9 @@ export default function ConteudosResumos() {
                       ))
                     ) : (
                       <p style={{ textAlign: "center", width: "100%" }}>
-                        Nenhum conteúdo ou resumo disponível no momento.
+                        {idioma === "pt"
+                          ? "Nenhum conteúdo ou resumo disponível no momento."
+                          : "No content or summaries available at the moment."}
                       </p>
                     )}
                   </div>

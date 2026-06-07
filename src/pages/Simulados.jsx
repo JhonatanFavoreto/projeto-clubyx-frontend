@@ -7,19 +7,27 @@ import "../styles/Simulados.css";
 const API_BASE = "https://projeto-clubyx.onrender.com";
 const API_HEADERS = { "x-api-key": "Clubyx_dev" };
 
-export default function AObra() {
+export default function Simulados() {
   const [livro, setLivro] = useState(null);
   const [questoes, setQuestoes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Estado do simulado (igual ao primeiro código)
   const [indiceAtual, setIndiceAtual] = useState(0);
   const [respostas, setRespostas] = useState({});
   const [simuladoConcluido, setSimuladoConcluido] = useState(false);
   const [pontuacao, setPontuacao] = useState(0);
 
-  // ─── Carregamento da API ──────────────────────────────────────────────────
+  const [idioma, setIdioma] = useState(localStorage.getItem("idioma") || "pt");
+
+  useEffect(() => {
+    const atualizarIdioma = () => {
+      setIdioma(localStorage.getItem("idioma") || "pt");
+    };
+    window.addEventListener("idiomaAlterado", atualizarIdioma);
+    return () => window.removeEventListener("idiomaAlterado", atualizarIdioma);
+  }, []);
+
   useEffect(() => {
     const carregarDados = async () => {
       try {
@@ -35,26 +43,61 @@ export default function AObra() {
 
         const dataSimulados = await resSimulados.json();
         const dataQuestoes = await resQuestoes.json();
-        console.log("DADOS DA API:", dataQuestoes);
 
-        setLivro(
-          Array.isArray(dataSimulados) ? dataSimulados[0] : dataSimulados,
-        );
-        setQuestoes(
-          Array.isArray(dataQuestoes) ? dataQuestoes : [dataQuestoes],
-        );
+        setLivro(Array.isArray(dataSimulados) ? dataSimulados[0] : dataSimulados);
+        setQuestoes(Array.isArray(dataQuestoes) ? dataQuestoes : [dataQuestoes]);
       } catch (err) {
         console.error("Erro ao buscar dados:", err);
-        setError("Não foi possível carregar os dados.");
+        setError(
+          idioma === "en"
+            ? "Could not load quiz data."
+            : "Não foi possível carregar os dados."
+        );
       } finally {
         setLoading(false);
       }
     };
 
     carregarDados();
-  }, []);
+  }, [idioma]);
 
-  // ─── Lógica do simulado (do primeiro código) ──────────────────────────────
+  const en = idioma === "en";
+
+  const t = {
+    loading: en ? "Loading quizzes..." : "Carregando simulados...",
+
+    nomeSimulado: en
+      ? livro?.nomeSimuladoIng || livro?.nome
+      : livro?.nome || "Nome indisponível no momento.",
+    resumoSimulado: en
+      ? livro?.resumoSimuladoIng || livro?.resumo
+      : livro?.resumo || "Resumo indisponível no momento.",
+
+    questao: en ? "Question" : "Questão",
+    de: en ? "of" : "de",
+    enunciadoIndisponivel: en
+      ? "Statement unavailable at the moment."
+      : "Enunciado indisponível no momento.",
+    alternativaIndisponivel: en ? "Option unavailable." : "Alternativa indisponível.",
+
+    anterior: en ? "← Previous Question" : "← Questão Anterior",
+    proxima: en ? "Next Question →" : "Próxima Questão →",
+    finalizar: en ? "Finish Quiz ✓" : "Finalizar Simulado ✓",
+
+    concluido: en ? "Quiz Completed! 🎉" : "Simulado Concluído! 🎉",
+    voceAcertou: en ? "You got" : "Você acertou",
+    de2: en ? "out of" : "de",
+    questoes: en ? "questions." : "questões.",
+    aproveitamento: en ? "% Success Rate" : "% de Aproveitamento",
+    gabarito: en ? "📋 Review Answer Key:" : "📋 Gabarito de Revisão:",
+    questaoLabel: en ? "Question" : "Questão",
+    suaResposta: en ? "👉 Your answer:" : "👉 Sua resposta:",
+    respostaCorreta: en ? "✅ Correct answer:" : "✅ Resposta correta:",
+    naoRespondida: en ? "Not answered" : "Não respondida",
+    naoDisponivel: en ? "N/A" : "N/A",
+    refazer: en ? "Retake Quiz" : "Refazer Simulado",
+  };
+
   const questaoAtual = questoes[indiceAtual] || null;
 
   const irParaAnterior = () => setIndiceAtual((prev) => Math.max(prev - 1, 0));
@@ -62,13 +105,9 @@ export default function AObra() {
     setIndiceAtual((prev) => Math.min(prev + 1, questoes.length - 1));
 
   const handleAlternativaClick = (questaoIndex, alternativaIndex) => {
-    // Não permite trocar resposta já dada
     if (respostas[questaoIndex] !== undefined) return;
-
-    const alternativa =
-      questoes[questaoIndex]?.alternativas?.[alternativaIndex];
+    const alternativa = questoes[questaoIndex]?.alternativas?.[alternativaIndex];
     if (!alternativa) return;
-
     setRespostas((prev) => ({
       ...prev,
       [questaoIndex]: {
@@ -94,7 +133,15 @@ export default function AObra() {
     setPontuacao(0);
   };
 
-  // ─── Render ───────────────────────────────────────────────────────────────
+  const getEnunciado = (q) =>
+    en ? q?.enunciadoIng || q?.enunciado : q?.enunciado;
+
+  const getExplicacao = (q) =>
+    en ? q?.explicacaoIng || q?.explicacao : q?.explicacao;
+
+  const getTextoAlternativa = (alt) =>
+    en ? alt?.questaoIng || alt?.texto : alt?.texto;
+
   return (
     <>
       <Header />
@@ -102,10 +149,7 @@ export default function AObra() {
       {loading ? (
         <div className="aobra-page">
           <main className="main-content">
-            <LoadingBook
-              title="Carregando simulados..."
-              message="Estamos abrindo o livro para você."
-            />
+            <LoadingBook title={t.loading} />
           </main>
         </div>
       ) : (
@@ -117,25 +161,18 @@ export default function AObra() {
               <h2>{error}</h2>
             </section>
           ) : simuladoConcluido ? (
-            // ── Tela de resultado ──────────────────────────────────────────
+            // ── Tela de resultado ────────────────────────────────────────
             <main className="content">
-              <h2>Simulado Concluído! 🎉</h2>
+              <h2>{t.concluido}</h2>
               <p style={{ fontSize: "1.2rem" }}>
-                Você acertou <strong>{pontuacao}</strong> de{" "}
-                <strong>{questoes.length}</strong> questões.
+                {t.voceAcertou} <strong>{pontuacao}</strong> {t.de2}{" "}
+                <strong>{questoes.length}</strong> {t.questoes}
               </p>
-              <p
-                style={{
-                  fontSize: "2rem",
-                  fontWeight: "bold",
-                  margin: "15px 0",
-                }}
-              >
-                {((pontuacao / questoes.length) * 100).toFixed(0)}% de
-                Aproveitamento
+              <p style={{ fontSize: "2rem", fontWeight: "bold", margin: "15px 0" }}>
+                {((pontuacao / questoes.length) * 100).toFixed(0)}{t.aproveitamento}
               </p>
 
-              <h3 style={{ marginTop: "30px" }}>📋 Gabarito de Revisão:</h3>
+              <h3 style={{ marginTop: "30px" }}>{t.gabarito}</h3>
               <div style={{ width: "100%", marginTop: "10px" }}>
                 {questoes.map((q, idx) => {
                   const resp = respostas[idx];
@@ -143,8 +180,9 @@ export default function AObra() {
                   const acertou = resp?.correta || false;
                   const altCorreta = q.alternativas?.find((a) => a.correta);
                   const altEscolhida = respondida
-                    ? q.alternativas?.[resp.index]?.texto
-                    : "Não respondida";
+                    ? getTextoAlternativa(q.alternativas?.[resp.index])
+                    : t.naoRespondida;
+                  const explicacao = getExplicacao(q);
 
                   return (
                     <div
@@ -159,31 +197,24 @@ export default function AObra() {
                       }}
                     >
                       <p>
-                        <strong>Questão {idx + 1}:</strong>{" "}
-                        {q.enunciado || "Enunciado indisponível."}
+                        <strong>{t.questaoLabel} {idx + 1}:</strong>{" "}
+                        {getEnunciado(q) || t.enunciadoIndisponivel}
                       </p>
                       <p style={{ margin: "5px 0 0 0" }}>
-                        👉 Sua resposta:{" "}
+                        {t.suaResposta}{" "}
                         <strong style={{ color: acertou ? "green" : "red" }}>
                           {altEscolhida}
                         </strong>
                       </p>
                       <p style={{ margin: "2px 0 0 0" }}>
-                        ✅ Resposta correta:{" "}
+                        {t.respostaCorreta}{" "}
                         <strong style={{ color: "green" }}>
-                          {altCorreta?.texto || "N/A"}
+                          {getTextoAlternativa(altCorreta) || t.naoDisponivel}
                         </strong>
                       </p>
-                      {q.comentario && (
-                        <p
-                          style={{
-                            fontStyle: "italic",
-                            marginTop: "8px",
-                            fontSize: "0.9rem",
-                            color: "#555",
-                          }}
-                        >
-                          💡 {q.comentario}
+                      {explicacao && (
+                        <p style={{ fontStyle: "italic", marginTop: "8px", fontSize: "0.9rem", color: "#555" }}>
+                          💡 {explicacao}
                         </p>
                       )}
                     </div>
@@ -193,20 +224,16 @@ export default function AObra() {
 
               <div className="next-button-container">
                 <button className="next-button" onClick={reiniciarSimulado}>
-                  Refazer Simulado
+                  {t.refazer}
                 </button>
               </div>
             </main>
           ) : (
-            // ── Tela do simulado ───────────────────────────────────────────
+            // ── Tela do simulado ─────────────────────────────────────────
             <>
               <section className="hero">
-                <h1 className="texto-formatado">
-                  {livro?.nome || "Nome indisponível no momento."}
-                </h1>
-                <p className="texto-formatado">
-                  {livro?.resumo || "Resumo indisponível no momento."}
-                </p>
+                <h1 className="texto-formatado">{t.nomeSimulado}</h1>
+                <p className="texto-formatado">{t.resumoSimulado}</p>
               </section>
 
               <main className="content">
@@ -231,17 +258,9 @@ export default function AObra() {
                           lineHeight: 1,
                           fontWeight: "bold",
                           cursor: "pointer",
-                          backgroundColor: ativa
-                            ? "#333"
-                            : respondida
-                              ? "#4caf50"
-                              : "#fff",
+                          backgroundColor: ativa ? "#333" : respondida ? "#4caf50" : "#fff",
                           color: ativa || respondida ? "#fff" : "#333",
-                          borderColor: ativa
-                            ? "#333"
-                            : respondida
-                              ? "#4caf50"
-                              : "#ccc",
+                          borderColor: ativa ? "#333" : respondida ? "#4caf50" : "#ccc",
                         }}
                       >
                         {index + 1}
@@ -252,12 +271,11 @@ export default function AObra() {
 
                 {/* Questão atual */}
                 <h2>
-                  Questão {indiceAtual + 1} de {questoes.length}
+                  {t.questao} {indiceAtual + 1} {t.de} {questoes.length}
                 </h2>
 
                 <h4 className="texto-formatado">
-                  {questaoAtual?.enunciado ||
-                    "Enunciado indisponível no momento."}
+                  {getEnunciado(questaoAtual) || t.enunciadoIndisponivel}
                 </h4>
 
                 <div className="options">
@@ -271,20 +289,18 @@ export default function AObra() {
                       if (estaSelecionada) {
                         className = resp.correta ? "correcta" : "incorreta";
                       } else if (alt.correta) {
-                        className = "correcta"; // mostra gabarito após responder
+                        className = "correcta";
                       }
                     }
 
                     return (
                       <button
                         key={altIndex}
-                        onClick={() =>
-                          handleAlternativaClick(indiceAtual, altIndex)
-                        }
+                        onClick={() => handleAlternativaClick(indiceAtual, altIndex)}
                         className={className}
                         disabled={foiRespondida}
                       >
-                        {alt.texto || "Alternativa indisponível."}
+                        {getTextoAlternativa(alt) || t.alternativaIndisponivel}
                       </button>
                     );
                   })}
@@ -293,11 +309,7 @@ export default function AObra() {
                 {/* Navegação */}
                 <div
                   className="next-button-container"
-                  style={{
-                    display: "flex",
-                    gap: "12px",
-                    justifyContent: "center",
-                  }}
+                  style={{ display: "flex", gap: "12px", justifyContent: "center" }}
                 >
                   <button
                     className="next-button"
@@ -305,16 +317,16 @@ export default function AObra() {
                     disabled={indiceAtual === 0}
                     style={{ opacity: indiceAtual === 0 ? 0.4 : 1 }}
                   >
-                    ← Questão Anterior
+                    {t.anterior}
                   </button>
 
                   {indiceAtual < questoes.length - 1 ? (
                     <button className="next-button" onClick={irParaProxima}>
-                      Próxima Questão →
+                      {t.proxima}
                     </button>
                   ) : (
                     <button className="next-button" onClick={finalizarSimulado}>
-                      Finalizar Simulado ✓
+                      {t.finalizar}
                     </button>
                   )}
                 </div>

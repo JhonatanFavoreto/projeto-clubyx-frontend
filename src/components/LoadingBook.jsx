@@ -2,7 +2,6 @@ import '../styles/LoadingBook.css';
 
 export default function LoadingBook({
     title = 'Carregando conteudo',
-    message = 'Estamos abrindo o livro para você.',
 }) {
     return (
         <section className="loading-book" aria-live="polite" aria-busy="true">
@@ -15,7 +14,6 @@ export default function LoadingBook({
 
             <div className="loading-book-text">
                 <h2>{title}</h2>
-                <p>{message}</p>
             </div>
         </section>
     );
