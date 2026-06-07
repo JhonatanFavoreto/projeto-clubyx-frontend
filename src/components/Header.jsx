@@ -5,52 +5,45 @@ export default function Header() {
     const location = useLocation();
 
     const idiomaAtual = localStorage.getItem('idioma') || 'pt';
+    const en = idiomaAtual === 'en';
 
     const trocarIdioma = () => {
         const novoIdioma = idiomaAtual === 'pt' ? 'en' : 'pt';
-
         localStorage.setItem('idioma', novoIdioma);
-
         window.dispatchEvent(new Event('idiomaAlterado'));
-
         window.location.reload();
     };
 
+    const navLinks = [
+        { to: '/',            label: en ? 'Home'           : 'Início'       },
+        { to: '/obra',        label: en ? 'The Work'       : 'Obra'         },
+        { to: '/biblioteca',  label: en ? 'Library'        : 'Biblioteca'   },
+        { to: '/vestibular',  label: en ? 'College Entrance': 'Vestibular'  },
+        { to: '/simulados',   label: en ? 'Mock Exams'     : 'Simulados'    },
+        { to: '/videoaulas',  label: en ? 'Video Lessons'  : 'Videoaulas'   },
+        { to: '/curiosidades',label: en ? 'Fun Facts'      : 'Curiosidades' },
+        { to: '/sobre',       label: en ? 'About'          : 'Sobre'        },
+    ];
+
     const getTituloNavegador = (path) => {
-        switch (path) {
-            case '/':
-                return 'CLUBYX | Início';
-            case '/obra':
-                return 'CLUBYX | Obra';
-            case '/biblioteca':
-                return 'CLUBYX | Biblioteca';
-            case '/vestibular':
-                return 'CLUBYX | Vestibular';
-            case '/simulados':
-                return 'CLUBYX | Simulados';
-            case '/simulados2':
-                return 'CLUBYX | Simulados';
-            case '/simulados3':
-                return 'CLUBYX | Simulados';
-            case '/simulados4':
-                return 'CLUBYX | Simulados';
-            case '/simulados5':
-                return 'CLUBYX | Simulados';
-            case '/videoaulas':
-                return 'CLUBYX | Videoaulas';
-            case '/curiosidades':
-                return 'CLUBYX | Curiosidades';
-            case '/sobre':
-                return 'CLUBYX | Sobre';
-            case '/login':
-                return 'CLUBYX | Login';
-            case '/cadastro':
-                return 'CLUBYX | Cadastro';
-            case '/resultado':
-                return 'CLUBYX | Resultado';
-            default:
-                return 'CLUBYX';
-        }
+        const titles = {
+            '/':             en ? 'CLUBYX | Home'          : 'CLUBYX | Início',
+            '/obra':         en ? 'CLUBYX | The Work'      : 'CLUBYX | Obra',
+            '/biblioteca':   en ? 'CLUBYX | Library'       : 'CLUBYX | Biblioteca',
+            '/vestibular':   en ? 'CLUBYX | College Entrance' : 'CLUBYX | Vestibular',
+            '/simulados':    en ? 'CLUBYX | Mock Exams'    : 'CLUBYX | Simulados',
+            '/simulados2':   en ? 'CLUBYX | Mock Exams'    : 'CLUBYX | Simulados',
+            '/simulados3':   en ? 'CLUBYX | Mock Exams'    : 'CLUBYX | Simulados',
+            '/simulados4':   en ? 'CLUBYX | Mock Exams'    : 'CLUBYX | Simulados',
+            '/simulados5':   en ? 'CLUBYX | Mock Exams'    : 'CLUBYX | Simulados',
+            '/videoaulas':   en ? 'CLUBYX | Video Lessons' : 'CLUBYX | Videoaulas',
+            '/curiosidades': en ? 'CLUBYX | Fun Facts'     : 'CLUBYX | Curiosidades',
+            '/sobre':        en ? 'CLUBYX | About'         : 'CLUBYX | Sobre',
+            '/login':        'CLUBYX | Login',
+            '/cadastro':     en ? 'CLUBYX | Register'      : 'CLUBYX | Cadastro',
+            '/resultado':    en ? 'CLUBYX | Result'        : 'CLUBYX | Resultado',
+        };
+        return titles[path] || 'CLUBYX';
     };
 
     useEffect(() => {
@@ -172,30 +165,11 @@ export default function Header() {
 
             <nav className="nav">
                 <ul>
-                    <li>
-                        <Link to="/">Início</Link>
-                    </li>
-                    <li>
-                        <Link to="/obra">Obra</Link>
-                    </li>
-                    <li>
-                        <Link to="/biblioteca">Biblioteca</Link>
-                    </li>
-                    <li>
-                        <Link to="/vestibular">Vestibular</Link>
-                    </li>
-                    <li>
-                        <Link to="/simulados">Simulados</Link>
-                    </li>
-                    <li>
-                        <Link to="/videoaulas">Videoaulas</Link>
-                    </li>
-                    <li>
-                        <Link to="/curiosidades">Curiosidades</Link>
-                    </li>
-                    <li>
-                        <Link to="/sobre">Sobre</Link>
-                    </li>
+                    {navLinks.map(({ to, label }) => (
+                        <li key={to}>
+                            <Link to={to}>{label}</Link>
+                        </li>
+                    ))}
                 </ul>
             </nav>
 

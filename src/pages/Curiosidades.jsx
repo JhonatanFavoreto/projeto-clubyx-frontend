@@ -10,6 +10,16 @@ export default function Curiosidades() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const [idioma, setIdioma] = useState(localStorage.getItem('idioma') || 'pt');
+
+    useEffect(() => {
+        const atualizarIdioma = () => {
+            setIdioma(localStorage.getItem('idioma') || 'pt');
+        };
+        window.addEventListener('idiomaAlterado', atualizarIdioma);
+        return () => window.removeEventListener('idiomaAlterado', atualizarIdioma);
+    }, []);
+
     useEffect(() => {
         const carregarConteudo = async () => {
             try {
@@ -17,35 +27,64 @@ export default function Curiosidades() {
                 setConteudo(Array.isArray(data) ? data[0] : data);
             } catch (err) {
                 console.error('Erro ao buscar conteudo:', err);
-                setError('Nao foi possivel carregar os dados do conteudo.');
+                setError(
+                    idioma === 'en'
+                        ? 'Could not load content data.'
+                        : 'Não foi possível carregar os dados do conteudo.'
+                );
             } finally {
                 setLoading(false);
             }
         };
 
         carregarConteudo();
-    }, []);
+    }, [idioma]);
 
-    const materia = conteudo?.materia || 'Curiosidades';
-    const textoCuriosidades = conteudo?.curiosidades || 'Curiosidades indisponiveis no momento.';
+    const en = idioma === 'en';
+
+    // Campos do banco com fallback
+    const materia = en
+        ? conteudo?.materiaIng || conteudo?.materia || 'Curiosities'
+        : conteudo?.materia || 'Curiosidades';
+
+    const resumo = en
+        ? conteudo?.resumoConteudoIng || conteudo?.resumo || 'Content loaded from backend.'
+        : conteudo?.resumo || 'Conteudo carregado do backend.';
+
+    const textoCuriosidades = en
+        ? conteudo?.curiosidadesIng || conteudo?.curiosidades || 'Curiosities unavailable at the moment.'
+        : conteudo?.curiosidades || 'Curiosidades indisponíveis no momento.';
+
+    const dicas = en
+        ? conteudo?.dicasIng || conteudo?.dicas || 'Tips unavailable at the moment.'
+        : conteudo?.dicas || 'Dicas indisponíveis no momento.';
+
+    const analises = en
+        ? conteudo?.analisesIng || conteudo?.analises || 'Analysis unavailable at the moment.'
+        : conteudo?.analises || 'Análises indisponíveis no momento.';
+
+    const videoAulas = conteudo?.videoAulas || (en ? 'Video lessons unavailable at the moment.' : 'Videoaulas indisponíveis no momento.');
+
+    // Textos fixos
+    const t = {
+        loading: en ? 'Loading curiosities...' : 'Carregando curiosidades...',
+        erroTitulo: en ? 'Error' : 'Erro',
+        tituloMain: en ? 'Curiosities' : 'Curiosidades',
+        curiosidadesDaObra: en ? 'Curiosities about the Work' : 'Curiosidades da Obra',
+        outrosCampos: en ? 'Other Content Fields' : 'Outros Campos do Conteudo',
+        resumoLabel: en ? 'Summary' : 'Resumo',
+        resumoFallback: en ? 'Summary unavailable at the moment.' : 'Resumo indisponível no momento.',
+        dicasLabel: en ? 'Tips' : 'Dicas',
+        analisesLabel: en ? 'Analysis' : 'Análises',
+        videoaulasLabel: en ? 'Video Lessons' : 'Videoaulas',
+    };
 
     const detalhesConteudo = [
-        { titulo: 'Resumo', texto: empty(conteudo?.resumo) },
-        { titulo: 'Dicas', texto: conteudo?.dicas || 'Dicas indisponiveis no momento.' },
-        {
-            titulo: 'Analises',
-            texto: conteudo?.analises || 'Analises indisponiveis no momento.',
-        },
-        {
-            titulo: 'Videoaulas',
-            texto: conteudo?.videoAulas || 'Videoaulas indisponiveis no momento.',
-        },
+        { titulo: t.resumoLabel, texto: resumo || t.resumoFallback },
+        { titulo: t.dicasLabel, texto: dicas },
+        { titulo: t.analisesLabel, texto: analises },
+        { titulo: t.videoaulasLabel, texto: videoAulas },
     ];
-
-    // Função auxiliar rápida para tratar o texto de resumo nos detalhes, se necessário
-    function empty(val) {
-        return val || 'Resumo indisponivel no momento.';
-    }
 
     return (
         <>
@@ -54,10 +93,10 @@ export default function Curiosidades() {
             <div className="curiosidades-page">
                 <main className="main-content">
                     {loading ? (
-                        <LoadingBook title="Carregando curiosidades..." />
+                        <LoadingBook title={t.loading} />
                     ) : error ? (
                         <section className="obra-bloco">
-                            <h2 className="title-section">Erro</h2>
+                            <h2 className="title-section">{t.erroTitulo}</h2>
                             <p className="texto-formatado">{error}</p>
                         </section>
                     ) : (
@@ -66,13 +105,11 @@ export default function Curiosidades() {
                                 <div className="hero-conteudo">
                                     <div className="hero-titulo-container">
                                         <p className="hero-etiqueta">{materia}</p>
-                                        <h1 className="title-main">Curiosidades</h1>
+                                        <h1 className="title-main">{t.tituloMain}</h1>
                                     </div>
 
                                     <div className="hero-texto-container">
-                                        <p className="subtitle-main">
-                                            {conteudo?.resumo || 'Conteudo carregado do backend.'}
-                                        </p>
+                                        <p className="subtitle-main">{resumo}</p>
                                     </div>
                                 </div>
                             </section>
@@ -80,7 +117,7 @@ export default function Curiosidades() {
                             <section className="section-header">
                                 <div className="hero-conteudo">
                                     <div className="hero-titulo-container">
-                                        <h2 className="title-section">Curiosidades da Obra</h2>
+                                        <h2 className="title-section">{t.curiosidadesDaObra}</h2>
                                     </div>
 
                                     <div className="hero-texto-container">
@@ -92,7 +129,7 @@ export default function Curiosidades() {
                             </section>
 
                             <section className="obra-bloco">
-                                <h2 className="title-section">Outros Campos do Conteudo</h2>
+                                <h2 className="title-section">{t.outrosCampos}</h2>
                                 <div className="grid-fatos">
                                     {detalhesConteudo.map((item) => (
                                         <div className="fato-card" key={item.titulo}>
